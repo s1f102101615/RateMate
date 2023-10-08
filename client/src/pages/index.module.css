@@ -1,4 +1,5 @@
 .title {
+  margin-top: 100px;
   font-size: 80px;
   font-weight: bold;
   text-align: center;
@@ -22,8 +23,25 @@
 }
 
 .head {
-  height: 600px;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: relative;
+  width: 100%;
+  height: 650px;
+  padding-top: 60px;
+  background: rgb(2 2 2 / 40%);
   background-color: #eee;
+  background-image: 'aa';
+}
+
+.backgroundphoto {
+  top: 100px;
+  z-index: 0;
+  display: absolute;
+  width: 100%;
+  height: 650px;
+  background-color: 'blue';
 }
 
 .detail {
@@ -33,6 +51,7 @@
   width: 100%;
   height: 450px;
   padding-top: 50px;
+  background-color: #fff;
   background-color: #b8b8b8;
 }
 

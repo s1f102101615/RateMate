@@ -16,6 +16,8 @@ const Home = () => {
     <>
       <BasicHeader user={user} />
       <div className={styles.head}>
+        {/* <Image src={back.src} /> */}
+
         <div className={styles.title} style={{}}>
           熱中した過去に
           <br />
@@ -24,6 +26,7 @@ const Home = () => {
           俺はゲーム以外でも戦える
         </div>
       </div>
+      {/* <div className={styles.backgroundphoto} /> */}
       <div className={styles.detail}>
         <div style={{ fontSize: 30, fontWeight: 'bold' }}>登録できるゲーム</div>
         <div style={{ flexDirection: 'row', display: 'flex', gap: 30, marginTop: 30 }}>

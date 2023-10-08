@@ -25,7 +25,7 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
     if (confirm('ログアウトしますか？')) await logout();
   };
   return (
-    <div className="navbar navbar-custom navbar-fixed-top">
+    <nav className={styles.container} role="navigation">
       <div className={styles.main}>
         <Link href="http://localhost:3000/">
           <div className={styles.maintitle}>Gamers</div>
@@ -36,7 +36,7 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
               className={styles.userBtn}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              style={{ marginTop: dropdownVisible ? '76px' : '0' }}
+              // style={{ marginTop: dropdownVisible ? '76px' : '0' }}
               onClick={handleDropdownClick}
             >
               {user?.photoURL !== undefined ? (
@@ -76,6 +76,6 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
