@@ -52,9 +52,32 @@ const Home = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <div className={styles.title} style={{ marginTop: '160px' }}>
-        Welcome to frourio!
+      <div className={styles.head}>
+        <div className={styles.title} style={{}}>
+          熱中した過去に
+          <br />
+          無駄な時間なんてない
+          <br />
+          俺はゲーム以外でも戦える
+        </div>
       </div>
+      <div className={styles.detail}>
+        <div style={{ fontSize: 30, fontWeight: 'bold' }}>登録できるゲーム</div>
+        <div style={{ flexDirection: 'row', display: 'flex', gap: 30, marginTop: 30 }}>
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+        </div>
+        <div style={{ flexDirection: 'row', display: 'flex', gap: 30, marginTop: 30 }}>
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+          <div style={{ width: 120, height: 120, backgroundColor: 'black' }} />
+        </div>
+      </div>
+      {/* メールアドレスとパスワードを入力する登録 */}
+      <div className={styles.submitarea}>無料登録はこちら</div>
 
       <form style={{ textAlign: 'center', marginTop: '80px' }} onSubmit={createTask}>
         <input value={label} type="text" onChange={inputLabel} />
