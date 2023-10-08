@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { GithubIcon } from 'src/components/icons/GithubIcon';
 import { loginWithGitHub } from 'src/utils/login';
 import { BasicHeader } from '../@components/BasicHeader/BasicHeader';

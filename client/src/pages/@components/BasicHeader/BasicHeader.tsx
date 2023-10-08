@@ -25,7 +25,7 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
     if (confirm('ログアウトしますか？')) await logout();
   };
   return (
-    <div className={styles.container}>
+    <div className="navbar navbar-custom navbar-fixed-top">
       <div className={styles.main}>
         <Link href="http://localhost:3000/">
           <div className={styles.maintitle}>Gamers</div>
