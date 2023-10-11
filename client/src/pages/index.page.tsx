@@ -1,10 +1,16 @@
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
+  const router = useRouter();
+  if (user) {
+    router.push('/home');
+    return null;
+  }
 
   return (
     <>
@@ -23,13 +29,13 @@ const Home = () => {
       </div>
       {/* <div className={styles.backgroundphoto} /> */}
       <div className={styles.pagedetail}>
-        <span style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 15, color: 'green' }}>
+        <span style={{ fontSize: 35, fontWeight: 'bold', marginBottom: 15, color: 'green' }}>
           Gamers新卒とは？ <br />
         </span>
         あなたのゲームのレートや実績に基づいて、企業からオファーが届くサイトです。
         <br />
         自信のあるゲームのレートを登録して、オファーを受け取りましょう。
-        <div style={{ height: 75, marginTop: 95 }}>
+        <div style={{ height: 75, marginTop: 80 }}>
           <a href="" className={styles.yellow}>
             新規登録はこちらから
           </a>
@@ -39,16 +45,22 @@ const Home = () => {
       <div className={styles.detail}>
         <div style={{ fontSize: 40, fontWeight: 'bold', color: 'green' }}>登録できるゲーム</div>
         <div style={{ flexDirection: 'row', display: 'flex', gap: 40, marginTop: 40 }}>
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
+          <img
+            src="/images/valorantLogo.svg"
+            alt="Valorant"
+            width={140}
+            height={140}
+            className={styles.valoicon}
+          />
+          <img src="/images/LoL_icon.svg" alt="League of Legends" width={140} height={140} />
+          <img src="/images/apexLogo.png" alt="Apex Legends" width={140} height={140} />
+          <img src="/images/ow2Logo.jpg" alt="OverWatch2" width={140} height={140} />
         </div>
         <div style={{ flexDirection: 'row', display: 'flex', gap: 40, marginTop: 40 }}>
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
-          <div style={{ width: 140, height: 140, backgroundColor: 'black' }} />
+          <img src="/images/r6sLogo.webp" alt="Rainbow Six Siege" width={140} height={140} />
+          <img src="/images/hearthstoneLogo.jpg" alt="Hearthtone" width={140} height={140} />
+          <img src="/images/fortniteLogo.jpg" alt="Fortnite" width={140} height={140} />
+          <img src="/images/sf6Logo.png" alt="SF6" width={140} height={140} />
         </div>
         <div style={{ height: 75, marginTop: 60 }}>
           <a href="" className={styles.yellow}>
@@ -64,7 +76,9 @@ const Home = () => {
         </span>
         <div className={styles.flow}>
           <div className={styles.flowcard}>
-            <div className={styles.flowimg} />
+            <div className={styles.flowimg}>
+              <img src="/images/registration.png" alt="register" width={130} height={130} />
+            </div>
             <div className={styles.flowtitle}>1.登録</div>
             <div className={styles.flowdetail}>
               ゲームのレートや <br />
@@ -72,7 +86,9 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.flowcard}>
-            <div className={styles.flowimg} />
+            <div className={styles.flowimg}>
+              <img src="/images/trophy.png" alt="trophy" width={130} height={130} />
+            </div>
             <div className={styles.flowtitle}>2.プロフィールの確認</div>
             <div className={styles.flowdetail}>
               各自情報を記入して <br />
@@ -80,12 +96,16 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.flowcard}>
-            <div className={styles.flowimg} />
+            <div className={styles.flowimg}>
+              <img src="/images/job-offer.png" alt="job-offer" width={130} height={130} />
+            </div>
             <div className={styles.flowtitle}>3.オファー</div>
             <div className={styles.flowdetail}>企業からオファーが届きます</div>
           </div>
           <div className={styles.flowcard}>
-            <div className={styles.flowimg} />
+            <div className={styles.flowimg}>
+              <img src="/images/handshake.png" alt="handshake" width={130} height={130} />
+            </div>
             <div className={styles.flowtitle}>4.採用</div>
             <div className={styles.flowdetail}>人気の企業からの内定ゲット</div>
           </div>
