@@ -1,8 +1,15 @@
 .title {
-  margin-top: 100px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
   font-size: 80px;
   font-weight: bold;
+  color: #fff;
   text-align: center;
+  transform: translate(0, -150%);
 }
 
 .tasks {
@@ -25,23 +32,12 @@
 .head {
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 0;
   display: relative;
   width: 100%;
-  height: 930px;
   padding-top: 90px;
-  background: rgb(2 2 2 / 40%);
-  background-color: #eee;
-  background-image: 'aa';
-}
-
-.backgroundphoto {
-  top: 100px;
-  z-index: 0;
-  display: absolute;
-  width: 100%;
-  height: 650px;
-  background-color: 'blue';
+  background: rgb(0 0 0);
+  background-color: #000;
 }
 
 .detail {
@@ -49,25 +45,19 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 600px;
+  height: 700px;
   padding-top: 50px;
   background-color: #fff;
-  background-color: #b8b8b8;
+  background-color: #fafafa;
 }
 
-.submitarea {
+.infoarea {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 300px;
   margin-top: 30px;
-}
-
-.infoarea {
-  width: 100%;
-  height: 300px;
-  background-color: #e9e9e9;
 }
 
 .yellow {
@@ -99,25 +89,60 @@
 .pagedetail {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 450px;
+  height: 550px;
   padding-top: 50px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
+  text-align: center;
   background-color: #fff;
 }
 
 .proimage {
-  position: relative;
+  opacity: 0.2;
 }
 
-.proimage::after {
-  position: absolute;
-  top: 0;
-  left: 0;
+.flow {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  justify-content: center;
   width: 100%;
-  height: 100%;
-  content: '';
-  background-color: rgb(0 0 0 / 50%);
+  height: 700px;
+  padding-top: 50px;
+  background-color: #fff;
+}
+
+.flowimg {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+.flowcard {
+  /* nom */
+}
+
+.flowtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: green;
+  background-color: #fff;
+}
+
+.flowdetail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #fff;
 }
