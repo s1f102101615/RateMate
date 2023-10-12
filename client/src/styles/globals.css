@@ -2,6 +2,9 @@ html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  /* font-family: 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', YuGothic,
+    'Yu Gothic', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; */
   letter-spacing: 0.1em;
 }
 

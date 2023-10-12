@@ -29,12 +29,14 @@ const Home = () => {
       </div>
       {/* <div className={styles.backgroundphoto} /> */}
       <div className={styles.pagedetail}>
-        <span style={{ fontSize: 35, fontWeight: 'bold', marginBottom: 15, color: 'green' }}>
+        <span style={{ fontSize: 45, fontWeight: '600', marginBottom: 15, color: 'green' }}>
           Gamers新卒とは？ <br />
         </span>
-        あなたのゲームのレートや実績に基づいて、企業からオファーが届くサイトです。
-        <br />
-        自信のあるゲームのレートを登録して、オファーを受け取りましょう。
+        <div style={{ display: 'inline-block' }}>
+          あなたの<b>ゲームのレート</b>や実績に基づいて、企業からオファーが届くサイトです。
+          <br />
+          自信のあるゲームのレートを登録して、オファーを受け取りましょう。
+        </div>
         <div style={{ height: 75, marginTop: 80 }}>
           <a href="" className={styles.yellow}>
             新規登録はこちらから
@@ -43,7 +45,9 @@ const Home = () => {
         <div style={{ fontSize: 20 }}>およそ3分程度で作成することが出来ます。</div>
       </div>
       <div className={styles.detail}>
-        <div style={{ fontSize: 40, fontWeight: 'bold', color: 'green' }}>登録できるゲーム</div>
+        <div style={{ fontSize: 40, fontWeight: 'bold', color: 'green' }} className={styles.font}>
+          登録できるゲーム一覧
+        </div>
         <div style={{ flexDirection: 'row', display: 'flex', gap: 40, marginTop: 40 }}>
           <img
             src="/images/valorantLogo.svg"
@@ -108,6 +112,22 @@ const Home = () => {
             </div>
             <div className={styles.flowtitle}>4.採用</div>
             <div className={styles.flowdetail}>人気の企業からの内定ゲット</div>
+          </div>
+        </div>
+        <div className={styles.submitarea}>
+          <div className={styles.submitbox}>
+            <div
+              style={{ fontSize: 32, color: 'green', fontWeight: 'bold' }}
+              className={styles.font}
+            >
+              さあ、登録であなたを証明しよう
+            </div>
+            <div style={{ height: 75, marginTop: 40 }}>
+              <a href="" className={styles.yellow}>
+                新規登録はこちらから
+              </a>
+            </div>
+            <div style={{ fontSize: 20 }}>およそ3分程度で作成することが出来ます。</div>
           </div>
         </div>
       </div>
