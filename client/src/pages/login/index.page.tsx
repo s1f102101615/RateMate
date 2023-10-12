@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Link from 'next/link';
 import { GithubIcon } from 'src/components/icons/GithubIcon';
 import { loginWithGitHub } from 'src/utils/login';
 import { BasicHeader } from '../@components/BasicHeader/BasicHeader';
@@ -50,7 +51,7 @@ const Login = () => {
           </div>
           <div className={styles.footer}>
             <div className={styles.footerText}>
-              アカウントをお持ちでない場合は、<a href="#">新規登録</a>してください。
+              アカウントをお持ちでない場合は、<Link href="../signup">新規登録</Link>してください。
             </div>
           </div>
         </div>
