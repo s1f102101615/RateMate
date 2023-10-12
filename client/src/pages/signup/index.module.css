@@ -97,3 +97,76 @@
 .form {
   margin-top: 32px;
 }
+
+.stepbar {
+  padding-top: 100px;
+  margin-top: 40px;
+  font-size: 0.8em;
+  color: white;
+  text-transform: uppercase;
+}
+
+.active {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 50px;
+  padding: 8px 5px;
+  margin-bottom: 4px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #309a1b;
+  transition: background-color 0.1s linear, color 0.1s linear;
+}
+
+.number {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 50px;
+  padding: 8px 5px;
+  margin-bottom: 4px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #777;
+  background-color: #fff;
+  transition: background-color 0.1s linear, color 0.1s linear;
+}
+
+.li {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  margin: 0 30px;
+  text-align: center;
+}
+
+.line {
+  position: absolute;
+  top: 25px;
+  right: 60px;
+  z-index: 0;
+  width: 180px;
+  height: 5px;
+  background: linear-gradient(to right, #19da49 50%, white 50%);
+  background-color: #fff;
+  background-position: right bottom;
+  background-size: 200% 100%;
+  transition: all 1s ease-in-out;
+}
+
+.lineactive {
+  position: absolute;
+  top: 25px;
+  right: 60px;
+  z-index: 0;
+  width: 180px;
+  height: 5px;
+  background: linear-gradient(to right, #19da49 50%, white 50%);
+  background-color: #fff;
+  background-position: right bottom;
+  background-position: left bottom;
+  background-size: 200% 100%;
+  transition: all 1s ease-in-out;
+}
