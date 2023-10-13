@@ -13,7 +13,16 @@
 
 .main {
   width: 1000px;
-  height: 400px;
+  height: 500px;
+  padding: 32px;
+  background-color: #fffffffd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+}
+
+.mainaccount {
+  width: 1000px;
+  height: 800px;
   padding: 32px;
   background-color: #fffffffd;
   border-radius: 8px;
@@ -33,6 +42,7 @@
 
 .label {
   display: block;
+  margin-top: 8px;
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: bold;
@@ -42,9 +52,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
+  padding: 6px 40px;
   margin-bottom: 16px;
-  font-size: 14px;
+  font-size: 26px;
   color: #fff;
   cursor: pointer;
   background-color: #4053ff;
@@ -184,4 +194,13 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
