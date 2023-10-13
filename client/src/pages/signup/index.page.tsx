@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { BasicHeader } from '../@components/BasicHeader/BasicHeader';
+import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
+import Loginnow from '../@components/Loginnow/Loginnow';
 import styles from './index.module.css';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAccount, setIsAccount] = useState(false);
 
@@ -16,14 +15,6 @@ const Signup = () => {
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-  };
-
-  const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(event.target.value);
-  };
-
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
   };
 
   const handleupSign = () => {
@@ -83,114 +74,98 @@ const Signup = () => {
   };
 
   const handleback = () => {
+    const line = document.getElementById('line1');
+    const number = document.getElementById('number2');
+    if (line) {
+      line.style.backgroundPosition = 'right bottom';
+      number?.classList.remove(styles.active);
+      number?.classList.add(styles.number);
+    }
+
     handleOff();
   };
 
   if (isRegistered) {
+    const loginnowProps: LoginnowProps = {
+      registered: true,
+      account: false,
+    };
     return (
-      <>
-        <BasicHeader user={null} />
-        <div style={{ backgroundColor: 'black' }} className={styles.stepbar}>
-          <ul>
-            <li className={styles.li}>
-              <div className={styles.active}>1</div>
-              <div>メールアドレス</div>
-            </li>
-            <li className={styles.li}>
-              <div className={`${styles.number}`} id="number2">
-                2
-              </div>
-              <div>メールアドレス</div>
-              <div id="line1" className={styles.line} />
-            </li>
-            <li className={styles.li}>
-              <div className={`${styles.number}`} id="number3">
-                3
-              </div>
-              <div>メールアドレス</div>
-              <div id="line2" className={styles.line} />
-            </li>
-          </ul>
-        </div>
+      <div>
+        <Loginnow {...loginnowProps} />
         <div style={{ paddingTop: 100 }}>
-          <div>仮登録が完了しました。</div>
+          <div>仮登録が終了しました。</div>
         </div>
-      </>
+      </div>
     );
   }
 
   if (isAccount) {
+    const loginnowProps: LoginnowProps = {
+      registered: false,
+      account: true,
+    };
     return (
-      <>
-        <BasicHeader user={null} />
-        <div style={{ backgroundColor: 'black' }} className={styles.stepbar}>
-          <ul>
-            <li className={styles.li}>
-              <div className={styles.active}>1</div>
-              <div>メールアドレス</div>
-            </li>
-            <li className={styles.li}>
-              <div className={`${styles.number}`} id="number2">
-                2
-              </div>
-              <div>メールアドレス</div>
-              <div id="line1" className={styles.line} />
-            </li>
-            <li className={styles.li}>
-              <div className={`${styles.number}`} id="number3">
-                3
-              </div>
-              <div>メールアドレス</div>
-              <div id="line2" className={styles.line} />
-            </li>
-          </ul>
-        </div>
+      <div>
+        <Loginnow {...loginnowProps} />
         <div style={{ paddingTop: 100 }}>
           <div>個人情報を登録してください</div>
           <button onClick={handleback}>戻る</button>
           <button onClick={handlenext}>次へ</button>
         </div>
-      </>
+      </div>
     );
   }
-
+  const loginnowProps: LoginnowProps = {
+    registered: false,
+    account: false,
+  };
   return (
-    <>
-      <BasicHeader user={null} />
-      <div style={{ paddingTop: 100 }}>
-        <div style={{ backgroundColor: 'black' }} className={styles.stepbar}>
-          <ul>
-            <li className={styles.li}>
-              <div className={styles.active}>1</div>
-              <div>メールアドレス</div>
-            </li>
-            <li className={styles.li}>
-              <div className={`${styles.number}`} id="number2">
-                2
+    <div>
+      <Loginnow {...loginnowProps} />
+      {/* メールアドレスパスワードを入力 */}
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <div className={styles.form}>
+            <div className={styles.formGroup}>
+              <div className={styles.title}>新規ユーザー登録(無料)</div>
+              <div className={styles.notion}>
+                gamersのサービスをご利用いただくには会員登録が必要です。
               </div>
-              <div>メールアドレス</div>
-              <div id="line1" className={styles.line} />
-            </li>
-            <li className={styles.li}>
-              <div className={`${styles.number}`} id="number3">
-                3
-              </div>
-              <div>メールアドレス</div>
-              <div id="line2" className={styles.line} />
-            </li>
-          </ul>
+              <label className={styles.label} htmlFor="email">
+                メールアドレス
+              </label>
+              <input
+                className={styles.email}
+                type="email"
+                id="email"
+                name="email"
+                required
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="password">
+                パスワード
+              </label>
+              <input
+                className={styles.password}
+                type="password"
+                id="password"
+                name="password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </div>
+          </div>
+
+          <button onClick={handleEmailEnd}>次へ</button>
         </div>
-        <div>
-          <label htmlFor="email">メールアドレス</label>
-          <input type="email" id="email" value={email} onChange={handleEmailChange} />
-        </div>
-        <div>
-          <label htmlFor="password">パスワード</label>
-          <input type="password" id="password" value={password} onChange={handlePasswordChange} />
-        </div>
-        <button onClick={handleEmailEnd}>次へ</button>
       </div>
-    </>
+    </div>
   );
 };
+
 export default Signup;
