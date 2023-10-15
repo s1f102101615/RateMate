@@ -82,7 +82,7 @@ const Signup = () => {
     // パスワードが7文字以上であるかどうかを検証する
     const passwordPattern = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{7,}$/;
     if (!passwordPattern.test(password)) {
-      alert('パスワードは英大文字小文字＋数字で7文字以上にしてください。');
+      alert('パスワードは英大文字小文字+数字で7文字以上にしてください。');
       return;
     }
 
