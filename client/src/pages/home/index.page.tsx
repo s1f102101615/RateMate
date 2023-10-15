@@ -1,15 +1,45 @@
+import { Paper, Typography } from '@mui/material';
 import { useAtom } from 'jotai';
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { userAtom } from '../../atoms/user';
+import Chart from '../@components/Chart';
+import Deviation from '../@components/Deviation';
+import OfferList from '../@components/OfferList';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [label, setLabel] = useState('');
+  const [data, setData] = useState([
+    { ability: 'AIM', A: 120, B: 110, fullMark: 150 },
+    { ability: '集中力', A: 98, B: 130, fullMark: 150 },
+    { ability: '統率力', A: 86, B: 130, fullMark: 150 },
+    { ability: '継続力', A: 99, B: 100, fullMark: 150 },
+    { ability: 'わからん', A: 85, B: 90, fullMark: 150 },
+    { ability: 'ほげ', A: 65, B: 85, fullMark: 150 },
+  ]);
   const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
     setLabel(e.target.value);
+  };
+
+  const Data = {
+    companyName: '株式会社ほげんぽつ',
+    description: 'めちゃくちゃブラック企業です！非推奨',
+  };
+
+  const n = 10;
+
+  const offerData = Array.from({ length: n }, (_, i) => ({
+    companyName: `${Data.companyName} ${i + 1}`,
+    description: `${Data.description} ${i + 1}`,
+  }));
+
+  const [limit, setLimit] = useState(2); // 新しいstate変数
+
+  const handleShowMore = () => {
+    setLimit((prevLimit) => prevLimit + 5);
   };
 
   return (
@@ -35,21 +65,24 @@ const Home = () => {
               height: '410px',
               backgroundColor: 'gray',
               borderWidth: '2px',
-              borderColor: 'black',
+              borderColor: 'blue',
               borderStyle: 'solid',
             }}
-          />
+          >
+            <Deviation />
+          </div>
           <div
             style={{
-              width: '540px',
-              height: '410px',
-              backgroundColor: 'gray',
+              width: '500px',
+              height: '500px',
               borderWidth: '2px',
-              borderColor: 'black',
+              borderColor: 'red',
               borderStyle: 'solid',
               marginTop: '30px',
             }}
-          />
+          >
+            <Chart data={data} width={500} height={500} outerRadius={200} />
+          </div>
           <div />
         </div>
         <div
@@ -58,11 +91,37 @@ const Home = () => {
             height: '850px',
             backgroundColor: 'gray',
             borderWidth: '2px',
-            borderColor: 'black',
+            borderColor: 'green',
             borderStyle: 'solid',
             marginLeft: '30px',
           }}
-        />
+        >
+          <Paper elevation={3} style={{ padding: '20px' }}>
+            {offerData.slice(0, limit).map(
+              (
+                news,
+                index // .sliceを追加
+              ) => (
+                <OfferList
+                  key={index}
+                  companyName={news.companyName}
+                  description={news.description}
+                  width="30vw"
+                  height="80%"
+                />
+              )
+            )}
+            <Typography
+              style={{ textAlign: 'right' }}
+              onClick={handleShowMore}
+              padding="5px"
+              color="primary.main"
+              fontWeight="bold"
+            >
+              もっと見る
+            </Typography>
+          </Paper>
+        </div>
       </div>
     </>
   );
