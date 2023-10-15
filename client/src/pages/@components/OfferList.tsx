@@ -13,7 +13,6 @@ const offerListStyle: CSSProperties = {
   padding: '20px',
   margin: '20px 0',
   display: 'flex',
-  justifyContent: 'space-between',
 };
 
 function OfferList({ companyName, description, width, height }: OfferListProps) {
@@ -24,10 +23,12 @@ function OfferList({ companyName, description, width, height }: OfferListProps) 
         width={50}
         height={50}
         alt="logo"
-        style={{ borderRadius: '20%' }}
+        style={{ borderRadius: '20%', marginRight: '30px' }}
       />
-      <p>{companyName}</p>
-      <p>{description}</p>
+      <div style={{ flexDirection: 'column' }}>
+        <p>{companyName}</p>
+        <p>{description}</p>
+      </div>
     </Paper>
   );
 }

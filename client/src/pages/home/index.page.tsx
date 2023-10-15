@@ -106,7 +106,7 @@ const Home = () => {
                   key={index}
                   companyName={news.companyName}
                   description={news.description}
-                  width="30vw"
+                  width="555px"
                   height="80%"
                 />
               )
