@@ -22,7 +22,7 @@
 
 .mainaccount {
   width: 1000px;
-  height: 800px;
+  height: 840px;
   padding: 32px;
   background-color: #fffffffd;
   border-radius: 8px;
@@ -44,7 +44,7 @@
   display: block;
   margin-top: 8px;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
 }
 
