@@ -19,16 +19,15 @@ const Home = () => {
       <div className={styles.head}>
         <img className={styles.proimage} src="/images/progame.jpg" alt="My Image" width="100%" />
 
-        <div className={styles.title} style={{}}>
+        {/* <div className={styles.title} style={{}}>
           熱中した過去に
           <br />
           無駄な時間なんてない
           <br />
           俺はゲーム以外でも戦える
-        </div>
+        </div> */}
       </div>
-      {/* <div className={styles.backgroundphoto} /> */}
-      <div className={styles.pagedetail}>
+      {/* <div className={styles.pagedetail}>
         <span style={{ fontSize: 45, fontWeight: '600', marginBottom: 15, color: 'green' }}>
           Gamers新卒とは？ <br />
         </span>
@@ -43,6 +42,17 @@ const Home = () => {
           </a>
         </div>
         <div style={{ fontSize: 20 }}>およそ3分程度で作成することが出来ます。</div>
+      </div> */}
+      <div className={styles.pagedetail}>
+        <div style={{ display: 'inline-block', marginTop: '35px', fontWeight: 570 }}>
+          あなたの
+          <b>
+            <span style={{ color: 'green' }}>ゲームのレート</span>
+          </b>
+          や実績に基づいて、企業からオファーが届くサイトです。
+          <br />
+          自信のあるゲームのレートを登録して、オファーを受け取りましょう。
+        </div>
       </div>
       <div className={styles.detail}>
         <div style={{ fontSize: 40, fontWeight: 'bold', color: 'green' }} className={styles.font}>
@@ -86,7 +96,7 @@ const Home = () => {
             <div className={styles.flowtitle}>1.登録</div>
             <div className={styles.flowdetail}>
               ゲームのレートや <br />
-              個人情報を登録します。
+              あなたの情報を登録します。
             </div>
           </div>
           <div className={styles.flowcard}>

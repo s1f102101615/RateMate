@@ -7,6 +7,7 @@ import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
 import Deviation from '../@components/Deviation';
 import OfferList from '../@components/OfferList';
+import ProfilePercent from '../@components/Profilepercent';
 import styles from './index.module.css';
 
 const Home = () => {
@@ -46,16 +47,7 @@ const Home = () => {
     <>
       <BasicHeader user={user} />
       <div className={styles.topbar}>
-        <div
-          style={{
-            width: '1170px',
-            height: '150px',
-            backgroundColor: 'gray',
-            borderWidth: '2px',
-            borderColor: 'black',
-            borderStyle: 'solid',
-          }}
-        />
+        <ProfilePercent percentage={10} />
       </div>
       <div className={styles.rowdetail}>
         <div className={styles.columndetail}>
