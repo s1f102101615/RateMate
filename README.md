@@ -45,7 +45,7 @@ $ docker compose up -d
 $ npm run notios
 ```
 
-Web ブラウザで http://localhost:3000 を開く
+Web ブラウザ４２で http://localhost:3000 を開く
 
 開発時のターミナル表示は [notios](https://github.com/frouriojs/notios) で制御している
 
