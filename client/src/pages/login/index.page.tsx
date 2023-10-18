@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Link from 'next/link';
 import { GithubIcon } from 'src/components/icons/GithubIcon';
-import { loginWithGitHub } from 'src/utils/login';
+import { loginWithEmail, loginWithGitHub } from 'src/utils/login';
 import { BasicHeader } from '../@components/BasicHeader/BasicHeader';
 import { useLoading } from '../@hooks/useLoading';
 import styles from './index.module.css';
@@ -12,6 +12,14 @@ const Login = () => {
   const login = async () => {
     addLoading();
     await loginWithGitHub();
+    removeLoading();
+  };
+
+  const loginEmail = async () => {
+    addLoading();
+    const email = document.getElementById('email') as HTMLInputElement;
+    const password = document.getElementById('password') as HTMLInputElement;
+    await loginWithEmail(email.value, password.value);
     removeLoading();
   };
 
@@ -39,7 +47,7 @@ const Login = () => {
               />
             </div>
             <div className={styles.formGroup}>
-              <button className={styles.btn} onClick={login}>
+              <button className={styles.btn} onClick={loginEmail}>
                 <span>ログイン</span>
               </button>
               <div>もしくは</div>

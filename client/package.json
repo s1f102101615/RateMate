@@ -23,6 +23,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.13",
     "@types/bootstrap": "^5.2.7",
+    "@types/material-ui": "^0.21.12",
     "@types/node-sass": "^4.11.5",
     "api": "file:../server/api",
     "aspida": "^1.14.0",
