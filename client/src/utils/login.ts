@@ -67,7 +67,6 @@ export const createUser = async (email: string, password: string, displayName: s
   if (isNotVerified) {
     console.log('メールを送信しました');
     await reSendVerifyMail(userCredencial.user);
-    await createAuth().signOut();
   }
 };
 
