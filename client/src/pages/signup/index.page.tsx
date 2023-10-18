@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import { useEffect, useState } from 'react';
+import { createUser, sendEmailVerification } from 'src/utils/login';
 import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
 import Loginnow from '../@components/Loginnow/Loginnow';
 import styles from './index.module.css';
@@ -127,6 +128,9 @@ const Signup = () => {
 
   const handleupSign = () => {
     // サインアップ処理を実行する
+    // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
+    createUser(email, password);
+    sendEmailVerification();
     setIsRegistered(true);
   };
 
@@ -269,7 +273,7 @@ const Signup = () => {
                             id="lastname"
                             name="lastname"
                             value={lastname}
-                            onChange={handleFirstnameChange}
+                            onChange={handleLastnameChange}
                             className={styles.input}
                             style={{ width: '90%' }}
                           />
@@ -283,7 +287,7 @@ const Signup = () => {
                             id="firstname"
                             name="firstname"
                             value={firstname}
-                            onChange={handleLastnameChange}
+                            onChange={handleFirstnameChange}
                             className={styles.input}
                             style={{ width: '90%' }}
                           />

@@ -51,30 +51,10 @@ const Home = () => {
       </div>
       <div className={styles.rowdetail}>
         <div className={styles.columndetail}>
-          <div
-            style={{
-              width: '540px',
-              height: '410px',
-              backgroundColor: 'gray',
-              borderWidth: '2px',
-              borderColor: 'blue',
-              borderStyle: 'solid',
-            }}
-          >
-            <Deviation />
-          </div>
-          <div
-            style={{
-              width: '500px',
-              height: '500px',
-              borderWidth: '2px',
-              borderColor: 'red',
-              borderStyle: 'solid',
-              marginTop: '30px',
-            }}
-          >
-            <Chart data={data} width={500} height={500} outerRadius={200} />
-          </div>
+          <Deviation />
+
+          <Chart data={data} width={500} height={500} outerRadius={200} />
+
           <div />
         </div>
         <div
