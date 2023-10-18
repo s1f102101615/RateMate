@@ -1,8 +1,10 @@
 import { Paper, Typography } from '@mui/material';
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { createAuth } from 'src/utils/firebase';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
 import Deviation from '../@components/Deviation';
@@ -21,6 +23,14 @@ const Home = () => {
     { ability: 'わからん', A: 85, B: 90, fullMark: 150 },
     { ability: 'ほげ', A: 65, B: 85, fullMark: 150 },
   ]);
+  const [limit, setLimit] = useState(2); // 新しいstate変数
+
+  const router = useRouter();
+  if (!user | (createAuth().currentUser?.emailVerified === false)) {
+    router.push('../');
+    return null;
+  }
+
   const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
     setLabel(e.target.value);
   };
@@ -36,8 +46,6 @@ const Home = () => {
     companyName: `${Data.companyName} ${i + 1}`,
     description: `${Data.description} ${i + 1}`,
   }));
-
-  const [limit, setLimit] = useState(2); // 新しいstate変数
 
   const handleShowMore = () => {
     setLimit((prevLimit) => prevLimit + 5);

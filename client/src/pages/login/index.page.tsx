@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Link from 'next/link';
+import type { ChangeEvent } from 'react';
+import { useState } from 'react';
 import { GithubIcon } from 'src/components/icons/GithubIcon';
 import { loginWithEmail, loginWithGitHub } from 'src/utils/login';
 import { BasicHeader } from '../@components/BasicHeader/BasicHeader';
@@ -9,6 +9,8 @@ import styles from './index.module.css';
 
 const Login = () => {
   const { addLoading, removeLoading } = useLoading();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const login = async () => {
     addLoading();
     await loginWithGitHub();
@@ -17,10 +19,16 @@ const Login = () => {
 
   const loginEmail = async () => {
     addLoading();
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
-    await loginWithEmail(email.value, password.value);
+    await loginWithEmail(email, password);
     removeLoading();
+  };
+
+  const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   return (
@@ -34,7 +42,15 @@ const Login = () => {
               <label className={styles.label} htmlFor="email">
                 メールアドレス
               </label>
-              <input className={styles.email} type="email" id="email" name="email" required />
+              <input
+                className={styles.email}
+                value={email}
+                onChange={handleEmail}
+                type="email"
+                id="email"
+                name="email"
+                required
+              />
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="password">パスワード</label>
@@ -43,6 +59,8 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
+                value={password}
+                onChange={handlePassword}
                 required
               />
             </div>

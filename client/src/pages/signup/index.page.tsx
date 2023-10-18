@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import { useEffect, useState } from 'react';
-import { createUser, sendEmailVerification } from 'src/utils/login';
+import { createUser } from 'src/utils/login';
 import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
 import Loginnow from '../@components/Loginnow/Loginnow';
 import styles from './index.module.css';
@@ -129,8 +129,8 @@ const Signup = () => {
   const handleupSign = () => {
     // サインアップ処理を実行する
     // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
-    createUser(email, password);
-    sendEmailVerification();
+    const displayname = lastname + firstname;
+    createUser(email, password, displayname);
     setIsRegistered(true);
   };
 

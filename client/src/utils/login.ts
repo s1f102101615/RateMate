@@ -1,9 +1,9 @@
 import {
   GithubAuthProvider,
   createUserWithEmailAndPassword,
-  sendSignInLinkToEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
 } from 'firebase/auth';
 import { createAuth } from 'src/utils/firebase';
 import { returnNull } from './returnNull';
@@ -19,19 +19,73 @@ export const logout = async () => {
   await createAuth().signOut();
 };
 
+// eslint-disable-next-line complexity
 export const loginWithEmail = async (email: string, password: string) => {
-  await signInWithEmailAndPassword(createAuth(), email, password).catch(returnNull);
-};
-
-export const sendEmailVerification = async (email: string) => {
-  const actionCodeSettings = {
-    url: 'http://localhost:3000/home/', // リンクを踏んだ後のリダイレクト先URL
-    handleCodeInApp: true, // アプリ内でリンクを処理する場合はtrueに設定
-  };
-  await sendSignInLinkToEmail(email, actionCodeSettings).catch(returnNull);
+  try {
+    const userCredencial = await signInWithEmailAndPassword(createAuth(), email, password).catch(
+      returnNull
+    );
+    const isNotVerified = !userCredencial.user.emailVerified;
+    if (isNotVerified) {
+      console.log('メールを送信しました');
+      await reSendVerifyMail(userCredencial.user);
+    }
+    return;
+  } catch (error) {
+    switch (error.code) {
+      case 'auth/user-not-found':
+        console.log('ユーザが見つかりません');
+        // ユーザが存在しなかったときの処理
+        break;
+      case 'auth/invalid-email':
+        console.log('メールアドレスかパスワードが間違っています');
+        // パスワードが合致しない、ユーザが存在しなかったときの処理
+        break;
+      case 'auth/wrong-password':
+        console.log('メールアドレスかパスワードが間違っています');
+        // パスワードが合致しない、ユーザが存在しなかったときの処理
+        break;
+      default:
+        // その他のエラー時の処理
+        console.log('エラーが発生しました');
+    }
+    return;
+  }
 };
 
 // emailとpasswordからユーザー登録
-export const createUser = async (email: string, password: string) => {
-  await createUserWithEmailAndPassword(createAuth(), email, password).catch(returnNull);
+export const createUser = async (email: string, password: string, displayName: string) => {
+  const userCredencial = await createUserWithEmailAndPassword(createAuth(), email, password).catch(
+    returnNull
+  );
+  // ユーザーの表示名を設定する
+  const user = createAuth().currentUser;
+  if (user) {
+    await updateProfile(user, { displayName });
+  }
+  const isNotVerified = !userCredencial.user.emailVerified;
+  if (isNotVerified) {
+    console.log('メールを送信しました');
+    await reSendVerifyMail(userCredencial.user);
+    await createAuth().signOut();
+  }
+};
+
+//確認メール送信
+const reSendVerifyMail = async (user) => {
+  try {
+    if (user | false) {
+      await user.sendEmailVerification();
+    }
+    return;
+  } catch (error) {
+    switch (error.code) {
+      case 'auth/too-many-requests':
+        // 1分以内は再送できずこのエラーになる.その時の処理.
+        break;
+      default:
+      // その他のメール送信失敗時の処理
+    }
+    return;
+  }
 };
