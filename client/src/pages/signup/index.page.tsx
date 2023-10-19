@@ -132,7 +132,6 @@ const Signup = () => {
     // サインアップ処理を実行する
     // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
     createUser(email, password);
-    sendEmailVerification(email);
     sendUserInfo();
     setIsRegistered(true);
   };
