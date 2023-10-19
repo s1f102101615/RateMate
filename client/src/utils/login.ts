@@ -1,6 +1,8 @@
+import type { User } from 'firebase/auth';
 import {
   GithubAuthProvider,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   updateProfile,
@@ -22,9 +24,7 @@ export const logout = async () => {
 // eslint-disable-next-line complexity
 export const loginWithEmail = async (email: string, password: string) => {
   try {
-    const userCredencial = await signInWithEmailAndPassword(createAuth(), email, password).catch(
-      returnNull
-    );
+    const userCredencial = await signInWithEmailAndPassword(createAuth(), email, password);
     const isNotVerified = !userCredencial.user.emailVerified;
     if (isNotVerified) {
       console.log('メールを送信しました');
@@ -32,7 +32,7 @@ export const loginWithEmail = async (email: string, password: string) => {
     }
     return;
   } catch (error) {
-    switch (error.code) {
+    switch ((error as { code: string }).code) {
       case 'auth/user-not-found':
         console.log('ユーザが見つかりません');
         // ユーザが存在しなかったときの処理
@@ -55,9 +55,7 @@ export const loginWithEmail = async (email: string, password: string) => {
 
 // emailとpasswordからユーザー登録
 export const createUser = async (email: string, password: string, displayName: string) => {
-  const userCredencial = await createUserWithEmailAndPassword(createAuth(), email, password).catch(
-    returnNull
-  );
+  const userCredencial = await createUserWithEmailAndPassword(createAuth(), email, password);
   // ユーザーの表示名を設定する
   const user = createAuth().currentUser;
   if (user) {
@@ -71,14 +69,12 @@ export const createUser = async (email: string, password: string, displayName: s
 };
 
 //確認メール送信
-const reSendVerifyMail = async (user) => {
+const reSendVerifyMail = async (user: User) => {
   try {
-    if (user | false) {
-      await user.sendEmailVerification();
-    }
+    await sendEmailVerification(user);
     return;
   } catch (error) {
-    switch (error.code) {
+    switch ((error as { code: string }).code) {
       case 'auth/too-many-requests':
         // 1分以内は再送できずこのエラーになる.その時の処理.
         break;

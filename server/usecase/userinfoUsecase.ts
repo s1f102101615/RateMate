@@ -1,7 +1,9 @@
+import type { UserId } from '$/commonTypesWithClient/ids';
+import type { UserInfo } from '$/commonTypesWithClient/models';
 import { userinfoRepository } from '$/repository/userinfoRepository';
 
 export const userinfoUsecase = {
-  create: async (user: userId, label: UserInfo) => {
+  create: async (user: UserId, label: UserInfo) => {
     const newUser: UserInfo = {
       userId: user,
       birthday: label.birthday,
@@ -11,10 +13,11 @@ export const userinfoUsecase = {
       schoolname: label.schoolname,
       acdemicdiscipline: label.acdemicdiscipline,
       favoritegame: label.favoritegame,
-      createAt: label.createAt,
+      createdAt: label.createdAt,
       firstname: label.firstname,
       lastname: label.lastname,
     };
     await userinfoRepository.save(newUser);
+    return 'ok';
   },
 };

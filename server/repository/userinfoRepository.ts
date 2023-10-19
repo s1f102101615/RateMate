@@ -3,7 +3,7 @@ import { prismaClient } from '$/service/prismaClient';
 
 export const userinfoRepository = {
   save: async (userinfo: UserInfo) => {
-    await prismaClient.userinfo.upsert({
+    await prismaClient.user.upsert({
       where: { userId: userinfo.userId },
       update: {
         userId: userinfo.userId,
@@ -14,7 +14,7 @@ export const userinfoRepository = {
         schoolname: userinfo.schoolname,
         acdemicdiscipline: userinfo.acdemicdiscipline,
         favoritegame: userinfo.favoritegame,
-        createAt: userinfo.createdAt,
+        createdAt: userinfo.createdAt,
         firstname: userinfo.firstname,
         lastname: userinfo.lastname,
       },

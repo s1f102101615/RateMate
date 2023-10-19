@@ -132,9 +132,11 @@ const Signup = () => {
     // サインアップ処理を実行する
     // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
     const displayname = lastname + firstname;
-    createUser(email, password, displayname);
-    sendUserInfo();
-    setIsRegistered(true);
+    createUser(email, password, displayname).then(() => {
+      // サインアップ処理が完了したら、ユーザー情報を登録する
+      sendUserInfo();
+      setIsRegistered(true);
+    });
   };
 
   const sendUserInfo = async () => {
