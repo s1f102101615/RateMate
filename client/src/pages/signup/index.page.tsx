@@ -2,7 +2,7 @@
 import type { UserInfo } from 'commonTypesWithClient/models';
 import { useEffect, useState } from 'react';
 import { apiClient } from 'src/utils/apiClient';
-import { createUser, sendEmailVerification } from 'src/utils/login';
+import { createUser } from 'src/utils/login';
 import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
 import Loginnow from '../@components/Loginnow/Loginnow';
 import styles from './index.module.css';
@@ -131,7 +131,8 @@ const Signup = () => {
   const handleupSign = () => {
     // サインアップ処理を実行する
     // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
-    createUser(email, password);
+    const displayname = lastname + firstname;
+    createUser(email, password, displayname);
     sendUserInfo();
     setIsRegistered(true);
   };
