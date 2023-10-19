@@ -9,6 +9,20 @@ export type UserModel = {
   photoURL: string | undefined;
 };
 
+export type UserInfo = {
+  userId: string;
+  birthday: Date;
+  address: string;
+  education: string;
+  schooltype: string;
+  schoolname: string;
+  acdemicdiscipline: string;
+  favoritegame: string;
+  createdAt: Date;
+  firstname: string;
+  lastname: string;
+};
+
 export const taskParser = z.object({
   id: taskIdParser,
   label: z.string(),

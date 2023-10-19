@@ -1,5 +1,8 @@
 /* eslint-disable max-lines */
+import type { UserInfo } from 'commonTypesWithClient/models';
 import { useEffect, useState } from 'react';
+import { apiClient } from 'src/utils/apiClient';
+import { createUser } from 'src/utils/login';
 import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
 import Loginnow from '../@components/Loginnow/Loginnow';
 import styles from './index.module.css';
@@ -19,6 +22,8 @@ const Signup = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
 
   // yearの選択肢
   const currentYear = new Date().getFullYear();
@@ -96,6 +101,14 @@ const Signup = () => {
     setFavoriteGame(event.target.value);
   };
 
+  const handleFirstnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstname(event.target.value);
+  };
+
+  const handleLastnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLastname(event.target.value);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -117,7 +130,31 @@ const Signup = () => {
 
   const handleupSign = () => {
     // サインアップ処理を実行する
-    setIsRegistered(true);
+    // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
+    const displayname = lastname + firstname;
+    createUser(email, password, displayname).then(() => {
+      // サインアップ処理が完了したら、ユーザー情報を登録する
+      sendUserInfo();
+      setIsRegistered(true);
+    });
+  };
+
+  const sendUserInfo = async () => {
+    const userinfo: UserInfo = {
+      userId: 'dummy',
+      // birthdayはDate型
+      birthday: new Date(`${year}-${month}-${day}`),
+      address,
+      education,
+      schooltype,
+      schoolname: schoolName,
+      acdemicdiscipline: academicDiscipline,
+      favoritegame: favoriteGame,
+      createdAt: new Date(),
+      firstname,
+      lastname,
+    };
+    await apiClient.userinfo.post({ body: userinfo });
   };
 
   const handleEmailEnd = () => {
@@ -220,7 +257,9 @@ const Signup = () => {
             <div>ご登録のメールアドレスに招待メールを送信しました。</div>
             <div>メールに記述されているURLから本登録を完了してください。</div>
             <div>*注意事項</div>
-            <div>まれに招待メールが「迷惑メール」扱いされる場合がございます。メールが届いていない場合、メールボックスの「ゴミ箱」および「迷惑メール」をご確認ください。</div>
+            <div>
+              まれに招待メールが「迷惑メール」扱いされる場合がございます。メールが届いていない場合、メールボックスの「ゴミ箱」および「迷惑メール」をご確認ください。
+            </div>
           </div>
         </div>
       </div>
@@ -245,11 +284,44 @@ const Signup = () => {
                     プロフィールを登録してください
                   </div>
                   <form onSubmit={handleSubmit}>
+                    {/* firstnameとlastnameを入れる */}
+                    <div className={styles.formGroup}>
+                      <div style={{ flexDirection: 'row', display: 'flex' }}>
+                        <div>
+                          <label htmlFor="lastname" className={styles.label}>
+                            氏名
+                          </label>
+                          <input
+                            type="text"
+                            id="lastname"
+                            name="lastname"
+                            value={lastname}
+                            onChange={handleLastnameChange}
+                            className={styles.input}
+                            style={{ width: '90%' }}
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="firstname" className={styles.label}>
+                            名前
+                          </label>
+                          <input
+                            type="text"
+                            id="firstname"
+                            name="firstname"
+                            value={firstname}
+                            onChange={handleFirstnameChange}
+                            className={styles.input}
+                            style={{ width: '90%' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
                     <div className={styles.formGroup}>
                       <label htmlFor="birthday" className={styles.label}>
                         生年月日
                       </label>
-                      {/* 年と月と日をselectから選ぶ */}
                       <div>
                         <select id="year" name="year" value={year} onChange={handleYearChange}>
                           <option value="">--</option>

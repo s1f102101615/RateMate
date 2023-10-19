@@ -63,9 +63,15 @@ export default function Deviation() {
   const highestScore = Math.max(...Object.values(scores));
 
   return (
-    <Box padding={2} margin={2} bgcolor="white">
-      <Typography variant="h6" gutterBottom align="center">
-        ゲームレート
+    <Box
+      height={410}
+      width={540}
+      padding={4}
+      style={{ boxShadow: '0px 0px 10px #797979' }}
+      bgcolor="white"
+    >
+      <Typography variant="h5" gutterBottom align="center">
+        <span style={{ fontWeight: 'bold' }}>ゲームレート</span>
       </Typography>
       <Box display="flex" alignItems="center">
         <ScoreBackground score={highestScore} />
@@ -73,7 +79,7 @@ export default function Deviation() {
         <List>
           {Object.entries(scores).map(([skill, score]) => (
             <ListItem key={skill}>
-              <ListItemText primary={skill} secondary={`偏差値 ${score}`} />
+              <ListItemText primary={`${skill} ${score}`} secondary={`上位 ${score}%`} />
             </ListItem>
           ))}
         </List>
