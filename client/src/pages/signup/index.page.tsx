@@ -1,5 +1,7 @@
 /* eslint-disable max-lines */
+import type { UserInfo } from 'commonTypesWithClient/models';
 import { useEffect, useState } from 'react';
+import { apiClient } from 'src/utils/apiClient';
 import { createUser, sendEmailVerification } from 'src/utils/login';
 import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
 import Loginnow from '../@components/Loginnow/Loginnow';
@@ -130,8 +132,27 @@ const Signup = () => {
     // サインアップ処理を実行する
     // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
     createUser(email, password);
-    sendEmailVerification();
+    sendEmailVerification(email);
+    sendUserInfo();
     setIsRegistered(true);
+  };
+
+  const sendUserInfo = async () => {
+    const userinfo: UserInfo = {
+      userId: 'dummy',
+      // birthdayはDate型
+      birthday: new Date(`${year}-${month}-${day}`),
+      address,
+      education,
+      schooltype,
+      schoolname: schoolName,
+      acdemicdiscipline: academicDiscipline,
+      favoritegame: favoriteGame,
+      createdAt: new Date(),
+      firstname,
+      lastname,
+    };
+    await apiClient.userinfo.post({ body: userinfo });
   };
 
   const handleEmailEnd = () => {
