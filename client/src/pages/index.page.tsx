@@ -10,7 +10,7 @@ const Home = () => {
   const [user] = useAtom(userAtom);
   const router = useRouter();
   console.log(createAuth().currentUser?.emailVerified);
-  if (user | (createAuth().currentUser?.emailVerified === true)) {
+  if (user || createAuth().currentUser?.emailVerified === true) {
     router.push('/home');
     return null;
   }

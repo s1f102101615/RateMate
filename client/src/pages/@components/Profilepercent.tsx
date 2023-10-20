@@ -14,9 +14,8 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
   const topbox = {
     width: '1170px',
     height: '120px',
-    borderWidth: '2px',
-    borderColor: 'black',
-    borderStyle: 'solid',
+    boxShadow: '0px 0px 5px #c9c9c9',
+    borderRadius: 5,
   };
 
   const buttonStyle = {
