@@ -67,7 +67,7 @@ export default function Deviation() {
       height={410}
       width={540}
       padding={4}
-      style={{ boxShadow: '0px 0px 10px #797979' }}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5 }}
       bgcolor="white"
     >
       <Typography variant="h5" gutterBottom align="center">

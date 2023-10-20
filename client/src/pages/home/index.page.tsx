@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import type { ChangeEvent } from 'react';
@@ -26,7 +26,7 @@ const Home = () => {
   const [limit, setLimit] = useState(2); // 新しいstate変数
 
   const router = useRouter();
-  if (!user | (createAuth().currentUser?.emailVerified === false)) {
+  if (!user || createAuth().currentUser?.emailVerified === false) {
     router.push('../');
     return null;
   }
@@ -67,16 +67,20 @@ const Home = () => {
         </div>
         <div
           style={{
-            width: '600px',
-            height: '850px',
-            backgroundColor: 'gray',
-            borderWidth: '2px',
-            borderColor: 'green',
-            borderStyle: 'solid',
             marginLeft: '30px',
           }}
         >
-          <Paper elevation={3} style={{ padding: '20px' }}>
+          <div style={{ backgroundColor: '#c5c5c5', height: 70, width: 605 }} />
+          <div
+            style={{
+              padding: '20px',
+              backgroundColor: '#f1f1f1',
+              overflowY: 'scroll',
+              height: 730,
+              width: 605,
+            }}
+            className={styles.scrollbar}
+          >
             {offerData.slice(0, limit).map(
               (
                 news,
@@ -87,7 +91,7 @@ const Home = () => {
                   companyName={news.companyName}
                   description={news.description}
                   width="555px"
-                  height="80%"
+                  height="120px"
                 />
               )
             )}
@@ -100,7 +104,7 @@ const Home = () => {
             >
               もっと見る
             </Typography>
-          </Paper>
+          </div>
         </div>
       </div>
     </>
