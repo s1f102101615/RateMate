@@ -66,7 +66,13 @@ const ImageUpload = () => {
           <Typography>ここに画像をドロップ</Typography>
         )}
       </Paper>
-      <Button variant="contained" color="primary" onClick={onUploadClick} disabled={!selectedFile}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={onUploadClick}
+        disabled={!selectedFile}
+        style={{ marginTop: 16 }}
+      >
         アップロード
       </Button>
     </div>
