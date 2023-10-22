@@ -7,7 +7,7 @@ function ScoreBackground({ score }: { score: number }) {
 
   // 正規分布のCDFを計算
   const cdf = 0.5 * (1 + erf((score - mean) / (stdDev * Math.sqrt(2))));
-  const calculatedHeight = `${cdf * 100}%`;
+  const calculatedHeight = `${cdf * 85}%`;
 
   const styles = `
   @keyframes riseFromBottom {
@@ -57,7 +57,7 @@ export default function Deviation() {
     ApexLegends: 32.0,
     LeagueOfLegends: 60.0,
     Valorant: 58.0,
-    Shadowverse: 65.0,
+    Shadowverse: 75.0,
   };
 
   const highestScore = Math.max(...Object.values(scores));
