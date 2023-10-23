@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import type { UserInfo } from 'commonTypesWithClient/models';
 import { useEffect, useState } from 'react';
 import { apiClient } from 'src/utils/apiClient';
@@ -6,13 +7,13 @@ import { createUser } from 'src/utils/login';
 import type { LoginnowProps } from '../@components/Loginnow/Loginnow';
 import Loginnow from '../@components/Loginnow/Loginnow';
 import styles from './index.module.css';
-
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordtest, setPasswordtest] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAccount, setIsAccount] = useState(false);
+  const [gender, setGender] = useState('');
   const [address, setAddress] = useState('');
   const [education, setEducation] = useState('');
   const [schooltype, setSchoolType] = useState('');
@@ -278,7 +279,7 @@ const Signup = () => {
         <div>
           <div className={styles.container}>
             <div className={styles.mainaccount}>
-              <div className={styles.form}>
+              <form className={styles.form}>
                 <div className={styles.formGroup}>
                   <div className={styles.title} style={{ fontSize: 26, marginBottom: 30 }}>
                     プロフィールを登録してください
@@ -319,12 +320,29 @@ const Signup = () => {
                     </div>
 
                     <div className={styles.formGroup}>
+                      <label htmlFor="gender" className={styles.label}>
+                        性別
+                      </label>
+                      <RadioGroup
+                        row
+                        defaultValue="男性"
+                        onChange={(e) => setGender(e.target.value)}
+                      >
+                        <FormControlLabel value="男性" control={<Radio />} label="男性" />
+                        <FormControlLabel value="女性" control={<Radio />} label="女性" />
+                        <FormControlLabel value="その他" control={<Radio />} label="その他" />
+                      </RadioGroup>
+                    </div>
+
+                    <div className={styles.formGroup}>
                       <label htmlFor="birthday" className={styles.label}>
                         生年月日
                       </label>
                       <div>
                         <select id="year" name="year" value={year} onChange={handleYearChange}>
-                          <option value="">--</option>
+                          <option value="" disabled>
+                            --
+                          </option>
                           {years.map((year) => (
                             <option key={year} value={year}>
                               {year}年
@@ -334,7 +352,9 @@ const Signup = () => {
                         <label htmlFor="year">年</label>
 
                         <select id="month" name="month" value={month} onChange={handleMonthChange}>
-                          <option value="">--</option>
+                          <option value="" disabled>
+                            --
+                          </option>
                           <option value="1">1月</option>
                           <option value="2">2月</option>
                           <option value="3">3月</option>
@@ -351,7 +371,9 @@ const Signup = () => {
                         <label htmlFor="month">月</label>
 
                         <select id="day" name="day" value={day} onChange={handleDayChange}>
-                          <option value="">--</option>
+                          <option value="" disabled>
+                            --
+                          </option>
                           <option value="1">1日</option>
                           <option value="2">2日</option>
                           <option value="3">3日</option>
@@ -398,7 +420,9 @@ const Signup = () => {
                         value={address}
                         onChange={handleAddressChange}
                       >
-                        <option value="">選択してください</option>
+                        <option value="" disabled>
+                          選択してください
+                        </option>
                         <option value="北海道">北海道</option>
                         <option value="青森県">青森県</option>
                         <option value="岩手県">岩手県</option>
@@ -472,7 +496,9 @@ const Signup = () => {
                         value={schooltype}
                         onChange={handleSchooldetailChange}
                       >
-                        <option value="">--</option>
+                        <option value="" disabled>
+                          --
+                        </option>
                         {schooldetail.map((detail) => (
                           <option key={detail} value={detail}>
                             {detail}
@@ -503,7 +529,9 @@ const Signup = () => {
                         value={academicDiscipline}
                         onChange={handleAcademicDisciplineChange}
                       >
-                        <option value="">--</option>
+                        <option value="" disabled>
+                          --
+                        </option>
                         {academiclist.map((academic) => (
                           <option key={academic} value={academic}>
                             {academic}
@@ -534,7 +562,7 @@ const Signup = () => {
                     次へ
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -551,12 +579,13 @@ const Signup = () => {
       {/* メールアドレスパスワードを入力 */}
       <div className={styles.container}>
         <div className={styles.main}>
-          <div className={styles.form}>
+          <form className={styles.form}>
             <div className={styles.formGroup}>
               <div className={styles.title}>新規ユーザー登録(無料)</div>
               <div className={styles.notion}>
                 gamersのサービスをご利用いただくには会員登録が必要です。
               </div>
+
               <label className={styles.label} htmlFor="email">
                 メールアドレス
               </label>
@@ -599,7 +628,7 @@ const Signup = () => {
             <button onClick={handleEmailEnd} className={styles.btn} style={{ marginTop: '20px' }}>
               次へ
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

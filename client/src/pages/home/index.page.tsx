@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useAtom } from 'jotai';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { createAuth } from 'src/utils/firebase';
@@ -14,7 +14,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-  const [label, setLabel] = useState('');
   const [data, setData] = useState([
     { ability: 'AIM', A: 120, B: 110, fullMark: 150 },
     { ability: '集中力', A: 98, B: 130, fullMark: 150 },
@@ -23,17 +22,13 @@ const Home = () => {
     { ability: 'わからん', A: 85, B: 90, fullMark: 150 },
     { ability: 'ほげ', A: 65, B: 85, fullMark: 150 },
   ]);
-  const [limit, setLimit] = useState(2); // 新しいstate変数
+  const [limit, setLimit] = useState(5); // 新しいstate変数
 
   const router = useRouter();
   if (!user || createAuth().currentUser?.emailVerified === false) {
     router.push('../');
     return null;
   }
-
-  const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
-    setLabel(e.target.value);
-  };
 
   const Data = {
     companyName: '株式会社ほげんぽつ',
@@ -52,7 +47,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div>
       <BasicHeader user={user} />
       <div className={styles.topbar}>
         <ProfilePercent percentage={10} />
@@ -70,7 +65,18 @@ const Home = () => {
             marginLeft: '30px',
           }}
         >
-          <div style={{ backgroundColor: '#c5c5c5', height: 70, width: 605 }} />
+          <div style={{ backgroundColor: '#c5c5c5', height: 70, width: 605, textAlign: 'center' }}>
+            <Link href="/search">
+              <Button
+                style={{ textAlign: 'center' }}
+                variant="contained"
+                color="primary"
+                size="large"
+              >
+                企業を探す
+              </Button>
+            </Link>
+          </div>
           <div
             style={{
               padding: '20px',
@@ -107,7 +113,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

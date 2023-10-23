@@ -1,13 +1,42 @@
 import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
 import { erf } from 'mathjs';
-
+function normDist(x: number): number {
+  const mean = 50; // 平均値
+  const stdDev = 10; // 標準偏差
+  const erf = (z: number) => {
+    const t = 1.0 / (1.0 + 0.5 * Math.abs(z));
+    const ans =
+      1 -
+      t *
+        Math.exp(
+          -z * z -
+            1.26551223 +
+            t *
+              (1.00002368 +
+                t *
+                  (0.37409196 +
+                    t *
+                      (0.09678418 +
+                        t *
+                          (-0.18628806 +
+                            t *
+                              (0.27886807 +
+                                t *
+                                  (-1.13520398 +
+                                    t * (1.48851587 + t * (-0.82215223 + t * 0.17087277))))))))
+        );
+    return z >= 0 ? ans : -ans;
+  };
+  const z = (x - mean) / (stdDev * Math.sqrt(2));
+  return (1 + erf(z)) / 2;
+}
 function ScoreBackground({ score }: { score: number }) {
   const mean = 50; // 偏差値の平均
   const stdDev = 10; // 偏差値の標準偏差
 
   // 正規分布のCDFを計算
   const cdf = 0.5 * (1 + erf((score - mean) / (stdDev * Math.sqrt(2))));
-  const calculatedHeight = `${cdf * 100}%`;
+  const calculatedHeight = `${cdf * 85}%`;
 
   const styles = `
   @keyframes riseFromBottom {
@@ -24,7 +53,7 @@ function ScoreBackground({ score }: { score: number }) {
       overflow="hidden"
       bgcolor="#e0e0e0"
       borderRadius="50%"
-      border={4}
+      border={2}
     >
       <style>{styles}</style>
       <Box
@@ -57,11 +86,10 @@ export default function Deviation() {
     ApexLegends: 32.0,
     LeagueOfLegends: 60.0,
     Valorant: 58.0,
-    Shadowverse: 65.0,
+    Shadowverse: 75.0,
   };
 
   const highestScore = Math.max(...Object.values(scores));
-
   return (
     <Box
       height={410}
@@ -73,13 +101,19 @@ export default function Deviation() {
       <Typography variant="h5" gutterBottom align="center">
         <span style={{ fontWeight: 'bold' }}>ゲームレート</span>
       </Typography>
-      <Box display="flex" alignItems="center">
-        <ScoreBackground score={highestScore} />
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <div style={{ paddingRight: '70px' }}>
+          <ScoreBackground score={highestScore} />
+        </div>
 
         <List>
           {Object.entries(scores).map(([skill, score]) => (
             <ListItem key={skill}>
-              <ListItemText primary={`${skill} ${score}`} secondary={`上位 ${score}%`} />
+              {/* 正規分布に基づいて 上位何%かを計算*/}
+              <ListItemText
+                primary={`${skill} ${score}`}
+                secondary={`上位 ${Math.round((1 - normDist(score)) * 100)}%`}
+              />
             </ListItem>
           ))}
         </List>
