@@ -50,7 +50,7 @@ const Home = () => {
     <div>
       <BasicHeader user={user} />
       <div className={styles.topbar}>
-        <ProfilePercent percentage={10} />
+        <ProfilePercent percentage={35} />
       </div>
       <div className={styles.rowdetail}>
         <div className={styles.columndetail}>

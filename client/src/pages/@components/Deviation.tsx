@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Box, List, Typography } from '@mui/material';
 import { erf } from 'mathjs';
 function normDist(x: number): number {
   const mean = 50; // 平均値
@@ -48,8 +48,8 @@ function ScoreBackground({ score }: { score: number }) {
   return (
     <Box
       position="relative"
-      width="150px"
-      height="150px"
+      width="180px"
+      height="180px"
       overflow="hidden"
       bgcolor="#e0e0e0"
       borderRadius="50%"
@@ -102,22 +102,48 @@ export default function Deviation() {
         <span style={{ fontWeight: 'bold' }}>ゲームレート</span>
       </Typography>
       <Box display="flex" alignItems="center" justifyContent="center">
-        <div style={{ paddingRight: '70px' }}>
+        <div style={{ paddingRight: '50px' }}>
           <ScoreBackground score={highestScore} />
         </div>
 
         <List>
           {Object.entries(scores).map(([skill, score]) => (
-            <ListItem key={skill}>
-              {/* 正規分布に基づいて 上位何%かを計算*/}
-              <ListItemText
-                primary={`${skill} ${score}`}
-                secondary={`上位 ${Math.round((1 - normDist(score)) * 100)}%`}
-              />
-            </ListItem>
+            // <ListItemText
+            //   primary={`${skill} ${score}`}
+            //   secondary={`上位 ${Math.round((1 - normDist(score)) * 100)}%`}
+            // />
+            <div
+              key={skill}
+              style={{
+                paddingBottom: 10,
+                backgroundColor: '#ececec',
+                marginBottom: 15,
+                padding: '6px 20px',
+                borderRadius: 15,
+              }}
+            >
+              <div>
+                {skill} <span style={{ color: 'blue' }}>{score}</span>
+              </div>
+              <div style={{ color: '#777777', fontSize: 12 }}>
+                上位 {Math.round((1 - normDist(score)) * 100)}%
+              </div>
+            </div>
           ))}
         </List>
       </Box>
+      <div
+        style={{
+          marginTop: 10,
+          justifyContent: 'right',
+          display: 'flex',
+          fontSize: 12,
+          color: 'gray',
+        }}
+      >
+        最終更新日時: 2023-10-24 20:59
+        <div style={{ color: 'black', marginLeft: 10, fontWeight: 'bold' }}>Re:再連携</div>
+      </div>
     </Box>
   );
 }

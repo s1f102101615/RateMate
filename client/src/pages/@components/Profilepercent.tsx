@@ -12,10 +12,11 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
   };
 
   const topbox = {
-    width: '1170px',
+    width: '800px',
     height: '120px',
     boxShadow: '0px 0px 5px #c9c9c9',
     borderRadius: 5,
+    flexDirection: 'row',
   };
 
   const buttonStyle = {
@@ -36,7 +37,7 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
 
   return (
     <div className="profile-percent" style={topbox}>
-      <div style={{ fontSize: 22, fontWeight: 'bold', marginLeft: '10px', marginTop: '10px' }}>
+      <div style={{ fontSize: 22, fontWeight: 'bold', marginLeft: '17px', marginTop: '15px' }}>
         プロフィールを登録して、オファーをゲットしよう！
       </div>
       <div
