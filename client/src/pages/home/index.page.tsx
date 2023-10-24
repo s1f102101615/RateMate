@@ -1,6 +1,5 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
@@ -50,39 +49,44 @@ const Home = () => {
     <div>
       <BasicHeader user={user} />
       <div className={styles.topbar}>
-        <ProfilePercent percentage={35} />
-      </div>
-      <div className={styles.rowdetail}>
-        <div className={styles.columndetail}>
-          <Deviation />
+        <div>
+          <ProfilePercent percentage={35} />
+          <div className={styles.columndetail}>
+            <Deviation />
 
-          <Chart data={data} width={500} height={500} outerRadius={200} />
+            <Chart data={data} width={500} height={500} outerRadius={200} />
 
-          <div />
+            <div />
+          </div>
         </div>
         <div
           style={{
-            marginLeft: '30px',
+            marginLeft: '20px',
           }}
         >
-          <div style={{ backgroundColor: '#c5c5c5', height: 70, width: 605, textAlign: 'center' }}>
-            <Link href="/search">
-              <Button
-                style={{ textAlign: 'center' }}
-                variant="contained"
-                color="primary"
-                size="large"
-              >
-                企業を探す
-              </Button>
-            </Link>
+          <div
+            style={{
+              backgroundColor: '#c5c5c5',
+              height: 70,
+              width: 605,
+              textAlign: 'center',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              display: 'flex',
+            }}
+          >
+            <div style={{ fontSize: 20, fontWeight: 'bold', padding: 20 }}>招待が来ている企業</div>
+            <div style={{ textAlign: 'right'}}>
+              <div>受け取った招待の数 10</div>
+              <div>新着順</div>
+            </div>
           </div>
           <div
             style={{
               padding: '20px',
               backgroundColor: '#f1f1f1',
               overflowY: 'scroll',
-              height: 730,
+              height: 790,
               width: 605,
             }}
             className={styles.scrollbar}
