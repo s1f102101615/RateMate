@@ -51,6 +51,26 @@ const Home = () => {
       <div className={styles.topbar}>
         <div>
           <ProfilePercent percentage={35} />
+          {/* 420*300の四角を横に２つ並べる */}
+          {/* <div style={{ flexDirection: 'row', display: 'flex' }}>
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'red',
+                margin: '5px',
+              }}
+            />
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'red',
+                margin: '5px',
+              }}
+            />
+          </div> */}
+
           <div className={styles.columndetail}>
             <Deviation />
 
@@ -61,33 +81,43 @@ const Home = () => {
         </div>
         <div
           style={{
-            marginLeft: '20px',
+            marginLeft: '5px',
           }}
         >
           <div
             style={{
-              backgroundColor: '#c5c5c5',
+              backgroundColor: '#f1f1f1',
               height: 70,
-              width: 605,
+              width: 500,
               textAlign: 'center',
               flexDirection: 'row',
               justifyContent: 'space-between',
               display: 'flex',
             }}
           >
-            <div style={{ fontSize: 20, fontWeight: 'bold', padding: 20 }}>招待が来ている企業</div>
-            <div style={{ textAlign: 'right'}}>
-              <div>受け取った招待の数 10</div>
-              <div>新着順</div>
+            <span
+              style={{
+                fontSize: 22,
+                fontWeight: 'bold',
+                paddingTop: 20,
+                paddingLeft: 20,
+              }}
+            >
+              <p style={{ borderBottom: '2px solid #addeff' }}>招待が来ている企業</p>
+            </span>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ padding: 10 }}>受け取った招待の数 10</div>
+              <div style={{ marginRight: 10, marginTop: 2 }}>新着順↑↓</div>
             </div>
           </div>
           <div
             style={{
-              padding: '20px',
+              paddingLeft: '10px',
+              paddingRight: '2px',
               backgroundColor: '#f1f1f1',
               overflowY: 'scroll',
               height: 790,
-              width: 605,
+              width: 500,
             }}
             className={styles.scrollbar}
           >
@@ -100,7 +130,7 @@ const Home = () => {
                   key={index}
                   companyName={news.companyName}
                   description={news.description}
-                  width="555px"
+                  width="480px"
                   height="120px"
                 />
               )
