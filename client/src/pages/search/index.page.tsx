@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
 import { userAtom } from '../../atoms/user';
 import styles from './index.module.css';
 const Home = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => {
@@ -61,7 +61,7 @@ const Home = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => {
   return (
     <>
       <div className={styles.pageContainer}>
-        <BasicHeader user={user} />
+        <BasicHeaderLogined user={user} />
         <div className={styles.registerBox}>
           <div className={styles.blueBox2}>まだ会員でない人</div>
           <div className={styles.roundedButton}>新規登録はこちら</div>

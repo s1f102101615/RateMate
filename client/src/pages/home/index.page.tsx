@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
 import { createAuth } from 'src/utils/firebase';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
@@ -47,17 +47,17 @@ const Home = () => {
 
   return (
     <div>
-      <BasicHeader user={user} />
+      <BasicHeaderLogined user={user} />
       <div className={styles.topbar}>
         <div>
           <ProfilePercent percentage={35} />
           {/* 420*300の四角を横に２つ並べる */}
-          {/* <div style={{ flexDirection: 'row', display: 'flex' }}>
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
             <div
               style={{
                 width: '420px',
                 height: '300px',
-                backgroundColor: 'red',
+                backgroundColor: 'gray',
                 margin: '5px',
               }}
             />
@@ -65,11 +65,29 @@ const Home = () => {
               style={{
                 width: '420px',
                 height: '300px',
-                backgroundColor: 'red',
+                backgroundColor: 'gray',
                 margin: '5px',
               }}
             />
-          </div> */}
+          </div>
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+          </div>
 
           <div className={styles.columndetail}>
             <Deviation />

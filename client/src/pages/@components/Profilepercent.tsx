@@ -12,12 +12,12 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
   };
 
   const topbox: React.CSSProperties = {
-    width: '600px',
+    width: '855px',
     height: '180px',
     boxShadow: '0px 0px 5px #c9c9c9',
     borderRadius: 5,
     flexDirection: 'row',
-    marginBottom: '20px',
+    marginBottom: '7px',
   };
 
   const buttonStyle = {
