@@ -1,7 +1,7 @@
 import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../atoms/user';
-import { BasicHeader } from '../@components/BasicHeader/BasicHeader';
+import { BasicHeaderLogined } from '../@components/BasicHeaderLogined/BasicHeaderLogined';
 import ImageUpload from '../@components/ImageUpload';
 import styles from './index.module.css';
 
@@ -14,7 +14,7 @@ function myPage() {
   console.log(`名前: ${firstName}`);
   return (
     <div>
-      <BasicHeader user={user} />
+      <BasicHeaderLogined user={user} />
       <div className={styles.container}>
         <div>
           <h1 className={styles.header}>名前・プロフィール変更</h1>

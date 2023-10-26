@@ -1,9 +1,8 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
 import { createAuth } from 'src/utils/firebase';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
@@ -48,42 +47,95 @@ const Home = () => {
 
   return (
     <div>
-      <BasicHeader user={user} />
+      <BasicHeaderLogined user={user} />
       <div className={styles.topbar}>
-        <ProfilePercent percentage={35} />
-      </div>
-      <div className={styles.rowdetail}>
-        <div className={styles.columndetail}>
-          <Deviation />
+        <div>
+          <ProfilePercent percentage={35} />
+          {/* 420*300の四角を横に２つ並べる */}
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+          </div>
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+          </div>
 
-          <Chart data={data} width={500} height={500} outerRadius={200} />
+          <div className={styles.columndetail}>
+            <Deviation />
 
-          <div />
+            <Chart data={data} width={500} height={500} outerRadius={200} />
+
+            <div />
+          </div>
         </div>
         <div
           style={{
-            marginLeft: '30px',
+            marginLeft: '5px',
           }}
         >
-          <div style={{ backgroundColor: '#c5c5c5', height: 70, width: 605, textAlign: 'center' }}>
-            <Link href="/search">
-              <Button
-                style={{ textAlign: 'center' }}
-                variant="contained"
-                color="primary"
-                size="large"
-              >
-                企業を探す
-              </Button>
-            </Link>
+          <div
+            style={{
+              backgroundColor: '#f1f1f1',
+              height: 70,
+              width: 500,
+              textAlign: 'center',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              display: 'flex',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 22,
+                fontWeight: 'bold',
+                paddingTop: 20,
+                paddingLeft: 20,
+              }}
+            >
+              <p style={{ borderBottom: '2px solid #addeff' }}>招待が来ている企業</p>
+            </span>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ padding: 10 }}>受け取った招待の数 10</div>
+              <div style={{ marginRight: 10, marginTop: 2 }}>新着順↑↓</div>
+            </div>
           </div>
           <div
             style={{
-              padding: '20px',
+              paddingLeft: '10px',
+              paddingRight: '2px',
               backgroundColor: '#f1f1f1',
               overflowY: 'scroll',
-              height: 730,
-              width: 605,
+              height: 790,
+              width: 500,
             }}
             className={styles.scrollbar}
           >
@@ -96,7 +148,7 @@ const Home = () => {
                   key={index}
                   companyName={news.companyName}
                   description={news.description}
-                  width="555px"
+                  width="480px"
                   height="120px"
                 />
               )

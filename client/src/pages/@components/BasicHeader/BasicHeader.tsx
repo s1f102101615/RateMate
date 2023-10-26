@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import type { UserModel } from 'commonTypesWithClient/models';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -34,6 +35,11 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
       <div className={styles.main}>
         <Link href="http://localhost:3000/">
           <div className={styles.maintitle}>Gamers</div>
+        </Link>
+        <Link href="/search">
+          <Button style={{ textAlign: 'center' }} variant="contained" color="primary" size="large">
+            企業を探す
+          </Button>
         </Link>
         <div className={styles.users}>
           {user && verified ? (
