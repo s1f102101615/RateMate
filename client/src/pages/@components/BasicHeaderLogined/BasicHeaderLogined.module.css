@@ -137,3 +137,10 @@
   border-radius: 0;
   transition: background, padding 0.4s ease-in-out 0s;
 }
+
+.menu {
+  font-family: 'Noto Sans JP', system-ui;
+  font-size: 14px;
+  font-weight: bold;
+  color: '#242424';
+}
