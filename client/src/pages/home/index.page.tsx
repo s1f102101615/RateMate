@@ -53,14 +53,7 @@ const Home = () => {
           <ProfilePercent percentage={35} />
           {/* 420*300の四角を横に２つ並べる */}
           <div style={{ flexDirection: 'row', display: 'flex' }}>
-            <div
-              style={{
-                width: '420px',
-                height: '300px',
-                backgroundColor: 'gray',
-                margin: '5px',
-              }}
-            />
+            <Deviation />
             <div
               style={{
                 width: '420px',

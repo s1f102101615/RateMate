@@ -1,4 +1,4 @@
-import { Box, List, Typography } from '@mui/material';
+import { Box, List } from '@mui/material';
 import { erf } from 'mathjs';
 function normDist(x: number): number {
   const mean = 50; // 平均値
@@ -92,17 +92,20 @@ export default function Deviation() {
   const highestScore = Math.max(...Object.values(scores));
   return (
     <Box
-      height={410}
-      width={540}
-      padding={4}
+      // height={410}
+      // width={540}
+      width={420}
+      height={300}
+      padding={2}
+      margin={'5px'}
       style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5 }}
       bgcolor="white"
     >
-      <Typography variant="h5" gutterBottom align="center">
+      <div style={{ textAlign: 'center', fontSize: 23, marginBottom: 20 }}>
         <span style={{ fontWeight: 'bold' }}>ゲームレート</span>
-      </Typography>
+      </div>
       <Box display="flex" alignItems="center" justifyContent="center">
-        <div style={{ paddingRight: '50px' }}>
+        <div style={{ paddingRight: '20px' }}>
           <ScoreBackground score={highestScore} />
         </div>
 
@@ -115,17 +118,18 @@ export default function Deviation() {
             <div
               key={skill}
               style={{
-                paddingBottom: 10,
                 backgroundColor: '#ececec',
-                marginBottom: 15,
-                padding: '6px 20px',
+                marginBottom: 5,
+                padding: '1px 20px',
                 borderRadius: 15,
+                fontSize: 13,
+                width: 190,
               }}
             >
               <div>
                 {skill} <span style={{ color: 'blue' }}>{score}</span>
               </div>
-              <div style={{ color: '#777777', fontSize: 12 }}>
+              <div style={{ color: '#777777', fontSize: 11 }}>
                 上位 {Math.round((1 - normDist(score)) * 100)}%
               </div>
             </div>
@@ -134,7 +138,7 @@ export default function Deviation() {
       </Box>
       <div
         style={{
-          marginTop: 10,
+          marginTop: 20,
           justifyContent: 'right',
           display: 'flex',
           fontSize: 12,
