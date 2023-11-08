@@ -41,7 +41,7 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
       <div className={styles.main}>
         <div style={{ flexDirection: 'row', display: 'flex', gap: 30 }}>
           <Link href="http://localhost:3000/">
-            <div className={styles.maintitle}>Gamers</div>
+            <div className={styles.maintitle}>RateMate</div>
           </Link>
           <Link href="/home" style={{ marginTop: 20 }} className={styles.menu}>
             マイページ

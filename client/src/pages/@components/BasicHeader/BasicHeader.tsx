@@ -34,7 +34,7 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
     <nav className={styles.container} role="navigation">
       <div className={styles.main}>
         <Link href="http://localhost:3000/">
-          <div className={styles.maintitle}>Gamers</div>
+          <div className={styles.maintitle}>RateMate</div>
         </Link>
         <Link href="/search">
           <Button style={{ textAlign: 'center' }} variant="contained" color="primary" size="large">
