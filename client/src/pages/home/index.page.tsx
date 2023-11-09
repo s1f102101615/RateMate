@@ -114,11 +114,15 @@ const Home = () => {
                 paddingLeft: 20,
               }}
             >
-              <p style={{ borderBottom: '2px solid #addeff' }}>招待が来ている企業</p>
+              <p style={{ borderBottom: '2px solid #addeff', letterSpacing: '0' }}>
+                招待が来ている企業
+              </p>
             </span>
             <div style={{ textAlign: 'right' }}>
-              <div style={{ padding: 10 }}>受け取った招待の数 10</div>
-              <div style={{ marginRight: 10, marginTop: 2 }}>新着順↑↓</div>
+              <div style={{ padding: 8, letterSpacing: '0' }}>
+                受け取った招待の数 <span style={{ fontSize: 22, fontWeight: 700 }}>10</span>
+              </div>
+              <div style={{ marginRight: 10 }}>新着順↑↓</div>
             </div>
           </div>
           <div
