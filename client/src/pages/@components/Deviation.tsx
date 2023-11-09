@@ -123,7 +123,7 @@ export default function Deviation() {
                 padding: '1px 20px',
                 borderRadius: 15,
                 fontSize: 13,
-                width: 190,
+                width: 194,
               }}
             >
               <div>
