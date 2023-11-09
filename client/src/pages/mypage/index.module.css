@@ -1,6 +1,6 @@
 .header {
   padding: 20px;
-  padding-right: 40vw;
+  padding-right: 500px;
   margin: 20px 0;
   font-size: 20px;
   font-weight: bold;
@@ -19,6 +19,7 @@
 .container {
   /* 要素を真ん中に */
   display: flex;
+  gap: 30px;
 
   /* 要素の間を10px */
   justify-content: center;
@@ -52,4 +53,27 @@
   padding-right: 200px;
   margin: 10px 0;
   margin-left: 32px;
+}
+
+.tabmain {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  text-align: right;
+  background-color: #fff;
+}
+
+.tab {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #000;
+  cursor: pointer;
+  border-right: 5px solid #4caf50; /* 緑色のボーダー */
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: #fff;
+  background-color: #4caf50; /* ホバー時に緑色に */
 }

@@ -16,6 +16,16 @@ function myPage() {
     <div>
       <BasicHeaderLogined user={user} />
       <div className={styles.container}>
+        {/* ここにdivでタブを作りたい */}
+        <div className={styles.tabmain}>
+          <div className={styles.tab}>ゲームアカウント連携</div>
+          <div className={styles.tab}>プロフィール</div>
+          <div className={styles.tab}>スキルPR</div>
+          <div className={styles.tab}>経歴情報</div>
+          <div className={styles.tab}>希望条件</div>
+          <div className={styles.tab}>応募履歴</div>
+          <div className={styles.tab}>履歴書登録</div>
+        </div>
         <div>
           <h1 className={styles.header}>名前・プロフィール変更</h1>
 
