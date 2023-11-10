@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
 .rowdetail {
   display: flex;
   flex-direction: row;
@@ -13,5 +15,25 @@
 .topbar {
   display: flex;
   justify-content: center;
-  padding-top: 120px;
+  padding-top: 80px;
+
+  /* フォントここで変えてる */
+  font-family: 'Noto Sans JP', system-ui;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: #c9c9c9;
+  border-radius: 4px;
+}
+
+.scrollbar:hover::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
 }

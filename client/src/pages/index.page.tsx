@@ -1,17 +1,23 @@
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { createAuth } from 'src/utils/firebase';
+import { logout } from 'src/utils/login';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
   const router = useRouter();
-  if (user) {
+  console.log(createAuth().currentUser?.emailVerified);
+  if (user && createAuth().currentUser?.emailVerified === true) {
     router.push('/home');
     return null;
   }
-
+  if (createAuth().currentUser?.emailVerified === false) {
+    logout();
+    return null;
+  }
   return (
     <>
       <BasicHeader user={user} />
@@ -139,6 +145,29 @@ const Home = () => {
             </div>
             <div style={{ fontSize: 20 }}>およそ3分程度で作成することが出来ます。</div>
           </div>
+        </div>
+      </div>
+      {/* 演出方法を考えなければいけない */}
+      <div className={styles.wid}>
+        <div className={styles.poem}>
+          <h1>「RateMate就活」 - ゲームから社会への新たな可能性</h1>
+          昨今、メディアやSNSで一度は聞いたことがある「e-sports」という業界。
+          <br />
+          これはゲームを通してクラブチームに所属し大会に出場したり、個人でアマチュア大会に出場または養った知識を活かし大会の運営に携わる仕事など幅広い活躍の場をみせています。
+          <br />
+          一昔前では「息抜きの遊び」「暇つぶし」「趣味」といったあくまで個人的に楽しむコンテンツであったゲームという存在はプレイヤーの意識力が高まり、
+          <br />
+          「練習を重ね技術力を向上させる」「最新の情報を取り入れる為に知識を養う」「チームと円滑にゲームをする為に作戦を練る」
+          <br />
+          といった現代の学生から社会人まで個人、団体問わず運動部活動や社会人クラブと同様な活動量をみせる程までに急成長しました。
+          <br />
+          対戦中に思考するのが得意、コミュニケーションを交わし連携を取るのが得意、オリジナルなプレイスタイルを考案するのが得意、といった
+          <br />
+          プレイヤー自身が自発的にクォリティを求め、発揮できるマインドを備えているという点に我々は着目し、社会への取り組み方に活かせるのではないかと考えました。{' '}
+          <br />
+          思考力、精神力、体力、忍耐力、あなた自身に備わっている人間性としての優秀な素質や潜在能力を最大限に引き出し人生をより良く豊かにする。
+          <br />
+          それが「RateMate就活」です。
         </div>
       </div>
     </>

@@ -1,0 +1,55 @@
+.header {
+  padding: 20px;
+  padding-right: 40vw;
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-align: left;
+  background-color: rgb(0 81 255 / 77.4%);
+}
+
+.title {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-left: 5px solid #0051ff94;
+}
+
+.container {
+  /* 要素を真ん中に */
+  display: flex;
+
+  /* 要素の間を10px */
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.gender {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 200px;
+  margin: 10px 0;
+  margin-left: 32px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 10px 0;
+}
+
+.required {
+  padding: 0 5px;
+  margin: 0 5px;
+  color: white;
+  background-color: rgb(255 38 0);
+}
+
+.birthDay {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 200px;
+  margin: 10px 0;
+  margin-left: 32px;
+}
