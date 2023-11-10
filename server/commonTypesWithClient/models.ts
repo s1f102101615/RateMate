@@ -40,6 +40,20 @@ export type CompanyDetailModel = {
   businesscontent: string;
   requiredability: string;
   publicationstartdate: string;
+
+export type UserInfo = {
+  userId: string;
+  birthday: Date;
+  address: string;
+  education: string;
+  schooltype: string;
+  schoolname: string;
+  acdemicdiscipline: string;
+  favoritegame: string;
+  createdAt: Date;
+  firstname: string;
+  lastname: string;
+
 };
 
 export const taskParser = z.object({

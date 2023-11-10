@@ -1,13 +1,17 @@
+import Button from '@mui/material/Button';
 import type { UserModel } from 'commonTypesWithClient/models';
 import Link from 'next/link';
 import { useState } from 'react';
 import { HumanIcon } from 'src/components/icons/HumanIcon';
+import { createAuth } from 'src/utils/firebase';
 import { logout } from 'src/utils/login';
 import styles from './BasicHeader.module.css';
 
 // eslint-disable-next-line complexity
 export const BasicHeader = ({ user }: { user: UserModel | null }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const verified = createAuth().currentUser?.emailVerified as boolean;
 
   const handleDropdownClick = () => {
     setDropdownVisible(!dropdownVisible);
@@ -24,14 +28,21 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
   const handleLogout = async () => {
     if (confirm('ログアウトしますか？')) await logout();
   };
+  // userの状況を監視して、nullの場合は初期画面に飛ばす
+
   return (
     <nav className={styles.container} role="navigation">
       <div className={styles.main}>
         <Link href="http://localhost:3000/">
-          <div className={styles.maintitle}>Gamers</div>
+          <div className={styles.maintitle}>RateMate</div>
+        </Link>
+        <Link href="/search">
+          <Button style={{ textAlign: 'center' }} variant="contained" color="primary" size="large">
+            企業を探す
+          </Button>
         </Link>
         <div className={styles.users}>
-          {user ? (
+          {user && verified ? (
             <div
               className={styles.userBtn}
               onMouseEnter={handleMouseEnter}

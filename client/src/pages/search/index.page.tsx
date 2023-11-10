@@ -1,6 +1,7 @@
 import type { CompanyModel } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
 import type { ChangeEvent } from 'react';
+
 import { useEffect, useRef, useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { useFetchInfo, useFetchInfoDetail, useSearchInfo } from 'src/utils/fetchinfo';
@@ -15,6 +16,7 @@ import styles7 from './index7.module.css';
 import { useRouter } from 'next/router';
 
 const Home = ({ totalItems, currentPage, onPageChange }) => {
+
   const [user] = useAtom(userAtom);
   const [label, setLabel] = useState('');
   const itemsPerPage = 10;
@@ -24,11 +26,13 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
   const [selectedSalary2, setSelectedSalary2] = useState('');
   const [selectedSalary3, setSelectedSalary3] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [isModalOpen3, setIsModalOpen3] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCategory2, setSelectedCategory2] = useState(null);
   const [selectedCategory3, setSelectedCategory3] = useState(null);
+
   const [activePage, setActivePage] = useState(currentPage || 1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const [data, setData] = useState<CompanyModel[]>([]);
@@ -160,6 +164,7 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
 
   const categories = {
     'IT・インターネット': ['インターネットサービス', 'Sler', 'Nler', '...'],
+
     メーカー: ['項目132', '項目212', '...'],
     商社: ['項目132', '項目2', '...'],
     '323': ['項目1', '項目2', '...'],
@@ -208,6 +213,7 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     kanagawa: ['インターネットサービス', 'Sler', 'Nler', '...'],
     メーカー: ['項目1', '項目2', '...'],
     東京: ['項目1', '項目2', '...'],
+
     // ... 他のカテゴリーと項目を追加
   };
 
@@ -246,6 +252,7 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
   const closeModal3 = () => {
     setIsModalOpen3(false);
   };
+
 
   const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
     setLabel(e.target.value);
@@ -308,9 +315,11 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
                 <img src="/favicon.png" alt="logo" />
               </div>
               株式会社　フル
+
             </div>
             <div className={styles4.line} />
           </div>
+
 
           <div className={styles2.theme}>
             <a>転職・求人情報一覧</a>
