@@ -14,3 +14,35 @@ model Task {
   done      Boolean
   createdAt DateTime
 }
+
+model Company {
+  id                   Int      @id @default(autoincrement())
+  companyId            Int
+  companyName          String
+  annualincome         String
+  industry             String
+  local                String
+  occupation           String
+  occupationdetail     String[]
+  jobdescription       String
+  jobdescriptiondetail String[]
+  businesscontent      String
+  requiredability      String
+  publicationstartdate String
+}
+
+model CompanyDetail {
+  id                   Int      @id @default(autoincrement())
+  companyId            Int
+  companyName          String
+  annualincome         String
+  industry             String
+  local                String
+  occupation           String
+  occupationdetail     String[]
+  jobdescription       String
+  jobdescriptiondetail String[]
+  businesscontent      String
+  requiredability      String
+  publicationstartdate String
+}

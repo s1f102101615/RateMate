@@ -9,6 +9,39 @@ export type UserModel = {
   photoURL: string | undefined;
 };
 
+//会社の情報
+export type CompanyModel = {
+  id: number;
+  companyId: number;
+  companyName: string;
+  annualincome: string;
+  industry: string;
+  local: string;
+  occupation: string;
+  occupationdetail: string[];
+  jobdescription: string;
+  jobdescriptiondetail: string[];
+  businesscontent: string;
+  requiredability: string;
+  publicationstartdate: string;
+};
+
+export type CompanyDetailModel = {
+  id: number;
+  companyId: number;
+  companyName: string;
+  annualincome: string;
+  industry: string;
+  local: string;
+  occupation: string;
+  occupationdetail: string[];
+  jobdescription: string;
+  jobdescriptiondetail: string[];
+  businesscontent: string;
+  requiredability: string;
+  publicationstartdate: string;
+};
+
 export const taskParser = z.object({
   id: taskIdParser,
   label: z.string(),

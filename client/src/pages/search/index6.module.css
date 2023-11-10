@@ -1,0 +1,275 @@
+.modal {
+  position: fixed;
+  top: 0; /* 画面の最上部から開始 */
+  left: 0; /* 画面の最左部から開始 */
+  z-index: 10000; /* 他のコンテンツの上に表示 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* 画面全体の幅 */
+  height: 100%; /* 画面全体の高さ */
+  background-color: rgb(0 0 0 / 70%); /* 半透明の背景 */
+}
+
+.modalContent {
+  position: fixed;
+  top: 100px;
+  left: 380px;
+  width: 900px;
+  height: 530px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.theme2 {
+  position: absolute;
+  top: 30px;
+  z-index: 3;
+  padding: 0.3rem 0.5rem;
+  font-size: 25px;
+  font-weight: 900;
+  border-left: 4px solid #30d46c;
+}
+
+.modalHeader,
+.modalBody,
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.closeButton {
+  position: relative;
+  top: -20px;
+  left: 831px;
+  padding: 5px 15px; /* パディングを追加してボタンのサイズを調整 */
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  background: #291fba; /* 緑色の背景を設定 */
+  border: none;
+  border-radius: 4px; /* 角を少し丸くするためのボーダーラジウスを追加 */
+}
+
+.leftPanel {
+  background-color: rgb(255 255 255);
+}
+
+.leftPanel ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.rightPanel ul {
+  padding: 0;
+  list-style-type: none;
+  font-size: 19px;
+}
+
+.rightPanel ul li {
+  margin-bottom: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.leftPanel li::before {
+  margin-right: 10px; /* チェックマークとテキストの間にスペースを追加 */
+  color: #888; /* 灰色 */
+  content: '✔'; /* チェックマーク */
+}
+.rightPanel ul li input[type="checkbox"] {
+  margin-right: 10px;  /* 10px の間隔を設定。必要に応じて値を調整してください */
+  width: 15px;   /* 幅を25pxに設定 */
+  height: 15px;  /* 高さを25pxに設定 */
+}
+
+.leftPanel li {
+  height: 35px;
+  padding-left: 13px; /* 文字の太さを変更 */
+  margin: 5px 0;
+  font-family: Arial, sans-serif; /* フォントをArialに変更 */
+  font-size: 18px; /* 文字の大きさを16pxに変更 */
+  font-weight: 500;
+  line-height: 35px; /* テキストを垂直方向に中央配置 */
+  cursor: pointer;
+}
+
+.leftPanel .selected {
+  position: relative; /* 矢印の位置基準として */
+  color: #fff;
+  background-color: #26e840;
+}
+
+/* 選択されたカテゴリーに右向きの矢印を追加 */
+.leftPanel .selected::after {
+  position: absolute; /* 矢印の位置を固定 */
+  top: 50%; /* 親要素の上から中央に配置 */
+  right: 10px; /* 右側から10pxの位置に配置 */
+  content: '>'; /* 右向きの矢印 */
+  transform: translateY(-50%); /* 矢印を垂直方向の中央に調整 */
+}
+
+.arrow {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.checkmark {
+  margin-right: 10px;
+  color: #f36;
+}
+
+.modalFooter {
+  justify-content: flex-end;
+}
+
+.submitButton {
+  position: fixed;
+  top: 550px;
+  left: 1160px;
+  z-index: 3;
+  width: 90px;
+  height: 45px;
+  padding: 10px 20px;
+  margin: 10px 2px;
+  font-size: 16px;
+  font-weight: bold; /* 文字を太くする */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
+  cursor: pointer;
+  background: linear-gradient(to top, rgb(255 51 51), rgb(247 66 66));
+  border: none;
+  border-radius: 8px;
+
+  /* box-shadowを内側に設定してへこんでいるように見せる */
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 20%), inset 0 4px 8px rgb(0 0 0 / 10%);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #d32;
+  opacity: 0.8; /* 透明度を下げて色を薄くする */
+  transform: scale(1.02); /* ボタンを少し拡大してホバー感を出す */
+}
+
+.topbutton {
+  position: relative;
+  top: 19px;
+  left: 20px;
+  display: inline-block;
+  width: 269px;
+  height: 30px;
+  padding: 10px;
+  background-color: #dadada;
+  border: none;
+}
+
+.buttombutton {
+  position: relative;
+  top: 354px;
+  right: 571px;
+  display: inline-block;
+  width: 269px;
+  height: 30px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #d9d9d9;
+  border: none;
+}
+
+.arrowdown {
+  position: absolute;
+  top: 16px;
+  left: 155px;
+}
+
+.arrowdown::before {
+  top: 3px; /* 影の位置調整 */
+  border-top: 15px solid rgb(0 0 0 / 20%); /* 影の色 */
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+}
+
+.arrowdown::after {
+  position: absolute;
+  right: 5px;
+  width: 0;
+  height: 0;
+  content: '';
+  border-top: 15px solid #fff;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  box-shadow: inset 0 -5px 5px rgb(0 0 0 / 20%);
+  transform: translateY(-50%);
+}
+
+.arrowup::after {
+  position: absolute;
+  right: 337px;
+  right: 120px;
+  width: 0;
+  height: 0;
+  content: '';
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #fff; /* 上向きの矢印の色を指定 */
+  border-left: 15px solid transparent;
+
+  /* box-shadowの値も変更して影の位置を調整 */
+  box-shadow: inset 0 5px 5px rgb(0 0 0 / 20%);
+  transform: translateY(-50%);
+}
+
+.modalBody2 {
+  position: relative;
+  top: 19px;
+  left: 20px;
+  width: 269px;
+  height: 336px;
+  overflow-y: auto; /* 追加: 縦方向のスクロールを有効にする */
+  background-color: rgb(255 255 255);
+  border: 2px solid #ababab;
+}
+
+.rightPanel {
+  position: fixed;
+  top: 210px;
+  left: 760px;
+  width: 300px;
+  background-color: rgb(255 255 255);
+  border-radius: 8px;
+}
+
+.rightPanel2 {
+  margin-left: 15px;
+  font-size: 23px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -30px;
+}
+
+.checkboxSize {
+  width: 25px; /* Adjust this value as needed */
+  height: 25px; /* Adjust this value as needed */
+  color: gray;
+  border: 1px solid gray;
+}
+
+.line {
+  position: relative;
+  top: -10px;
+  right: 40px;
+  width: 160%;
+  height: 1px;
+  margin: 20px 0;
+  background-color: #aaa;
+  border: 0;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 20%); /* 影を追加 */
+}
