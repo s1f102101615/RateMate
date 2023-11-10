@@ -7,28 +7,30 @@ interface ProfilePercentProps {
 const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
   const barStyle = {
     width: `${percentage}%`,
-    backgroundColor: 'green',
+    backgroundColor: '#14f100',
     borderRadius: '10px',
+    height: '100%',
   };
 
-  const topbox = {
-    width: '1170px',
+  const topbox: React.CSSProperties = {
+    width: '855px',
     height: '120px',
-    borderWidth: '2px',
-    borderColor: 'black',
-    borderStyle: 'solid',
+    boxShadow: '0px 0px 5px #c9c9c9',
+    borderRadius: 5,
+    flexDirection: 'row',
+    marginBottom: '7px',
   };
 
   const buttonStyle = {
-    backgroundColor: 'blue',
-    color: 'white',
-    padding: '10px 20px',
+    backgroundColor: 'white',
+    color: 'blue',
+    padding: '8px 18px',
     borderRadius: '5px',
-    border: 'none',
+    border: 'blue 1px solid',
     cursor: 'pointer',
-    fontSize: '16px',
-    fontWeight: 'bold',
+    fontSize: '14px',
     marginLeft: '20px',
+    marginTop: '10px',
   };
 
   const handleEditProfile = () => {
@@ -37,7 +39,15 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
 
   return (
     <div className="profile-percent" style={topbox}>
-      <div style={{ fontSize: 22, fontWeight: 'bold', marginLeft: '10px', marginTop: '10px' }}>
+      <div
+        style={{
+          fontSize: 18,
+          fontWeight: 700,
+          marginLeft: '17px',
+          paddingTop: '15px',
+          letterSpacing: '0',
+        }}
+      >
         プロフィールを登録して、オファーをゲットしよう！
       </div>
       <div
@@ -45,27 +55,40 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           display: 'flex',
-          marginTop: '15px',
+          marginTop: '5px',
         }}
       >
-        <button style={buttonStyle} onClick={handleEditProfile}>
-          スキルを登録しよう
-        </button>
-        <div style={{ marginRight: '55px' }}>
-          <div style={{ flexDirection: 'row', display: 'flex', gap: '20px' }}>
-            <div className="percentage">プロフィール入力率</div>
-            <div className="percentage">{percentage}%完了</div>
-          </div>
-          <div
-            style={{
-              width: 450,
-              backgroundColor: '#e2e2e2',
-              borderRadius: '10px',
-              border: '1px solid gray',
-            }}
-          >
-            <div />
-            <div className="progress" style={barStyle} />
+        <div style={{ width: '100%' }}>
+          <div style={{ flexDirection: 'row', display: 'flex', gap: 250 }}>
+            <button style={buttonStyle} onClick={handleEditProfile}>
+              レートを登録しよう
+            </button>
+            <div style={{ flexDirection: 'column', display: 'flex', marginTop: 12 }}>
+              <div style={{ flexDirection: 'row', display: 'flex', gap: '20px', marginBottom: 5 }}>
+                <div
+                  className="percentage"
+                  style={{ fontSize: 14, letterSpacing: '0', fontWeight: 700 }}
+                >
+                  プロフィール入力率
+                </div>
+                <div className="percentage" style={{ fontSize: 14 }}>
+                  {percentage}%完了
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    width: 390,
+                    height: 15,
+                    backgroundColor: '#f0f0f0',
+                    borderRadius: '10px',
+                    border: '1px solid #b6b6b6',
+                  }}
+                >
+                  <div className="progress" style={barStyle} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

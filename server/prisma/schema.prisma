@@ -45,4 +45,18 @@ model CompanyDetail {
   businesscontent      String
   requiredability      String
   publicationstartdate String
+
+model User {
+  userId            String   @id
+  birthday          DateTime
+  address           String
+  education         String
+  schooltype        String
+  schoolname        String
+  acdemicdiscipline String
+  favoritegame      String
+  createdAt         DateTime
+  firstname         String
+  lastname          String
+
 }

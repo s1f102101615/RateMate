@@ -1,8 +1,9 @@
-import { Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
-import type { ChangeEvent } from 'react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
+import { createAuth } from 'src/utils/firebase';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
 import Deviation from '../@components/Deviation';
@@ -12,7 +13,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-  const [label, setLabel] = useState('');
   const [data, setData] = useState([
     { ability: 'AIM', A: 120, B: 110, fullMark: 150 },
     { ability: '集中力', A: 98, B: 130, fullMark: 150 },
@@ -21,9 +21,13 @@ const Home = () => {
     { ability: 'わからん', A: 85, B: 90, fullMark: 150 },
     { ability: 'ほげ', A: 65, B: 85, fullMark: 150 },
   ]);
-  const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
-    setLabel(e.target.value);
-  };
+  const [limit, setLimit] = useState(5); // 新しいstate変数
+
+  const router = useRouter();
+  if (!user || createAuth().currentUser?.emailVerified === false) {
+    router.push('../');
+    return null;
+  }
 
   const Data = {
     companyName: '株式会社ほげんぽつ',
@@ -37,58 +41,101 @@ const Home = () => {
     description: `${Data.description} ${i + 1}`,
   }));
 
-  const [limit, setLimit] = useState(2); // 新しいstate変数
-
   const handleShowMore = () => {
     setLimit((prevLimit) => prevLimit + 5);
   };
 
   return (
-    <>
-      <BasicHeader user={user} />
+    <div>
+      <BasicHeaderLogined user={user} />
       <div className={styles.topbar}>
-        <ProfilePercent percentage={10} />
-      </div>
-      <div className={styles.rowdetail}>
-        <div className={styles.columndetail}>
-          <div
-            style={{
-              width: '540px',
-              height: '410px',
-              backgroundColor: 'gray',
-              borderWidth: '2px',
-              borderColor: 'blue',
-              borderStyle: 'solid',
-            }}
-          >
+        <div>
+          <ProfilePercent percentage={35} />
+          {/* 420*300の四角を横に２つ並べる */}
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
             <Deviation />
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
           </div>
-          <div
-            style={{
-              width: '500px',
-              height: '500px',
-              borderWidth: '2px',
-              borderColor: 'red',
-              borderStyle: 'solid',
-              marginTop: '30px',
-            }}
-          >
+          <div style={{ flexDirection: 'row', display: 'flex' }}>
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+            <div
+              style={{
+                width: '420px',
+                height: '300px',
+                backgroundColor: 'gray',
+                margin: '5px',
+              }}
+            />
+          </div>
+
+          <div className={styles.columndetail}>
+            <Deviation />
+
             <Chart data={data} width={500} height={500} outerRadius={200} />
+
+            <div />
           </div>
-          <div />
         </div>
         <div
           style={{
-            width: '600px',
-            height: '850px',
-            backgroundColor: 'gray',
-            borderWidth: '2px',
-            borderColor: 'green',
-            borderStyle: 'solid',
-            marginLeft: '30px',
+            marginLeft: '5px',
           }}
         >
-          <Paper elevation={3} style={{ padding: '20px' }}>
+          <div
+            style={{
+              backgroundColor: '#f1f1f1',
+              height: 70,
+              width: 500,
+              textAlign: 'center',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              display: 'flex',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 22,
+                fontWeight: 'bold',
+                paddingTop: 20,
+                paddingLeft: 20,
+              }}
+            >
+              <p style={{ borderBottom: '2px solid #addeff', letterSpacing: '0' }}>
+                招待が来ている企業
+              </p>
+            </span>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ padding: 8, letterSpacing: '0' }}>
+                受け取った招待の数 <span style={{ fontSize: 22, fontWeight: 700 }}>10</span>
+              </div>
+              <div style={{ marginRight: 10 }}>新着順↑↓</div>
+            </div>
+          </div>
+          <div
+            style={{
+              paddingLeft: '10px',
+              paddingRight: '2px',
+              backgroundColor: '#f1f1f1',
+              overflowY: 'scroll',
+              height: 790,
+              width: 500,
+            }}
+            className={styles.scrollbar}
+          >
             {offerData.slice(0, limit).map(
               (
                 news,
@@ -98,8 +145,8 @@ const Home = () => {
                   key={index}
                   companyName={news.companyName}
                   description={news.description}
-                  width="555px"
-                  height="80%"
+                  width="480px"
+                  height="120px"
                 />
               )
             )}
@@ -112,10 +159,10 @@ const Home = () => {
             >
               もっと見る
             </Typography>
-          </Paper>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

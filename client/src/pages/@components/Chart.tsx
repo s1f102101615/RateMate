@@ -23,6 +23,7 @@ function Chart(props: {
       cy={height / 2}
       outerRadius={outerRadius}
       data={data}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', marginTop: 30, borderRadius: 5 }}
     >
       {/* レーダーチャートの蜘蛛の巣のような線 */}
       <PolarGrid />
