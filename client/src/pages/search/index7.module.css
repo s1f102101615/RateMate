@@ -1,0 +1,83 @@
+/* styles7.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.region {
+  display: flex;
+  justify-content: flex-start; /* This aligns the flex items to the left */
+  margin-bottom: 5px;
+}
+
+.regionTitle {
+  margin-bottom: 6px;
+  font-size: 20px;
+}
+
+.prefectureList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* 左寄せにする */
+}
+
+.prefectureItem {
+  flex: 0 1 auto;
+  margin-right: 2px; /* 右側の間隔 */
+  margin-bottom: 2px; /* 下側の間隔 */
+  list-style-type: none;
+}
+
+.checkbox {
+  margin-right: 3px;
+}
+
+.submitButton {
+  position: fixed;
+  top: 550px;
+  left: 1160px;
+  z-index: 3;
+  width: 90px;
+  height: 45px;
+  padding: 10px 20px;
+  margin: 10px 2px;
+  font-size: 16px;
+  font-weight: bold; /* 文字を太くする */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
+  cursor: pointer;
+  background: linear-gradient(to top, rgb(255 51 51), rgb(247 66 66));
+  border: none;
+  border-radius: 8px;
+
+  /* box-shadowを内側に設定してへこんでいるように見せる */
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 20%), inset 0 4px 8px rgb(0 0 0 / 10%);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #d32;
+  opacity: 0.8; /* 透明度を下げて色を薄くする */
+  transform: scale(1.02); /* ボタンを少し拡大してホバー感を出す */
+}
+
+.parent {
+  display: flex;
+  flex-wrap: wrap; /* 必要に応じて折り返す */
+  justify-content: space-between; /* 子要素の間にスペースを空ける */
+}
+
+.child {
+  flex: 1; /* 子要素が均等にスペースを占めるようにする */
+  margin: 10px; /* 必要に応じてマージンを追加 */
+}

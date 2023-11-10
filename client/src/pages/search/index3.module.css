@@ -1,0 +1,52 @@
+.registerBox {
+  position: absolute;
+  top: 50px;
+  left: 830px;
+  width: 190px;
+  height: 100px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  box-shadow: rgb(50 50 93 / 25%) 0 50px 100px -20px, rgb(0 0 0 / 30%) 0 30px 60px -30px;
+  transform: translateY(-50%);
+}
+
+.blueBox2 {
+  display: flex; /* フレックスボックスとして表示 */
+  align-items: center; /* 縦方向の中央に配置 */
+  justify-content: center; /* 横方向の中央に配置 */
+  width: 98%; /* ボックスの幅 */
+  height: 18%; /* ボックスの高さ */
+  padding: 3px;
+  margin: 2px; /* 余白の追加 */
+  font-weight: 900;
+  color: white;
+  text-align: center; /* テキストも横方向に中央に配置 */
+  background: #30d46c;
+  border: none;
+  box-shadow: 0 5px #5eba69;
+}
+
+.roundedButton {
+  display: inline-block;
+  width: 170px;
+  height: 40px; /* 高さを固定に変更 */
+  padding: 0 20px; /* 上下のpaddingを0に設定 */
+  margin: 4px 2px;
+  margin-top: 20px;
+  margin-left: 6%;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 40px; /* line-heightをheightと同じにする */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
+  cursor: pointer;
+  background: linear-gradient(to top, orange, orange);
+  border: none;
+  border-radius: 8px;
+
+  /* box-shadowを内側に設定してへこんでいるように見せる */
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 20%), inset 0 4px 8px rgb(0 0 0 / 10%);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
