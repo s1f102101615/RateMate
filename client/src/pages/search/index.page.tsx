@@ -1,5 +1,6 @@
 import type { CompanyModel } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
 import type { ChangeEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
@@ -12,7 +13,6 @@ import styles4 from './index4.module.css';
 import styles5 from './index5.module.css';
 import styles6 from './index6.module.css';
 import styles7 from './index7.module.css';
-import { useRouter } from 'next/router';
 
 const Home = ({ totalItems, currentPage, onPageChange }) => {
   const [user] = useAtom(userAtom);
@@ -33,43 +33,71 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const [data, setData] = useState<CompanyModel[]>([]);
   const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedItems2, setCheckedItems2] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
-  const [checkedItems2, setCheckedItems2] = useState({});
+  const [checkedCategories2, setCheckedCategories2] = useState([]);
   const [checkedItems3, setCheckedItems3] = useState({});
-
+  const [checkedPrefectures, setCheckedPrefectures] = useState([]);
   const handleCategoryCheckboxChange = (e) => {
-    if (selectedCategory !== null) {
+    if (selectedCategory !== null && categories[selectedCategory]) {
       const isChecked = e.target.checked;
 
       setCheckedItems((prevItems) => {
-        // 新しいアイテムリストを生成
         let newItems;
         if (isChecked) {
-          // チェックされた場合、新しいアイテムリストは以前のアイテムとカテゴリ内のアイテムの結合
           newItems = [...new Set([...prevItems, ...categories[selectedCategory]])];
         } else {
-          // チェックが外された場合、カテゴリのアイテムを除外したリストを生成
           newItems = prevItems.filter((item) => !categories[selectedCategory].includes(item));
         }
-        return newItems;
-      });
 
-      setCheckedCategories((prevCategories) => {
-        // 新しいカテゴリリストを生成
-        const newCategories = new Set(prevCategories);
-        if (isChecked) {
-          newCategories.add(selectedCategory);
-        } else {
-          newCategories.delete(selectedCategory);
-          // カテゴリに属するアイテムが一つでもチェックされていれば、カテゴリを保持
-          if (categories[selectedCategory].some((catItem) => prevItems.includes(catItem))) {
+        // ここでsetCheckedCategoriesを更新
+        setCheckedCategories((prevCategories) => {
+          const newCategories = new Set(prevCategories);
+          if (isChecked) {
             newCategories.add(selectedCategory);
+          } else {
+            if (!categories[selectedCategory].some((catItem) => newItems.includes(catItem))) {
+              newCategories.delete(selectedCategory);
+            }
           }
-        }
-        return [...newCategories];
+          return [...newCategories];
+        });
+
+        return newItems;
       });
     }
   };
+
+  const handleCategoryCheckboxChange2 = (e) => {
+    if (selectedCategory2 !== null && categories2[selectedCategory2]) {
+      const isChecked = e.target.checked;
+
+      setCheckedItems2((prevItems) => {
+        let newItems;
+        if (isChecked) {
+          newItems = [...new Set([...prevItems, ...categories2[selectedCategory2]])];
+        } else {
+          newItems = prevItems.filter((item) => !categories2[selectedCategory2].includes(item));
+        }
+
+        // ここでsetCheckedCategoriesを更新
+        setCheckedCategories2((prevCategories) => {
+          const newCategories = new Set(prevCategories);
+          if (isChecked) {
+            newCategories.add(selectedCategory2);
+          } else {
+            if (!categories2[selectedCategory2].some((catItem) => newItems.includes(catItem))) {
+              newCategories.delete(selectedCategory2);
+            }
+          }
+          return [...newCategories];
+        });
+
+        return newItems;
+      });
+    }
+  };
+
   const handleItemCheckboxChange = (item, e) => {
     const isChecked = e.target.checked;
 
@@ -81,6 +109,21 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
 
       // この新しい状態を基にしてカテゴリリストを更新する
       updateCategories(newItems, isChecked, item);
+      return newItems;
+    });
+  };
+
+  const handleItemCheckboxChange2 = (item, e) => {
+    const isChecked = e.target.checked;
+
+    // 新しいアイテムリストを状態として保存する
+    setCheckedItems2((prevItems) => {
+      const newItems = isChecked
+        ? [...prevItems, item] // チェックしたアイテムを追加
+        : prevItems.filter((existingItem) => existingItem !== item); // チェックを外したアイテムを削除
+
+      // この新しい状態を基にしてカテゴリリストを更新する
+      updateCategories2(newItems, isChecked, item);
       return newItems;
     });
   };
@@ -106,6 +149,38 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     });
   };
 
+  // カテゴリの更新を行う独立した関数
+  const updateCategories2 = (newItems, isChecked, item) => {
+    setCheckedCategories2((prevCategories) => {
+      const updatedCheckedCategories = new Set(prevCategories);
+
+      if (isChecked) {
+        updatedCheckedCategories.add(selectedCategory);
+      } else {
+        // 新しいアイテムリストを利用して確認する
+        const someItemsChecked = categories[selectedCategory].some((catItem) =>
+          newItems.includes(catItem)
+        );
+        if (!someItemsChecked) {
+          updatedCheckedCategories.delete(selectedCategory);
+        }
+      }
+
+      return [...updatedCheckedCategories];
+    });
+  };
+
+ // チェックボックスの状態を更新するハンドラ
+ const handleCheckboxChange = (prefecture) => {
+  setCheckedPrefectures(prevState => {
+    // チェックされている場合は削除、そうでない場合は追加
+    if (prevState.includes(prefecture)) {
+      return prevState.filter(item => item !== prefecture);
+    } else {
+      return [...prevState, prefecture];
+    }
+  });
+};
   const fetchinfo = useFetchInfo();
 
   const FetchInfo = async () => {
@@ -174,7 +249,7 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     // ... 他のカテゴリーと項目を追加
   };
 
-  const categories2 = {
+  const categories3 = {
     '北海道・東北': ['北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県'],
     関東: ['東京都', '神奈川県', '千葉県', '埼玉県', '茨城県', '栃木県', '群馬県'],
     関西: ['大阪府', '兵庫県', '京都府', '滋賀県', '奈良県', '和歌山県'],
@@ -204,15 +279,30 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     // 必要に応じて他の地域を追加
   };
 
-  const categories3 = {
-    kanagawa: ['インターネットサービス', 'Sler', 'Nler', '...'],
-    メーカー: ['項目1', '項目2', '...'],
-    東京: ['項目1', '項目2', '...'],
+  const categories2 = {
+    chovu: ['管理', 'Swewwe', '1111', '.2333'],
+    chovy: ['2', '項目212', '...'],
+    chovy2: ['項目132', '項目2', '...'],
+    '323': ['項目1', '項目2', '...'],
+    商: ['項目1', '項目2', '...'],
+    商4: ['項目1', '項目2', '...'],
+    商5454: ['項目1', '項目2', '...'],
+    商23: ['項目1', '項目2', '...'],
+    商22: ['項目1', '項目2', '...'],
+    商2332: ['項目1', '項目2', '...'],
+    商23542: ['項目1', '項目2', '...'],
+
     // ... 他のカテゴリーと項目を追加
   };
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    console.log(category);
+  };
+
+  const handleCategoryClick2 = (category) => {
+    setSelectedCategory2(category);
+    console.log(category);
   };
 
   const openModal = () => {
@@ -221,10 +311,6 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleCategoryClick2 = (category2) => {
-    setSelectedCategory2(category2);
   };
 
   const openModal2 = () => {
@@ -257,7 +343,8 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     const params = {
       category1: checkedItems,
       category2: checkedCategories,
-      category3: selectedCategory3,
+      category3: checkedItems2,
+      category4: checkedPrefectures,
       minSalary: selectedSalary,
       maxSalary: selectedSalary2,
       label,
@@ -289,8 +376,6 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
       modalBodyRef.current.scrollTop += 40; // 30px分下にスクロール
     }
   };
-
-
 
   return (
     <>
@@ -413,31 +498,58 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
                 <div className={styles6.modal}>
                   <div className={styles6.modalContent}>
                     <div className={styles6.modalHeader}>
-                      <h2>業種を選択</h2>
+                      <h2 className={styles6.theme2}>職種を選択</h2>
                       <button className={styles6.closeButton} onClick={closeModal2}>
                         ✖️
                       </button>
                     </div>
+                    <body>
+                      <button className={styles6.topbutton} onClick={handleScrollUp}>
+                        <div className={styles6.arrowup} />
+                      </button>
+                    </body>
 
                     <div className={styles6.modalBody}>
-                      <div className={styles6.leftPanel}>
-                        <ul>
-                          {Object.keys(categories2).map((category) => (
-                            <li key={category} onClick={() => handleCategoryClick2(category)}>
-                              {selectedCategory2 === category ? '✓' : ''} {category}
-                            </li>
-                          ))}
-                        </ul>
+                      <div className={styles6.modalBody2} ref={modalBodyRef}>
+                        <div className={styles6.leftPanel}>
+                          <ul>
+                            {Object.keys(categories2).map((category) => (
+                              <li
+                                key={category}
+                                className={selectedCategory2 === category ? styles6.selected : ''}
+                                onClick={() => handleCategoryClick2(category)}
+                              >
+                                {category}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
+                      <button className={styles6.buttombutton} onClick={handleScrollDown}>
+                        <div className={styles6.arrowdown} />
+                      </button>
 
                       <div className={styles6.rightPanel}>
                         {selectedCategory2 && (
                           <>
-                            <h3>{selectedCategory2}</h3>
+                            <div className={styles6.flexContainer}>
+                              <input
+                                type="checkbox"
+                                className={styles6.checkboxSize}
+                                onChange={handleCategoryCheckboxChange2}
+                              />
+                              <h3 className={styles6.rightPanel2}>{selectedCategory2}</h3>
+                            </div>
+                            <div className={styles6.line} />
                             <ul>
                               {categories2[selectedCategory2].map((item) => (
                                 <li key={item}>
-                                  <input type="checkbox" /> {item}
+                                  <input
+                                    type="checkbox"
+                                    checked={checkedItems2.includes(item)}
+                                    onChange={(e) => handleItemCheckboxChange2(item, e)}
+                                  />
+                                  {item}
                                 </li>
                               ))}
                             </ul>
@@ -463,29 +575,36 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
                 </button>
               </div>
               {isModalOpen3 && (
-                               <div className={styles6.modal}>
-                               <div className={styles6.modalContent}>
-                <div className={styles7.container}>
-                  <h2 className={styles7.title}>都道府県を選択</h2>
+                <div className={styles6.modal}>
+                  <div className={styles6.modalContent}>
+                    <div className={styles7.container}>
+                      <h2 className={styles7.title}>都道府県を選択</h2>
+                      <button className={styles6.closeButton2} onClick={closeModal3}>
+                        ✖️
+                      </button>
 
-                  {Object.entries(categories2).map(([region, prefectures]) => (
-                    <div key={region} className={styles7.region}>
-                      <h3 className={styles7.regionTitle}>{region}</h3>
-                      <ul className={styles7.prefectureList}>
-                        {prefectures.map((prefecture) => (
-                          <li key={prefecture} className={styles7.prefectureItem}>
-                            <input type="checkbox" className={styles7.checkbox} />
-                            {prefecture}
-                          </li>
-                        ))}
-                      </ul>
+                      {Object.entries(categories3).map(([region, prefectures]) => (
+                        <div key={region} className={styles7.region}>
+                          <h3 className={styles7.regionTitle}>{region}</h3>
+                          <ul className={styles7.prefectureList}>
+                            {prefectures.map((prefecture) => (
+                              <li key={prefecture} className={styles7.prefectureItem}>
+                                <input
+                                  type="checkbox"
+                                  className={styles7.checkbox}
+                                  checked={checkedPrefectures[prefecture]}
+                                  onChange={() => handleCheckboxChange(prefecture)}
+                                />
+                                {prefecture}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+
+                      <button className={styles7.submitButton}>決定</button>
                     </div>
-                    
-                  ))}
-
-                  <button className={styles7.submitButton}>決定</button>
-                </div>
-                </div>
+                  </div>
                 </div>
               )}
 

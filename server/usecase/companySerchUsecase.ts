@@ -4,9 +4,10 @@ import { companySearchRepository } from '$/repository/companySearchRepositry';
 import assert from 'assert';
 export const companySearchUsecase = {
   fetchinfo: async (params: {
-    category?: string[];
+    category1?: string[];
     category2?: string[];
-    category3?: string;
+    category3?: string[];
+    category4?: string[];
     minSalary?: string;
     maxSalary?: string;
     label?: string;

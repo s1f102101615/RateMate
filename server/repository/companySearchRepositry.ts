@@ -20,6 +20,8 @@ const toCompanyModel = (prismaCompany: Company): CompanyModel => ({
 export const companySearchRepository = {
   fetchinfo: async (params: {
     category1?: string[];
+    category3?: string[];
+    category4?: string[];
     minSalary?: string;
     maxSalary?: string;
     label?: string;
@@ -33,6 +35,20 @@ export const companySearchRepository = {
       }));
     }
 
+        // category3が与えられている場合、ORクエリでそのいずれかが含まれるレコードを取得する
+        if (params.category3 && params.category3.length > 0) {
+          whereClause.OR = params.category3.map(cat => ({
+            occupation: cat
+          }));
+        }
+
+
+            // category1が与えられている場合、ORクエリでそのいずれかが含まれるレコードを取得する
+    if (params.category4 && params.category4.length > 0) {
+      whereClause.OR = params.category4.map(cat => ({
+        local: cat
+      }));
+    }
     // 以下、minSalary、maxSalary、labelに関する処理は前述のコードを参照してください。
 
     console.log(whereClause);
