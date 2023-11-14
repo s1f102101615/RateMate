@@ -14,13 +14,13 @@ export type UserInfo = {
   birthday: Date;
   address: string;
   education: string;
-  schooltype: string;
-  schoolname: string;
-  acdemicdiscipline: string;
-  favoritegame: string;
+  schoolType: string;
+  schoolName: string;
+  academicDiscipline: string;
+  favoriteGame: string;
   createdAt: Date;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
 };
 
 export const taskParser = z.object({

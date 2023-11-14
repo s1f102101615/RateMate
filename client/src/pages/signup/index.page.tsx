@@ -16,15 +16,15 @@ const Signup = () => {
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState('');
   const [education, setEducation] = useState('');
-  const [schooltype, setSchoolType] = useState('');
+  const [schoolType, setSchoolType] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [academicDiscipline, setAcademicDiscipline] = useState('');
   const [favoriteGame, setFavoriteGame] = useState('');
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   // yearの選択肢
   const currentYear = new Date().getFullYear();
@@ -103,11 +103,11 @@ const Signup = () => {
   };
 
   const handleFirstnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstname(event.target.value);
+    setFirstName(event.target.value);
   };
 
   const handleLastnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastname(event.target.value);
+    setLastName(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -132,7 +132,7 @@ const Signup = () => {
   const handleupSign = () => {
     // サインアップ処理を実行する
     // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
-    const displayname = lastname + firstname;
+    const displayname = lastName + firstName;
     createUser(email, password, displayname).then(() => {
       // サインアップ処理が完了したら、ユーザー情報を登録する
       sendUserInfo();
@@ -147,13 +147,13 @@ const Signup = () => {
       birthday: new Date(`${year}-${month}-${day}`),
       address,
       education,
-      schooltype,
-      schoolname: schoolName,
-      acdemicdiscipline: academicDiscipline,
-      favoritegame: favoriteGame,
+      schoolType,
+      schoolName,
+      academicDiscipline,
+      favoriteGame,
       createdAt: new Date(),
-      firstname,
-      lastname,
+      firstName,
+      lastName,
     };
     await apiClient.userinfo.post({ body: userinfo });
   };
@@ -296,7 +296,7 @@ const Signup = () => {
                             type="text"
                             id="lastname"
                             name="lastname"
-                            value={lastname}
+                            value={lastName}
                             onChange={handleLastnameChange}
                             className={styles.input}
                             style={{ width: '90%' }}
@@ -310,7 +310,7 @@ const Signup = () => {
                             type="text"
                             id="firstname"
                             name="firstname"
-                            value={firstname}
+                            value={firstName}
                             onChange={handleFirstnameChange}
                             className={styles.input}
                             style={{ width: '90%' }}
@@ -493,7 +493,7 @@ const Signup = () => {
                       <select
                         id="schooltype"
                         name="schooltype"
-                        value={schooltype}
+                        value={schoolType}
                         onChange={handleSchooldetailChange}
                       >
                         <option value="" disabled>

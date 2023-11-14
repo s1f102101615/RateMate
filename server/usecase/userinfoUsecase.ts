@@ -9,13 +9,13 @@ export const userinfoUsecase = {
       birthday: label.birthday,
       address: label.address,
       education: label.education,
-      schooltype: label.schooltype,
-      schoolname: label.schoolname,
-      acdemicdiscipline: label.acdemicdiscipline,
-      favoritegame: label.favoritegame,
+      schoolType: label.schoolType,
+      schoolName: label.schoolName,
+      academicDiscipline: label.academicDiscipline,
+      favoriteGame: label.favoriteGame,
       createdAt: label.createdAt,
-      firstname: label.firstname,
-      lastname: label.lastname,
+      firstName: label.firstName,
+      lastName: label.lastName,
     };
     await userinfoRepository.save(newUser);
     return 'ok';

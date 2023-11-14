@@ -16,15 +16,77 @@ model Task {
 }
 
 model User {
-  userId            String   @id
-  birthday          DateTime
-  address           String
-  education         String
-  schooltype        String
-  schoolname        String
-  acdemicdiscipline String
-  favoritegame      String
-  createdAt         DateTime
-  firstname         String
-  lastname          String
+  userId             String   @id
+  birthday           DateTime
+  address            String
+  education          String
+  schoolType         String
+  schoolName         String
+  academicDiscipline String
+  favoriteGame       String
+  createdAt          DateTime
+  firstName          String
+  lastName           String
+}
+
+enum OfferStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model Offer {
+  id          Int         @id @default(autoincrement())
+  companyId   Int
+  userId      String
+  title       String
+  salary      String
+  location    String
+  description String
+  status      OfferStatus
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now()) @updatedAt
+}
+
+model Skill {
+  id     Int    @id @default(autoincrement())
+  userId String
+  name   String
+  level  String
+}
+
+model Company {
+  id           Int    @id @default(autoincrement())
+  companyName  String
+  annualIncome String
+  industry     String
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  content   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  companyId Int
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model Game {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model GameRank {
+  id     Int    @id @default(autoincrement())
+  userId String
+  gameId Int
+  season String
+  rank   String
 }
