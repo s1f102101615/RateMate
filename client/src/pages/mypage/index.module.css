@@ -4,9 +4,9 @@
   margin: 20px 0;
   font-size: 20px;
   font-weight: bold;
-  color: #fff;
+  color: #000;
   text-align: left;
-  background-color: rgb(0 81 255 / 77.4%);
+  border-bottom: 1px solid #000;
 }
 
 .title {
@@ -23,7 +23,7 @@
 
   /* 要素の間を10px */
   justify-content: center;
-  padding-top: 5%;
+  padding-top: 50px;
 }
 
 .gender {
@@ -58,9 +58,13 @@
 .tabmain {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 250px;
   padding: 20px;
+  margin-top: 60px;
+  font-size: 14px;
+  font-weight: 700;
   text-align: right;
+  letter-spacing: 0.01em;
   background-color: #fff;
 }
 
