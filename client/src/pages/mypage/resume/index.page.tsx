@@ -1,12 +1,12 @@
 import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
-import { userAtom } from '../../atoms/user';
-import { BasicHeaderLogined } from '../@components/BasicHeaderLogined/BasicHeaderLogined';
-import ImageUpload from '../@components/ImageUpload';
+import { userAtom } from '../../../atoms/user';
+import { BasicHeaderLogined } from '../../@components/BasicHeaderLogined/BasicHeaderLogined';
+import ImageUpload from '../../@components/ImageUpload';
 import styles from './index.module.css';
 
-function MyPage() {
+function ResumeMyPage() {
   const [user] = useAtom(userAtom);
   const name = user?.displayName?.split(' ');
   const firstName = name?.[1];
@@ -107,4 +107,4 @@ function MyPage() {
   );
 }
 
-export default MyPage;
+export default ResumeMyPage;
