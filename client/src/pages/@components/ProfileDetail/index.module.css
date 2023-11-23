@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  justify-content: center;
+  width: 710px;
+  padding: 20px;
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  border-bottom: 1px solid #000;
+}
+
+.title {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-left: 5px solid #0051ff94;
+}
+
+.container {
+  /* 要素を真ん中に */
+  display: flex;
+  gap: 30px;
+
+  /* 要素の間を10px */
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.gender {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 200px;
+  margin: 10px 0;
+  margin-left: 32px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 10px 0;
+}
+
+.required {
+  padding: 0 5px;
+  margin: 0 5px;
+  color: white;
+  background-color: rgb(255 38 0);
+}
+
+.birthDay {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 200px;
+  margin: 10px 0;
+  margin-left: 32px;
+}
+
+.tabmain {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 20px;
+  margin-top: 60px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  letter-spacing: 0.01em;
+  background-color: #fff;
+}
+
+.tab {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #000;
+  cursor: pointer;
+  border-right: 5px solid #4caf50; /* 緑色のボーダー */
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: #fff;
+  background-color: #4caf50; /* ホバー時に緑色に */
+}
