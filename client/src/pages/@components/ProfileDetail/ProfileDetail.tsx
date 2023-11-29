@@ -10,7 +10,7 @@ const ProfileDetail: React.FC = () => {
         <div className={styles.header}>名前・プロフィール変更</div>
 
         <div id="separated">
-          <div className={styles.title}>名前</div>
+          <div className={styles.title}>連携済ゲーム</div>
           <div>
             <TextField label="姓" variant="outlined" style={{ margin: '16px 32px' }} />
             <TextField label="名" variant="outlined" style={{ margin: '16px 32px' }} />
