@@ -7,7 +7,7 @@ const ProfileDetail: React.FC = () => {
   return (
     <div>
       <div>
-        <div className={styles.header}>名前・プロフィール変更</div>
+        <div className={styles.header}>履歴書登録</div>
 
         <div id="separated">
           <div className={styles.title}>名前</div>

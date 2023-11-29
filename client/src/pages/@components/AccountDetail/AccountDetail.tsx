@@ -7,7 +7,7 @@ const ProfileDetail: React.FC = () => {
   return (
     <div>
       <div>
-        <div className={styles.header}>名前・ゲームアカウント連携</div>
+        <div className={styles.header}>ゲームアカウント連携</div>
 
         <div id="separated">
           <div className={styles.title}>名前</div>
