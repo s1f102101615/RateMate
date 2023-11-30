@@ -1,6 +1,5 @@
-import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React from 'react';
-import ImageUpload from '../ImageUpload';
 import styles from './index.module.css';
 
 const ProfileDetail: React.FC = () => {
@@ -10,61 +9,32 @@ const ProfileDetail: React.FC = () => {
         <div className={styles.header}>スキルPR</div>
 
         <div id="separated">
-          <div className={styles.title}>名前</div>
+          <div className={styles.title}>特技PR(スキル、実績、経験など)</div>
+          <div>20文字以内、最大3つまで</div>
           <div>
-            <TextField label="姓" variant="outlined" style={{ margin: '16px 32px' }} />
-            <TextField label="名" variant="outlined" style={{ margin: '16px 32px' }} />
+            <TextField label="1" variant="outlined" style={{ margin: '16px 32px' }} />
+            <TextField label="2" variant="outlined" style={{ margin: '16px 32px' }} />
+            <TextField label="3 " variant="outlined" style={{ margin: '16px 32px' }} />
           </div>
           <div>
-            <div className={styles.title}>よみがな</div>
-            <TextField label="姓 (カナ)" variant="outlined" style={{ margin: '16px 32px' }} />
-            <TextField label="名 (カナ)" variant="outlined" style={{ margin: '16px 32px' }} />
+            <div className={styles.title}>自己PR</div>
+            <div>
+              自分の強みや長所、頑張ったことなど、企業にアピールしたいことをご記入ください。
+              （300文字程度）
+              <br />
+              ※スカウトを行う企業に公開されるため、氏名などの個人情報の記入はお控えください。
+            </div>
+            {/* テキストエリア */}
+            <textarea
+              style={{
+                width: '600px',
+                height: '200px',
+                backgroundColor: '#f3f3f3',
+                borderRadius: '10px',
+                margin: '10px',
+              }}
+            />
           </div>
-        </div>
-
-        <div hidden>
-          <h1>もしくは</h1>
-
-          <div className={styles.title}>名前</div>
-          <div>
-            <TextField label={'名前'} variant="outlined" style={{ margin: '16px 32px' }} />
-          </div>
-          <div>
-            <div className={styles.title}>よみがな</div>
-            <TextField label="よみがな" variant="outlined" style={{ margin: '16px 32px' }} />
-          </div>
-        </div>
-
-        <div hidden>
-          <div className={styles.title}>性別</div>
-          <RadioGroup row defaultValue="男性" className={styles.gender}>
-            <FormControlLabel value="男性" control={<Radio />} label="男性" />
-            <FormControlLabel value="女性" control={<Radio />} label="女性" />
-            <FormControlLabel value="その他" control={<Radio />} label="その他" />
-          </RadioGroup>
-        </div>
-        <div>
-          <div className={styles.title}>生年月日</div>
-          <TextField
-            label="生年月日"
-            type="date"
-            defaultValue="2002-05-28"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            style={{ margin: '16px' }}
-          />
-        </div>
-
-        <div>
-          <div className={styles.title}>プロフィール画像</div>
-          <div> ※5MB以内</div>
-          <ImageUpload />
-        </div>
-        <div className={styles.btn}>
-          <Button variant="contained" color="primary">
-            保存
-          </Button>
         </div>
       </div>
     </div>

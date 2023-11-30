@@ -1,6 +1,5 @@
-import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React from 'react';
-import ImageUpload from '../ImageUpload';
 import styles from './index.module.css';
 
 const ProfileDetail: React.FC = () => {
@@ -8,63 +7,101 @@ const ProfileDetail: React.FC = () => {
     <div>
       <div>
         <div className={styles.header}>経歴情報</div>
+        <div>
+          研究内容やインターン・アルバイト経験を入力します。
+          <br />
+          入力することでより質の高いスカウトを受け取ることができます。 <br />
+          こちらに入力された情報はスカウトを受け取る際に公開されます。 <br />
+          公開範囲についてはこちらからご確認いただけます。 <br />
+        </div>
 
         <div id="separated">
-          <div className={styles.title}>名前</div>
-          <div>
-            <TextField label="姓" variant="outlined" style={{ margin: '16px 32px' }} />
-            <TextField label="名" variant="outlined" style={{ margin: '16px 32px' }} />
-          </div>
-          <div>
-            <div className={styles.title}>よみがな</div>
-            <TextField label="姓 (カナ)" variant="outlined" style={{ margin: '16px 32px' }} />
-            <TextField label="名 (カナ)" variant="outlined" style={{ margin: '16px 32px' }} />
-          </div>
+          <div className={styles.title}>研究内容</div>
+          <div>・研究テーマ</div>
+          <TextField label="" variant="outlined" style={{ margin: '16px 32px' }} />
+          <div>・研究詳細</div>
+          <TextField label="" variant="outlined" style={{ margin: '16px 32px' }} />
         </div>
 
-        <div hidden>
-          <h1>もしくは</h1>
+        <div id="separated">
+          <div className={styles.title}>研究実績</div>
 
-          <div className={styles.title}>名前</div>
-          <div>
-            <TextField label={'名前'} variant="outlined" style={{ margin: '16px 32px' }} />
+          <div>・研究実績</div>
+          <div style={{ flexDirection: 'column', display: 'flex', gap: 10, marginLeft: 30 }}>
+            <div style={{ flexDirection: 'row', display: 'flex' }}>
+              <input type="checkbox" id="paper" name="paper" />
+              <div>学会で表彰経験がある</div>
+            </div>
+            <div style={{ flexDirection: 'row', display: 'flex' }}>
+              <input type="checkbox" id="paper" name="paper" />
+              <div>学術誌で論文が掲載されたことがある</div>
+            </div>
+            <div style={{ flexDirection: 'row', display: 'flex' }}>
+              <input type="checkbox" id="paper" name="paper" />
+              <div>学会での発表経験がある</div>
+            </div>
           </div>
-          <div>
-            <div className={styles.title}>よみがな</div>
-            <TextField label="よみがな" variant="outlined" style={{ margin: '16px 32px' }} />
-          </div>
-        </div>
 
-        <div hidden>
-          <div className={styles.title}>性別</div>
-          <RadioGroup row defaultValue="男性" className={styles.gender}>
-            <FormControlLabel value="男性" control={<Radio />} label="男性" />
-            <FormControlLabel value="女性" control={<Radio />} label="女性" />
-            <FormControlLabel value="その他" control={<Radio />} label="その他" />
-          </RadioGroup>
-        </div>
-        <div>
-          <div className={styles.title}>生年月日</div>
-          <TextField
-            label="生年月日"
-            type="date"
-            defaultValue="2002-05-28"
-            InputLabelProps={{
-              shrink: true,
+          <div>・研究詳細</div>
+          {/* テキストエリア */}
+          <textarea
+            style={{
+              width: '600px',
+              height: '200px',
+              backgroundColor: '#f3f3f3',
+              borderRadius: '10px',
+              margin: '10px',
             }}
-            style={{ margin: '16px' }}
           />
         </div>
 
-        <div>
-          <div className={styles.title}>プロフィール画像</div>
-          <div> ※5MB以内</div>
-          <ImageUpload />
+        <div id="separated">
+          <div className={styles.title}>大会・コンテスト</div>
+
+          <div>・入賞受賞経験</div>
+          <div style={{ flexDirection: 'column', display: 'flex', gap: 10, marginLeft: 30 }}>
+            <div style={{ flexDirection: 'row', display: 'flex' }}>
+              <input type="checkbox" id="paper" name="paper" />
+              <div>コンテストで入賞経験がある</div>
+            </div>
+          </div>
+
+          <div>・入賞受賞詳細</div>
+          {/* テキストエリア */}
+          <textarea
+            style={{
+              width: '600px',
+              height: '200px',
+              backgroundColor: '#f3f3f3',
+              borderRadius: '10px',
+              margin: '10px',
+            }}
+          />
         </div>
-        <div className={styles.btn}>
-          <Button variant="contained" color="primary">
-            保存
-          </Button>
+        <div>
+          <div className={styles.title}>インターン・アルバイト経験</div>
+          <div style={{ flexDirection: 'column', display: 'flex', gap: 10, marginLeft: 30 }}>
+            <div style={{ flexDirection: 'row', display: 'flex' }}>
+              <input type="checkbox" id="paper" name="paper" />
+              <div>インターン経験がある</div>
+            </div>
+            <div style={{ flexDirection: 'row', display: 'flex' }}>
+              <input type="checkbox" id="paper" name="paper" />
+              <div>アルバイト経験がある</div>
+            </div>
+          </div>
+
+          <div>・インターン・アルバイト経験詳細</div>
+          {/* テキストエリア */}
+          <textarea
+            style={{
+              width: '600px',
+              height: '200px',
+              backgroundColor: '#f3f3f3',
+              borderRadius: '10px',
+              margin: '10px',
+            }}
+          />
         </div>
       </div>
     </div>

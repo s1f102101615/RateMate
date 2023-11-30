@@ -83,3 +83,11 @@
   color: #fff;
   background-color: #4caf50; /* ホバー時に緑色に */
 }
+
+.gage {
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  border: #000 1px solid;
+  border-radius: 10px;
+}
