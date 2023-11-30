@@ -147,6 +147,7 @@ const Signup = () => {
       birthday: new Date(`${year}-${month}-${day}`),
       address,
       education,
+      gender,
       schoolType,
       schoolName,
       academicDiscipline,

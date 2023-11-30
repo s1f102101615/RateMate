@@ -9,6 +9,7 @@ export const userinfoUsecase = {
       birthday: label.birthday,
       address: label.address,
       education: label.education,
+      gender: label.gender,
       schoolType: label.schoolType,
       schoolName: label.schoolName,
       academicDiscipline: label.academicDiscipline,

@@ -21,6 +21,7 @@ model User {
   address            String
   education          String
   schoolType         String
+  gender             String
   schoolName         String
   academicDiscipline String
   favoriteGame       String

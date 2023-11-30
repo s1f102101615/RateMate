@@ -1,6 +1,5 @@
-import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React from 'react';
-import ImageUpload from '../ImageUpload';
 import styles from './index.module.css';
 
 const ProfileDetail: React.FC = () => {
@@ -8,63 +7,58 @@ const ProfileDetail: React.FC = () => {
     <div>
       <div>
         <div className={styles.header}>希望条件</div>
+        <div>
+          転職（就職）時の希望条件を入力します。応募時や、企業がスカウトを送る際の判断材料に
+          <br />
+          なるほか、条件に一致した求人があればメールでお知らせします。
+        </div>
 
         <div id="separated">
-          <div className={styles.title}>名前</div>
+          <div className={styles.title}>企業選びで重視する事(3つまで)</div>
           <div>
             <TextField label="姓" variant="outlined" style={{ margin: '16px 32px' }} />
             <TextField label="名" variant="outlined" style={{ margin: '16px 32px' }} />
           </div>
           <div>
-            <div className={styles.title}>よみがな</div>
-            <TextField label="姓 (カナ)" variant="outlined" style={{ margin: '16px 32px' }} />
-            <TextField label="名 (カナ)" variant="outlined" style={{ margin: '16px 32px' }} />
+            <div className={styles.title}>志望企業のタイプ</div>
+            {/* チェックボックス */}
+            <div style={{ flexDirection: 'column', display: 'flex', gap: 10, marginLeft: 30 }}>
+              <div style={{ flexDirection: 'row', display: 'flex' }}>
+                <input type="checkbox" id="paper" name="paper" />
+                <div>大手企業</div>
+              </div>
+              <div style={{ flexDirection: 'row', display: 'flex' }}>
+                <input type="checkbox" id="paper" name="paper" />
+                <div>中小企業</div>
+              </div>
+              <div style={{ flexDirection: 'row', display: 'flex' }}>
+                <input type="checkbox" id="paper" name="paper" />
+                <div>メガベンチャー(500名以上～)</div>
+              </div>
+              <div style={{ flexDirection: 'row', display: 'flex' }}>
+                <input type="checkbox" id="paper" name="paper" />
+                <div>ベンチャー企業</div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div hidden>
-          <h1>もしくは</h1>
-
-          <div className={styles.title}>名前</div>
+          <div className={styles.title}>希望勤務地(複数選択可)</div>
           <div>
-            <TextField label={'名前'} variant="outlined" style={{ margin: '16px 32px' }} />
+            <TextField label="姓" variant="outlined" style={{ margin: '16px 32px' }} />
+            <TextField label="名" variant="outlined" style={{ margin: '16px 32px' }} />
           </div>
+          <div className={styles.title}>希望詳細/その他</div>
           <div>
-            <div className={styles.title}>よみがな</div>
-            <TextField label="よみがな" variant="outlined" style={{ margin: '16px 32px' }} />
+            {/* テキストエリア */}
+            <textarea
+              style={{
+                width: '600px',
+                height: '200px',
+                backgroundColor: '#f3f3f3',
+                borderRadius: '10px',
+                margin: '10px',
+              }}
+            />
           </div>
-        </div>
-
-        <div hidden>
-          <div className={styles.title}>性別</div>
-          <RadioGroup row defaultValue="男性" className={styles.gender}>
-            <FormControlLabel value="男性" control={<Radio />} label="男性" />
-            <FormControlLabel value="女性" control={<Radio />} label="女性" />
-            <FormControlLabel value="その他" control={<Radio />} label="その他" />
-          </RadioGroup>
-        </div>
-        <div>
-          <div className={styles.title}>生年月日</div>
-          <TextField
-            label="生年月日"
-            type="date"
-            defaultValue="2002-05-28"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            style={{ margin: '16px' }}
-          />
-        </div>
-
-        <div>
-          <div className={styles.title}>プロフィール画像</div>
-          <div> ※5MB以内</div>
-          <ImageUpload />
-        </div>
-        <div className={styles.btn}>
-          <Button variant="contained" color="primary">
-            保存
-          </Button>
         </div>
       </div>
     </div>

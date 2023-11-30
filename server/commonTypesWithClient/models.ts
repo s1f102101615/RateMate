@@ -13,6 +13,7 @@ export type UserInfo = {
   userId: string;
   birthday: Date;
   address: string;
+  gender: string;
   education: string;
   schoolType: string;
   schoolName: string;
