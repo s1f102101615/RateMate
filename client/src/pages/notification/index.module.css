@@ -10,31 +10,38 @@
 
 .box {
   width: 950px;
-  height: 400px;
-  background-color: #eee;
+  height: 300px;
 }
 
 .notificationItem {
   display: flex;
   align-items: center;
-  height: 140px;
+  width: 950px;
+  height: 130px;
   margin-bottom: -1px;
-  border: 1px solid #ccc;
+  border: 1px solid #e7e7e7;
 }
 
 .icon {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
+  margin-right: 30px;
+  margin-left: 30px;
+
+  /* a */
+  background-color: #000;
 }
 
 .title {
   margin-right: 10px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(0 212 0 / 76.7%);
 }
 
 .detail {
   flex-grow: 1;
+  letter-spacing: 0.2px;
 }
 
 .time {
@@ -42,6 +49,60 @@
 }
 
 .onebox {
-  width: 100%;
-  margin-left: 40px;
+  width: 840px;
+  margin-right: 30px;
+}
+
+.pagenum {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 70px;
+}
+
+.page {
+  padding: 10px 15px;
+  color: rgb(17 17 17);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  transition: background-color 0.3s;
+}
+
+.pagefirst {
+  padding: 10px 15px;
+  color: rgb(17 17 17);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px 0 0 5px;
+  transition: background-color 0.3s;
+}
+
+.pagelast {
+  padding: 10px 15px;
+  color: rgb(17 17 17);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s;
+}
+
+.page:hover {
+  background-color: #0056b3;
+}
+
+.currentPage {
+  padding: 10px 15px;
+  color: rgb(255 255 255);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(81 255 0);
+  border: 1px solid #d1d1d1;
+  transition: background-color 0.3s;
 }

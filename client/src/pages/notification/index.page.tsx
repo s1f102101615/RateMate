@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -23,9 +24,10 @@ const Home = () => {
   const notifications: Notification[] = [
     {
       icon: 'https://example.com/icon1.png',
-      title: 'タイトル1',
-      detail: '詳細1',
-      time: '2022-01-01 10:00:00',
+      title: '株式会社cinraから「いいね」が届きました',
+      detail:
+        '【芸術文化をルーツとするメディアブランド】自社メディアとクライアントワークに携われるフロントエンジニアを募集！',
+      time: '2022年01月01日',
     },
     {
       icon: 'https://example.com/icon2.png',
@@ -33,13 +35,129 @@ const Home = () => {
       detail: '詳細2',
       time: '2022-01-02 11:00:00',
     },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+    {
+      icon: 'https://example.com/icon2.png',
+      title: 'タイトル2',
+      detail: '詳細2',
+      time: '2022-01-02 11:00:00',
+    },
+
     // 他の通知データ...
   ];
 
   // 通知を表示するコンポーネント
   const NotificationItem: React.FC<{ notification: Notification }> = ({ notification }) => (
     <div className={styles.notificationItem}>
-      <img className={styles.icon} src={notification.icon} />
+      {/* <img className={styles.icon} src={notification.icon} /> */}
+      <div className={styles.icon} />
       <div className={styles.onebox}>
         <div className={styles.title}>{notification.title}</div>
         <div className={styles.detail}>{notification.detail}</div>
@@ -49,6 +167,7 @@ const Home = () => {
   );
 
   // ページネーションを実装するコンポーネント
+  const totalPages = Math.ceil(notifications.length / notificationsPerPage);
 
   // 現在のページの通知を取得
   const currentNotifications = notifications.slice(
@@ -65,11 +184,34 @@ const Home = () => {
           {currentNotifications.map((notification, index) => (
             <NotificationItem key={index} notification={notification} />
           ))}
-          <button onClick={() => setCurrentPage(currentPage + 1)}>次のページ</button>
+          <div className={styles.pagenum}>
+            {currentPage > 1 && (
+              <button className={styles.pagefirst} onClick={() => setCurrentPage(currentPage - 1)}>
+                前へ
+              </button>
+            )}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => {
+              const buttonStyle = pageNumber === currentPage ? styles.currentPage : styles.page;
+
+              return (
+                <button
+                  key={pageNumber}
+                  className={buttonStyle}
+                  onClick={() => setCurrentPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+            {currentPage < totalPages && (
+              <button className={styles.pagelast} onClick={() => setCurrentPage(currentPage + 1)}>
+                次へ
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>
   );
 };
-
 export default Home;
