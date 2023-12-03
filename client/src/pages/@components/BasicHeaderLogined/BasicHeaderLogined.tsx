@@ -46,7 +46,7 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
           <Link href="/home" style={{ marginTop: 20 }} className={styles.menu}>
             マイページ
           </Link>
-          <Link style={{ marginTop: 20 }} href="/mypage" className={styles.menu}>
+          <Link style={{ marginTop: 20 }} href="/mypage/profile/" className={styles.menu}>
             プロフィール
           </Link>
           <Link style={{ marginTop: 20 }} href="/search" className={styles.menu}>
@@ -95,7 +95,7 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <Link href="/mypage">
+                <Link href="/mypage/profile/">
                   <div className={styles.dropdownItem}>マイページ</div>
                 </Link>
                 <div className={styles.dropdownItem} onClick={handleLogout}>

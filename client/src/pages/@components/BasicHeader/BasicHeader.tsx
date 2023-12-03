@@ -77,7 +77,7 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <Link href="/mypage">
+              <Link href="/mypage/profile/">
                 <div className={styles.dropdownItem}>マイページ</div>
               </Link>
               <div className={styles.dropdownItem} onClick={handleLogout}>
