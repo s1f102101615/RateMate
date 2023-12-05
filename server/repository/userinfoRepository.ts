@@ -35,4 +35,20 @@ export const userinfoRepository = {
       },
     });
   },
+  ExperienceSave: async (userinfo: Experience) => {
+    await prismaClient.experience.upsert({
+      where: { userId: userinfo.userId },
+      update: {
+        research: userinfo.research,
+        competition: userinfo.competition,
+        workExperience: userinfo.workExperience,
+      },
+      create: {
+        userId: userinfo.userId,
+        research: userinfo.research,
+        competition: userinfo.competition,
+        workExperience: userinfo.workExperience,
+      },
+    });
+  },
 };

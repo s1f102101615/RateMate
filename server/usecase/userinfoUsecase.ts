@@ -1,5 +1,5 @@
 import type { UserId } from '$/commonTypesWithClient/ids';
-import type { UserInfo } from '$/commonTypesWithClient/models';
+import type { Experience, UserInfo } from '$/commonTypesWithClient/models';
 import { userinfoRepository } from '$/repository/userinfoRepository';
 
 export const userinfoUsecase = {
@@ -19,6 +19,33 @@ export const userinfoUsecase = {
       lastName: label.lastName,
     };
     await userinfoRepository.save(newUser);
+    return 'ok';
+  },
+  ExperienceCreate: async (user: UserId, label: Experience) => {
+    const newUser: Experience = {
+      userid: user,
+      research: {
+        userid: user, // research 内の userid も user に設定
+        theme: label.research?.theme,
+        details: label.research?.details,
+        achievements: label.research?.achievements,
+        awards: label.research?.awards,
+        paper: label.research?.paper,
+        presentation: label.research?.presentation,
+      },
+      competition: {
+        userid: user,
+        achievement: label.competition?.achievement,
+        details: label.competition?.details,
+      },
+      workExperience: {
+        userid: user,
+        internship: label.workExperience?.internship,
+        partTimeJob: label.workExperience?.partTimeJob,
+        details: label.workExperience?.details,
+      },
+    };
+    await userinfoRepository.ExperienceSave(newUser);
     return 'ok';
   },
 };
