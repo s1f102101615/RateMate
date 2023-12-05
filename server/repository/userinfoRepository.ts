@@ -1,4 +1,5 @@
-import type { UserInfo } from '$/commonTypesWithClient/models';
+/* eslint-disable complexity */
+import type { Experience, UserInfo } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
 
 export const userinfoRepository = {
@@ -37,17 +38,69 @@ export const userinfoRepository = {
   },
   ExperienceSave: async (userinfo: Experience) => {
     await prismaClient.experience.upsert({
-      where: { userId: userinfo.userId },
+      where: { userid: userinfo.userid },
       update: {
-        research: userinfo.research,
-        competition: userinfo.competition,
-        workExperience: userinfo.workExperience,
+        research: userinfo.research
+          ? {
+              update: {
+                theme: userinfo.research.theme ?? '',
+                details: userinfo.research.details ?? '',
+                achievements: userinfo.research.achievements ?? '',
+                awards: userinfo.research.awards ?? '',
+                paper: userinfo.research.paper ?? '',
+                presentation: userinfo.research.presentation ?? '',
+              },
+            }
+          : undefined,
+        competition: userinfo.competition
+          ? {
+              update: {
+                achievement: userinfo.competition.achievement ?? '',
+                details: userinfo.competition.details ?? '',
+              },
+            }
+          : undefined,
+        experience: userinfo.workExperience
+          ? {
+              update: {
+                internship: userinfo.workExperience.internship ?? false,
+                partTimeJob: userinfo.workExperience.partTimeJob ?? false,
+                details: userinfo.workExperience.details ?? '',
+              },
+            }
+          : undefined,
       },
       create: {
-        userId: userinfo.userId,
-        research: userinfo.research,
-        competition: userinfo.competition,
-        workExperience: userinfo.workExperience,
+        userid: userinfo.userid,
+        research: userinfo.research
+          ? {
+              create: {
+                theme: userinfo.research.theme ?? '',
+                details: userinfo.research.details ?? '',
+                achievements: userinfo.research.achievements ?? '',
+                awards: userinfo.research.awards ?? '',
+                paper: userinfo.research.paper ?? '',
+                presentation: userinfo.research.presentation ?? '',
+              },
+            }
+          : undefined,
+        competition: userinfo.competition
+          ? {
+              create: {
+                achievement: userinfo.competition.achievement ?? '',
+                details: userinfo.competition.details ?? '',
+              },
+            }
+          : undefined,
+        experience: userinfo.workExperience
+          ? {
+              create: {
+                internship: userinfo.workExperience.internship ?? false,
+                partTimeJob: userinfo.workExperience.partTimeJob ?? false,
+                details: userinfo.workExperience.details ?? '',
+              },
+            }
+          : undefined,
       },
     });
   },

@@ -22,8 +22,8 @@ const ProfileDetail: React.FC = () => {
       },
       competition: {
         userid: 'user123',
-        achievement: 'Competition Achievement',
-        details: 'Competition Details',
+        achievement: 'Competition GOD Achievement',
+        details: 'Competition GOD Details',
       },
       workExperience: {
         userid: 'user123',
