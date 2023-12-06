@@ -24,6 +24,51 @@ export type UserInfo = {
   lastName: string;
 };
 
+//
+
+export type SkillPr = {
+  userid: string;
+  skill1?: string | undefined;
+  skill2?: string | undefined;
+  skill3?: string | undefined;
+  selfPr?: string | undefined;
+};
+
+//
+
+export type Research = {
+  userid: string;
+  theme: string | undefined;
+  details: string | undefined;
+  achievements: string | undefined;
+  awards: string | undefined;
+  paper: string | undefined;
+  presentation: string | undefined;
+  experience?: Experience; // Experience型がオプション
+};
+
+export type Competition = {
+  userid: string;
+  achievement: string | undefined;
+  details: string | undefined;
+  experience?: Experience;
+};
+
+export type WorkExperience = {
+  userid: string;
+  internship: boolean | undefined;
+  partTimeJob: boolean | undefined;
+  details: string | undefined;
+  experience?: Experience;
+};
+
+export type Experience = {
+  userid: string;
+  research?: Research;
+  competition?: Competition;
+  workExperience?: WorkExperience;
+};
+
 export const taskParser = z.object({
   id: taskIdParser,
   label: z.string(),

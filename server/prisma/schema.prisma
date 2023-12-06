@@ -91,3 +91,48 @@ model GameRank {
   season String
   rank   String
 }
+
+//skill
+
+model SkillPr {
+  userid String @id
+  skill1 String
+  skill2 String
+  skill3 String
+  selfPr String
+}
+
+//experience
+
+model Research {
+  userid       String     @id
+  theme        String
+  details      String
+  achievements String
+  awards       String
+  paper        String
+  presentation String
+  experience   Experience @relation(fields: [userid], references: [userid])
+}
+
+model Competition {
+  userid      String     @id
+  achievement String
+  details     String
+  experience  Experience @relation(fields: [userid], references: [userid])
+}
+
+model WorkExperience {
+  userid      String     @id
+  internship  Boolean
+  partTimeJob Boolean
+  details     String
+  experience  Experience @relation(fields: [userid], references: [userid])
+}
+
+model Experience {
+  userid      String          @id
+  research    Research?
+  competition Competition?
+  experience  WorkExperience?
+}
