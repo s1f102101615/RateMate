@@ -1,5 +1,5 @@
 import type { UserId } from '$/commonTypesWithClient/ids';
-import type { Experience, UserInfo } from '$/commonTypesWithClient/models';
+import type { Experience, SkillPr, UserInfo } from '$/commonTypesWithClient/models';
 import { userinfoRepository } from '$/repository/userinfoRepository';
 
 export const userinfoUsecase = {
@@ -46,6 +46,18 @@ export const userinfoUsecase = {
       },
     };
     await userinfoRepository.ExperienceSave(newUser);
+    return 'ok';
+  },
+  SkillPrCreate: async (user: UserId, label: SkillPr) => {
+    const newUser: SkillPr = {
+      userid: user,
+      skill1: label?.skill1,
+      skill2: label?.skill2,
+      skill3: label?.skill3,
+      selfPr: label?.selfPr,
+    };
+    console.log(newUser);
+    await userinfoRepository.SkillPrSave(newUser);
     return 'ok';
   },
 };

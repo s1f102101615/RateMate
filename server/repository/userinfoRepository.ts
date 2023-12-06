@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 import type { Experience, UserInfo } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
+import type { SkillPr } from '@prisma/client';
 
 export const userinfoRepository = {
   save: async (userinfo: UserInfo) => {
@@ -33,6 +34,24 @@ export const userinfoRepository = {
         createdAt: userinfo.createdAt,
         firstName: userinfo.firstName,
         lastName: userinfo.lastName,
+      },
+    });
+  },
+  SkillPrSave: async (userinfo: SkillPr) => {
+    await prismaClient.skillPr.upsert({
+      where: { userid: userinfo.userid },
+      update: {
+        skill1: userinfo.skill1 ?? '',
+        skill2: userinfo.skill2 ?? '',
+        skill3: userinfo.skill3 ?? '',
+        selfPr: userinfo.selfPr ?? '',
+      },
+      create: {
+        userid: userinfo.userid,
+        skill1: userinfo.skill1 ?? '',
+        skill2: userinfo.skill2 ?? '',
+        skill3: userinfo.skill3 ?? '',
+        selfPr: userinfo.selfPr ?? '',
       },
     });
   },

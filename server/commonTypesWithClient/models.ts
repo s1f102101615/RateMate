@@ -26,6 +26,16 @@ export type UserInfo = {
 
 //
 
+export type SkillPr = {
+  userid: string;
+  skill1?: string | undefined;
+  skill2?: string | undefined;
+  skill3?: string | undefined;
+  selfPr?: string | undefined;
+};
+
+//
+
 export type Research = {
   userid: string;
   theme: string | undefined;

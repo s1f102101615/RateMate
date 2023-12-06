@@ -1,8 +1,25 @@
 import { TextField } from '@mui/material';
-import React from 'react';
+import type { SkillPr } from 'commonTypesWithClient/models';
+import React, { useEffect } from 'react';
+import { apiClient } from 'src/utils/apiClient';
 import styles from './index.module.css';
 
 const ProfileDetail: React.FC = () => {
+  const updateUserSkillPr = async () => {
+    const userSkillPr: SkillPr = {
+      userid: 'dammy',
+      skill1: 'skill1',
+      skill2: 'skill2',
+      skill3: 'skill3',
+      selfPr: 'selfpr',
+    };
+    await apiClient.skillpr.post({ body: userSkillPr });
+  };
+
+  useEffect(() => {
+    updateUserSkillPr();
+  }, []);
+
   return (
     <div>
       <div>
