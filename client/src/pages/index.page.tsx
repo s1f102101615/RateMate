@@ -1,12 +1,10 @@
 import { useAtom } from 'jotai';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { userAtom } from '../atoms/user';
-import useAuthRedirect from './@hooks/useAuthRedirect';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-  useAuthRedirect();
 
   return (
     <>

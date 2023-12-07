@@ -13,10 +13,15 @@ const useAuthRedirect = (): void => {
 
   useEffect(() => {
     if (user && createAuth().currentUser?.emailVerified === true) {
+      console.log(createAuth().currentUser?.emailVerified);
+      console.log('メール認証済み');
       return;
     } else {
+      console.log(createAuth().currentUser?.emailVerified);
+      alert('メールアドレスの認証が完了していません。');
       logout();
       router.push('/');
+      return;
     }
   }, [user, router]);
 };
