@@ -45,7 +45,7 @@ model CompanyDetail {
   businesscontent      String
   requiredability      String
   publicationstartdate String
-
+}
 model User {
   userId            String   @id
   birthday          DateTime
