@@ -1,23 +1,13 @@
 import { useAtom } from 'jotai';
-import { useRouter } from 'next/router';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
-import { createAuth } from 'src/utils/firebase';
-import { logout } from 'src/utils/login';
 import { userAtom } from '../atoms/user';
+import useAuthRedirect from './@hooks/useAuthRedirect';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-  const router = useRouter();
-  console.log(createAuth().currentUser?.emailVerified);
-  if (user && createAuth().currentUser?.emailVerified === true) {
-    router.push('/home');
-    return null;
-  }
-  if (createAuth().currentUser?.emailVerified === false) {
-    logout();
-    return null;
-  }
+  useAuthRedirect();
+
   return (
     <>
       <BasicHeader user={user} />
