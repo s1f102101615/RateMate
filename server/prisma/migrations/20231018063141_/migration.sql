@@ -4,13 +4,13 @@ CREATE TABLE "User" (
     "birthday" TIMESTAMP(3) NOT NULL,
     "address" TEXT NOT NULL,
     "education" TEXT NOT NULL,
-    "schooltype" TEXT NOT NULL,
-    "schoolname" TEXT NOT NULL,
-    "acdemicdiscipline" TEXT NOT NULL,
-    "favoritegame" TEXT NOT NULL,
+    "schoolType" TEXT NOT NULL,
+    "schoolName" TEXT NOT NULL,
+    "acdemicDiscipline" TEXT NOT NULL,
+    "favoriteGame" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL,
-    "firstname" TEXT NOT NULL,
-    "lastname" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
 );

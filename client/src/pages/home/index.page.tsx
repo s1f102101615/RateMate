@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -136,7 +135,7 @@ const Home = () => {
             }}
             className={styles.scrollbar}
           >
-            {offerData.slice(0, limit).map(
+            {offerData.slice(0, 10).map(
               (
                 news,
                 index // .sliceを追加
@@ -150,15 +149,6 @@ const Home = () => {
                 />
               )
             )}
-            <Typography
-              style={{ textAlign: 'right' }}
-              onClick={handleShowMore}
-              padding="5px"
-              color="primary.main"
-              fontWeight="bold"
-            >
-              もっと見る
-            </Typography>
           </div>
         </div>
       </div>
