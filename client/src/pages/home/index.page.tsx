@@ -1,18 +1,17 @@
-import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
-import { createAuth } from 'src/utils/firebase';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
 import Deviation from '../@components/Deviation';
 import OfferList from '../@components/OfferList';
 import ProfilePercent from '../@components/Profilepercent';
+import useAuthRedirect from '../@hooks/useAuthRedirect';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
+  useAuthRedirect();
   const [data, setData] = useState([
     { ability: 'AIM', A: 120, B: 110, fullMark: 150 },
     { ability: '集中力', A: 98, B: 130, fullMark: 150 },
@@ -22,12 +21,6 @@ const Home = () => {
     { ability: 'ほげ', A: 65, B: 85, fullMark: 150 },
   ]);
   const [limit, setLimit] = useState(5); // 新しいstate変数
-
-  const router = useRouter();
-  if (!user || createAuth().currentUser?.emailVerified === false) {
-    router.push('../');
-    return null;
-  }
 
   const Data = {
     companyName: '株式会社ほげんぽつ',
@@ -136,7 +129,7 @@ const Home = () => {
             }}
             className={styles.scrollbar}
           >
-            {offerData.slice(0, limit).map(
+            {offerData.slice(0, 10).map(
               (
                 news,
                 index // .sliceを追加
@@ -150,15 +143,6 @@ const Home = () => {
                 />
               )
             )}
-            <Typography
-              style={{ textAlign: 'right' }}
-              onClick={handleShowMore}
-              padding="5px"
-              color="primary.main"
-              fontWeight="bold"
-            >
-              もっと見る
-            </Typography>
           </div>
         </div>
       </div>
