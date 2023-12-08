@@ -1,8 +1,44 @@
 import { TextField } from '@mui/material';
-import React from 'react';
+import type { Experience } from 'commonTypesWithClient/models';
+import { useAtom } from 'jotai';
+import React, { useEffect } from 'react';
+import { userAtom } from 'src/atoms/user';
+import { apiClient } from 'src/utils/apiClient';
 import styles from './index.module.css';
 
 const ProfileDetail: React.FC = () => {
+  const [user] = useAtom(userAtom);
+  const updateUserExperience = async () => {
+    const userExperience: Experience = {
+      userid: 'user123', // dammy
+      research: {
+        userid: 'user123',
+        theme: 'Research Theme',
+        details: 'Research Details',
+        achievements: 'Research Achievements',
+        awards: 'Research Awards',
+        paper: 'Research Paper',
+        presentation: 'Research Presentation',
+      },
+      competition: {
+        userid: 'user123',
+        achievement: 'Competition GOD Achievement',
+        details: 'Competition GOD Details',
+      },
+      workExperience: {
+        userid: 'user123',
+        internship: true,
+        partTimeJob: false,
+        details: 'Work Experience Details',
+      },
+    };
+    await apiClient.experience.post({ body: userExperience });
+  };
+
+  useEffect(() => {
+    updateUserExperience();
+  }, []);
+
   return (
     <div>
       <div>

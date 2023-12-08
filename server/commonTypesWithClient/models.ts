@@ -9,6 +9,38 @@ export type UserModel = {
   photoURL: string | undefined;
 };
 
+//会社の情報
+export type CompanyModel = {
+  id: number;
+  companyId: number;
+  companyName: string;
+  annualincome: string;
+  industry: string;
+  local: string;
+  occupation: string;
+  occupationdetail: string[];
+  jobdescription: string;
+  jobdescriptiondetail: string[];
+  businesscontent: string;
+  requiredability: string;
+  publicationstartdate: string;
+};
+
+export type CompanyDetailModel = {
+  id: number;
+  companyId: number;
+  companyName: string;
+  annualincome: string;
+  industry: string;
+  local: string;
+  occupation: string;
+  occupationdetail: string[];
+  jobdescription: string;
+  jobdescriptiondetail: string[];
+  businesscontent: string;
+  requiredability: string;
+  publicationstartdate: string;
+
 export type UserInfo = {
   userId: string;
   birthday: Date;
@@ -22,6 +54,51 @@ export type UserInfo = {
   createdAt: Date;
   firstName: string;
   lastName: string;
+};
+
+//
+
+export type SkillPr = {
+  userid: string;
+  skill1?: string | undefined;
+  skill2?: string | undefined;
+  skill3?: string | undefined;
+  selfPr?: string | undefined;
+};
+
+//
+
+export type Research = {
+  userid: string;
+  theme: string | undefined;
+  details: string | undefined;
+  achievements: string | undefined;
+  awards: string | undefined;
+  paper: string | undefined;
+  presentation: string | undefined;
+  experience?: Experience; // Experience型がオプション
+};
+
+export type Competition = {
+  userid: string;
+  achievement: string | undefined;
+  details: string | undefined;
+  experience?: Experience;
+};
+
+export type WorkExperience = {
+  userid: string;
+  internship: boolean | undefined;
+  partTimeJob: boolean | undefined;
+  details: string | undefined;
+  experience?: Experience;
+};
+
+export type Experience = {
+  userid: string;
+  research?: Research;
+  competition?: Competition;
+  workExperience?: WorkExperience;
 };
 
 export const taskParser = z.object({
