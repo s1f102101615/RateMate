@@ -41,16 +41,6 @@ CREATE TABLE "Skill" (
 );
 
 -- CreateTable
-CREATE TABLE "Company" (
-    "id" SERIAL NOT NULL,
-    "companyName" TEXT NOT NULL,
-    "annualIncome" TEXT NOT NULL,
-    "industry" TEXT NOT NULL,
-
-    CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Notification" (
     "id" SERIAL NOT NULL,
     "userId" TEXT NOT NULL,
