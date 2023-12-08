@@ -61,6 +61,12 @@ export const userinfoRepository = {
       },
     });
   },
+  SkillPrFind: async (userId: string) => {
+    const skillPr = await prismaClient.skillPr.findUnique({
+      where: { userid: userId },
+    });
+    return skillPr;
+  },
   ExperienceSave: async (userinfo: Experience) => {
     await prismaClient.experience.upsert({
       where: { userid: userinfo.userid },
@@ -128,5 +134,16 @@ export const userinfoRepository = {
           : undefined,
       },
     });
+  },
+  ExperienceFind: async (userId: string) => {
+    const experience = await prismaClient.experience.findUnique({
+      where: { userid: userId },
+      include: {
+        research: true,
+        competition: true,
+        experience: true,
+      },
+    });
+    return experience;
   },
 };

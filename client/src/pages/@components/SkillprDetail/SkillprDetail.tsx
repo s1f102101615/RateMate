@@ -8,7 +8,7 @@ const ProfileDetail: React.FC = () => {
   const updateUserSkillPr = async () => {
     const userSkillPr: SkillPr = {
       userid: 'dammy',
-      skill1: 'skill1',
+      skill1: 'skill5',
       skill2: 'skill2',
       skill3: 'skill3',
       selfPr: 'selfpr',
@@ -16,8 +16,14 @@ const ProfileDetail: React.FC = () => {
     await apiClient.skillpr.post({ body: userSkillPr });
   };
 
+  const setUserSkillPr = async () => {
+    const userSkillPrs = await apiClient.skillpr.get();
+    console.log('u', userSkillPrs);
+  };
+
   useEffect(() => {
     updateUserSkillPr();
+    setUserSkillPr();
   }, []);
 
   return (

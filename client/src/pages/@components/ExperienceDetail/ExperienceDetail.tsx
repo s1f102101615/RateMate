@@ -35,8 +35,14 @@ const ProfileDetail: React.FC = () => {
     await apiClient.experience.post({ body: userExperience });
   };
 
+  const setUserExperience = async () => {
+    const userExperience = await apiClient.experience.get();
+    console.log('u', userExperience);
+  };
+
   useEffect(() => {
     updateUserExperience();
+    setUserExperience();
   }, []);
 
   return (

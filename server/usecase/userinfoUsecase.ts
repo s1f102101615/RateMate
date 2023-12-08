@@ -22,7 +22,7 @@ export const userinfoUsecase = {
     return 'ok';
   },
   get: async (user: UserId) => {
-    const userInfo: UserInfo = await userinfoRepository.find(user);
+    const userInfo = await userinfoRepository.find(user);
     return userInfo;
   },
   ExperienceCreate: async (user: UserId, label: Experience) => {
@@ -52,16 +52,23 @@ export const userinfoUsecase = {
     await userinfoRepository.ExperienceSave(newUser);
     return 'ok';
   },
+  ExperienceGet: async (user: UserId) => {
+    const experience = await userinfoRepository.ExperienceFind(user);
+    return experience;
+  },
   SkillPrCreate: async (user: UserId, label: SkillPr) => {
-    const newUser: SkillPr = {
+    const newUsers: SkillPr = {
       userid: user,
       skill1: label?.skill1,
       skill2: label?.skill2,
       skill3: label?.skill3,
       selfPr: label?.selfPr,
     };
-    console.log(newUser);
-    await userinfoRepository.SkillPrSave(newUser);
+    await userinfoRepository.SkillPrSave(newUsers);
     return 'ok';
+  },
+  SkillPrGet: async (user: UserId) => {
+    const skillPr = await userinfoRepository.SkillPrFind(user);
+    return skillPr;
   },
 };
