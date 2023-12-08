@@ -142,6 +142,7 @@ const Signup = () => {
 
   const sendUserInfo = async () => {
     const userinfo: UserInfo = {
+      userId: 'dammy',
       // birthdayはDate型
       birthday: new Date(`${year}-${month}-${day}`),
       address,

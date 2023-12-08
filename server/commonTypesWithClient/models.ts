@@ -40,6 +40,7 @@ export type CompanyDetailModel = {
   businesscontent: string;
   requiredability: string;
   publicationstartdate: string;
+};
 
 export type UserInfo = {
   userId: string;
