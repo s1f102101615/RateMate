@@ -35,4 +35,10 @@ export const userinfoRepository = {
       },
     });
   },
+  find: async (userId: string) => {
+    const userInfo = await prismaClient.user.findUnique({
+      where: { userId },
+    });
+    return userInfo;
+  },
 };

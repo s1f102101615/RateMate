@@ -180,13 +180,21 @@ const Home = () => {
       <BasicHeaderLogined user={user} />
       <div className={styles.notification}>
         <div className={styles.box}>
-          <div>通知ページ</div>
+          <div className={styles.maintitle}>通知ページ</div>
           {currentNotifications.map((notification, index) => (
             <NotificationItem key={index} notification={notification} />
           ))}
           <div className={styles.pagenum}>
-            {currentPage > 1 && (
+            {currentPage > 1 ? (
               <button className={styles.pagefirst} onClick={() => setCurrentPage(currentPage - 1)}>
+                前へ
+              </button>
+            ) : (
+              <button
+                className={styles.badpagefirst}
+                onClick={() => setCurrentPage(currentPage - 1)}
+                disabled
+              >
                 前へ
               </button>
             )}
@@ -203,8 +211,12 @@ const Home = () => {
                 </button>
               );
             })}
-            {currentPage < totalPages && (
+            {currentPage < totalPages ? (
               <button className={styles.pagelast} onClick={() => setCurrentPage(currentPage + 1)}>
+                次へ
+              </button>
+            ) : (
+              <button className={styles.badpagelast} disabled>
                 次へ
               </button>
             )}

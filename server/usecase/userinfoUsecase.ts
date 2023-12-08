@@ -21,4 +21,8 @@ export const userinfoUsecase = {
     await userinfoRepository.save(newUser);
     return 'ok';
   },
+  get: async (user: UserId) => {
+    const userInfo: UserInfo = await userinfoRepository.find(user);
+    return userInfo;
+  },
 };
