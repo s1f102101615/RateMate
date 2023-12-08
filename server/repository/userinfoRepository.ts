@@ -37,6 +37,12 @@ export const userinfoRepository = {
       },
     });
   },
+  find: async (userId: string) => {
+    const userInfo = await prismaClient.user.findUnique({
+      where: { userId },
+    });
+    return userInfo;
+  },
   SkillPrSave: async (userinfo: SkillPr) => {
     await prismaClient.skillPr.upsert({
       where: { userid: userinfo.userid },

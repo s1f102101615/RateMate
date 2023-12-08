@@ -63,7 +63,8 @@
 
 .page {
   padding: 10px 15px;
-  color: rgb(17 17 17);
+  margin-left: -1px;
+  color: rgb(54 192 0);
   text-decoration: none;
   cursor: pointer;
   background-color: #fff;
@@ -73,7 +74,23 @@
 
 .pagefirst {
   padding: 10px 15px;
-  color: rgb(17 17 17);
+  color: rgb(54 192 0);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px 0 0 5px;
+  transition: background-color 0.3s;
+}
+
+.pagefirst:hover {
+  margin-left: -1px;
+  background-color: rgb(179 255 179);
+}
+
+.badpagefirst {
+  padding: 10px 15px;
+  color: rgb(56 56 56);
   text-decoration: none;
   cursor: pointer;
   background-color: #fff;
@@ -84,7 +101,8 @@
 
 .pagelast {
   padding: 10px 15px;
-  color: rgb(17 17 17);
+  margin-left: -1px;
+  color: rgb(54 192 0);
   text-decoration: none;
   cursor: pointer;
   background-color: #fff;
@@ -93,12 +111,37 @@
   transition: background-color 0.3s;
 }
 
+.pagelast:hover {
+  margin-left: -1px;
+  background-color: rgb(179 255 179);
+}
+
+.maintitle {
+  margin-bottom: 10px;
+  font-size: 20px;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+.badpagelast {
+  padding: 10px 15px;
+  margin-left: -1px;
+  color: rgb(56 56 56);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(255 255 255);
+  border: 1px solid #d1d1d1;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s;
+}
+
 .page:hover {
-  background-color: #0056b3;
+  margin-left: -1px;
+  background-color: rgb(179 255 179);
 }
 
 .currentPage {
   padding: 10px 15px;
+  margin-left: -1px;
   color: rgb(255 255 255);
   text-decoration: none;
   cursor: pointer;
