@@ -1,10 +1,27 @@
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { createAuth } from 'src/utils/firebase';
+import { logout } from 'src/utils/login';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
+  const router = useRouter();
+  console.log(createAuth().currentUser?.emailVerified);
+  if (user && createAuth().currentUser?.emailVerified === true) {
+    router.push('/home');
+    return null;
+  }
+  if (createAuth().currentUser?.emailVerified === false) {
+    logout();
+    // alert('メールアドレスの認証が完了していません。');
+    // アラートを表示すると２回表示されてしまう(おそらくlogout処理のせい)
+    // メッセージは表示したい為変わりがあれば採用したい
+    // 認証してなかったら認証してくださいと書いたページに飛ばしてそこから再度メールを送れるようにする案あり
+    return null;
+  }
 
   return (
     <>

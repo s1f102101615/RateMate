@@ -1,18 +1,72 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `acdemicDiscipline` on the `User` table. All the data in the column will be lost.
-  - Added the required column `academicDiscipline` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `gender` to the `User` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "OfferStatus" AS ENUM ('PENDING', 'ACCEPTED', 'REJECTED');
 
--- AlterTable
-ALTER TABLE "User" DROP COLUMN "acdemicDiscipline",
-ADD COLUMN     "academicDiscipline" TEXT NOT NULL,
-ADD COLUMN     "gender" TEXT NOT NULL;
+-- CreateTable
+CREATE TABLE "Task" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "label" TEXT NOT NULL,
+    "done" BOOLEAN NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Company" (
+    "id" SERIAL NOT NULL,
+    "companyId" INTEGER NOT NULL,
+    "companyName" TEXT NOT NULL,
+    "annualincome" TEXT NOT NULL,
+    "industry" TEXT NOT NULL,
+    "local" TEXT NOT NULL,
+    "occupation" TEXT NOT NULL,
+    "occupationdetail" TEXT[],
+    "jobdescription" TEXT NOT NULL,
+    "jobdescriptiondetail" TEXT[],
+    "businesscontent" TEXT NOT NULL,
+    "requiredability" TEXT NOT NULL,
+    "publicationstartdate" TEXT NOT NULL,
+
+    CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "CompanyDetail" (
+    "id" SERIAL NOT NULL,
+    "companyId" INTEGER NOT NULL,
+    "companyName" TEXT NOT NULL,
+    "annualincome" TEXT NOT NULL,
+    "industry" TEXT NOT NULL,
+    "local" TEXT NOT NULL,
+    "occupation" TEXT NOT NULL,
+    "occupationdetail" TEXT[],
+    "jobdescription" TEXT NOT NULL,
+    "jobdescriptiondetail" TEXT[],
+    "businesscontent" TEXT NOT NULL,
+    "requiredability" TEXT NOT NULL,
+    "publicationstartdate" TEXT NOT NULL,
+
+    CONSTRAINT "CompanyDetail_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "User" (
+    "userId" TEXT NOT NULL,
+    "birthday" TIMESTAMP(3) NOT NULL,
+    "address" TEXT NOT NULL,
+    "education" TEXT NOT NULL,
+    "schoolType" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
+    "schoolName" TEXT NOT NULL,
+    "academicDiscipline" TEXT NOT NULL,
+    "favoriteGame" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
+);
 
 -- CreateTable
 CREATE TABLE "Offer" (

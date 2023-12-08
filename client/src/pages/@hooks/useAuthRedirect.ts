@@ -2,7 +2,6 @@ import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { createAuth } from 'src/utils/firebase';
-import { logout } from 'src/utils/login';
 import { userAtom } from '../../atoms/user';
 
 //ログインしないと見れないページにログインせずにアクセスしたらTopページに戻されるようにする
@@ -18,8 +17,10 @@ const useAuthRedirect = (): void => {
       return;
     } else {
       console.log(createAuth().currentUser?.emailVerified);
-      alert('メールアドレスの認証が完了していません。');
-      logout();
+      // logout();
+      // alert('メールアドレスの認証が完了していません。');
+      // 未認証ユーザーはlogout()をしないと不具合が起きる可能性あり
+      // 普通に利用していたら未認証ユーザーはこのページにたどり着くことはないのでいったんコメントアウト
       router.push('/');
       return;
     }
