@@ -1,8 +1,35 @@
 import { TextField } from '@mui/material';
-import React from 'react';
+import type { Preference } from 'commonTypesWithClient/models';
+import { useAtom } from 'jotai';
+import React, { useEffect } from 'react';
+import { userAtom } from 'src/atoms/user';
+import { apiClient } from 'src/utils/apiClient';
 import styles from './index.module.css';
 
 const ProfileDetail: React.FC = () => {
+  const [user] = useAtom(userAtom);
+
+  const updateUserPreference = async () => {
+    const userPreference: Preference = {
+      userid: 'user123', // dammy
+      companySelection: ['company1', 'company2', 'company3'],
+      companySelectionType: ['companyType1', 'companyType2', 'companyType3', 'companyType4'],
+      preferredLocations: ['location1', 'location2', 'location3'],
+      preferredDetail: 'details',
+    };
+    await apiClient.preference.post({ body: userPreference });
+  };
+
+  const setUserPreference = async () => {
+    const userPreference = await apiClient.preference.get();
+    console.log('u', userPreference);
+  };
+
+  useEffect(() => {
+    updateUserPreference();
+    setUserPreference();
+  }, []);
+
   return (
     <div>
       <div>

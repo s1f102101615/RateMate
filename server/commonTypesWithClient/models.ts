@@ -102,6 +102,15 @@ export type Experience = {
   workExperience?: WorkExperience;
 };
 
+// Preference
+export type Preference = {
+  userid: string;
+  companySelection: string[];
+  companySelectionType: string[];
+  preferredLocations: string[];
+  preferredDetail: string;
+};
+
 export const taskParser = z.object({
   id: taskIdParser,
   label: z.string(),

@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import type { Experience, UserInfo } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
-import type { SkillPr } from '@prisma/client';
+import type { Preference, SkillPr } from '@prisma/client';
 
 export const userinfoRepository = {
   save: async (userinfo: UserInfo) => {
@@ -145,5 +145,29 @@ export const userinfoRepository = {
       },
     });
     return experience;
+  },
+  PreferenceSave: async (userId: string, userinfo: Preference) => {
+    await prismaClient.preference.upsert({
+      where: { userid: userId },
+      update: {
+        companySelection: userinfo.companySelection,
+        companySelectionType: userinfo.companySelectionType,
+        preferredLocations: userinfo.preferredLocations,
+        preferredDetail: userinfo.preferredDetail,
+      },
+      create: {
+        userid: userId,
+        companySelection: userinfo.companySelection,
+        companySelectionType: userinfo.companySelectionType,
+        preferredLocations: userinfo.preferredLocations,
+        preferredDetail: userinfo.preferredDetail,
+      },
+    });
+  },
+  PreferenceFind: async (userId: string) => {
+    const preference = await prismaClient.preference.findUnique({
+      where: { userid: userId },
+    });
+    return preference;
   },
 };

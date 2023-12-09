@@ -1,6 +1,7 @@
 import type { UserId } from '$/commonTypesWithClient/ids';
 import type { Experience, SkillPr, UserInfo } from '$/commonTypesWithClient/models';
 import { userinfoRepository } from '$/repository/userinfoRepository';
+import type { Preference } from '@prisma/client';
 
 export const userinfoUsecase = {
   create: async (user: UserId, label: UserInfo) => {
@@ -70,5 +71,20 @@ export const userinfoUsecase = {
   SkillPrGet: async (user: UserId) => {
     const skillPr = await userinfoRepository.SkillPrFind(user);
     return skillPr;
+  },
+  PreferenceCreate: async (user: UserId, label: Preference) => {
+    const newUser: Preference = {
+      userid: user,
+      companySelection: label.companySelection,
+      companySelectionType: label.companySelectionType,
+      preferredLocations: label.preferredLocations,
+      preferredDetail: label.preferredDetail,
+    };
+    await userinfoRepository.PreferenceSave(user, newUser);
+    return 'ok';
+  },
+  PreferenceGet: async (user: UserId) => {
+    const preference = await userinfoRepository.PreferenceFind(user);
+    return preference;
   },
 };

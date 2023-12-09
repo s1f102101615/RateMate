@@ -161,3 +161,13 @@ model Experience {
   competition Competition?
   experience  WorkExperience?
 }
+
+//
+
+model Preference {
+  userid               String   @id
+  companySelection     String[]
+  companySelectionType String[]
+  preferredLocations   String[]
+  preferredDetail      String
+}
