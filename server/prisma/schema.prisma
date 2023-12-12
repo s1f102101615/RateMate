@@ -133,9 +133,9 @@ model Research {
   userid       String     @id
   theme        String
   details      String
-  achievements String
-  awards       String
-  paper        String
+  achievements Boolean
+  awards       Boolean
+  paper        Boolean
   presentation String
   experience   Experience @relation(fields: [userid], references: [userid])
 }

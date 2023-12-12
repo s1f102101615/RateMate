@@ -15,14 +15,14 @@ export type Methods = DefineMethods<{
         userid: string;
         theme: string;
         details: string;
-        achievements: string;
-        awards: string;
-        paper: string;
+        achievements: boolean;
+        awards: boolean;
+        paper: boolean;
         presentation: string;
       } | null;
       competition: {
         userid: string;
-        achievement: string;
+        achievement: boolean;
         details: string;
       } | null;
     } | null;

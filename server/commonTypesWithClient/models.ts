@@ -73,16 +73,16 @@ export type Research = {
   userid: string;
   theme: string | undefined;
   details: string | undefined;
-  achievements: string | undefined;
-  awards: string | undefined;
-  paper: string | undefined;
+  achievements: boolean | undefined;
+  awards: boolean | undefined;
+  paper: boolean | undefined;
   presentation: string | undefined;
   experience?: Experience; // Experience型がオプション
 };
 
 export type Competition = {
   userid: string;
-  achievement: string | undefined;
+  achievement: boolean | undefined;
   details: string | undefined;
   experience?: Experience;
 };
