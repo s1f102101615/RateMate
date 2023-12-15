@@ -142,7 +142,7 @@ model Research {
 
 model Competition {
   userid      String     @id
-  achievement String
+  achievement Boolean
   details     String
   experience  Experience @relation(fields: [userid], references: [userid])
 }
