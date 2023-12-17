@@ -1,7 +1,8 @@
 /* eslint-disable max-lines */
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
 import { BasicHeaderLogined } from '../@components/BasicHeaderLogined/BasicHeaderLogined';
 import styles from './index.module.css';
@@ -19,6 +20,16 @@ const Home = () => {
     detail: string;
     time: string;
   };
+
+  const setNotifications = async () => {
+    // 通知のデータ（サーバーから取得すると仮定）
+    const notification = await apiClient.notification.get();
+    console.log(notification);
+  };
+
+  useEffect(() => {
+    setNotifications();
+  }, []);
 
   // 通知のデータ（サーバーから取得すると仮定）
   const notifications: Notification[] = [
