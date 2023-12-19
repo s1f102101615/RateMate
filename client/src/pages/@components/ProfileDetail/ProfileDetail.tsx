@@ -21,6 +21,7 @@ const ProfileDetail: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [edit, setEdit] = useState(false);
+  const [predictions, setPredictions] = useState<string[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -103,6 +104,28 @@ const ProfileDetail: React.FC = () => {
   const handleFavoriteGameChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     setFavoriteGame(event.target.value);
   };
+
+  useEffect(() => {
+    // 仮の大学名のリスト（実際にはAPIからデータを取得するなどが必要）
+    const universityList = [
+      'ハーバード大学',
+      '大阪大学',
+      '東京大学',
+      '東洋大学',
+      'サンシャイン大学',
+      'プロ鵜戸大学',
+    ];
+
+    // 入力値に基づいて予測を生成
+    let filteredPredictions = universityList;
+    filteredPredictions = universityList.filter((university) =>
+      university.toLowerCase().includes(schoolName.toLowerCase())
+    );
+    if (schoolName.trim() === '') {
+      filteredPredictions = [];
+    }
+    setPredictions(filteredPredictions);
+  }, [schoolName]);
 
   const schooldetail = [
     '大学院',
@@ -293,6 +316,11 @@ const ProfileDetail: React.FC = () => {
                 value={schoolName}
                 onChange={handleSchoolName}
               />
+              <div>
+                {predictions.map((prediction, index) => (
+                  <div key={index}>{prediction}</div>
+                ))}
+              </div>
             </div>
             <div>
               <div className={styles.title}>学部・学科</div>
