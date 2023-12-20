@@ -363,64 +363,57 @@ const ProfileDetail: React.FC = () => {
         <div>
           <div>
             <div className={styles.header}>名前・プロフィール変更</div>
-            {/* 編集を可能にするボタン */}
-            <button type="button" className={styles.edit} onClick={handleEditClick}>
-              編集
-            </button>
 
-            <div id="separated">
-              <div className={styles.title}>名前</div>
-              <div>
-                {lastName}
-                {firstName}
+            <div className={styles.detail}>
+              <div className={styles.bigtitle}>
+                基本情報
+                <button type="button" className={styles.edit} onClick={handleEditClick}>
+                  編集
+                </button>
               </div>
-            </div>
+              <div id="separated">
+                <div className={styles.title}>名前</div>
+                <div className={styles.viewDetail}>
+                  {lastName}
+                  {firstName}
+                </div>
+              </div>
 
-            <div hidden>
-              <h1>もしくは</h1>
-
-              <div className={styles.title}>名前</div>
               <div>
-                <TextField label={'名前'} variant="outlined" style={{ margin: '16px 32px' }} />
+                <div className={styles.title}>性別</div>
+                <div className={styles.viewDetail}>{gender}</div>
               </div>
               <div>
-                <div className={styles.title}>よみがな</div>
-                <TextField label="よみがな" variant="outlined" style={{ margin: '16px 32px' }} />
+                <div className={styles.title}>生年月日</div>
+                <div className={styles.viewDetail}>
+                  {birthday ? new Date(birthday).toLocaleDateString() : 'No birthday set'}
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div className={styles.title}>性別</div>
-              {gender}
-            </div>
-            <div>
-              <div className={styles.title}>生年月日</div>
-              {birthday ? new Date(birthday).toLocaleDateString() : 'No birthday set'}
-            </div>
-
-            <div>
-              <div className={styles.title}>都道府県</div>
-              {address}
-            </div>
-            <div>
-              <div className={styles.title}>就学状況</div>
-              {education}
-            </div>
-            <div>
-              <div className={styles.title}>学校区分</div>
-              {schoolType}
-            </div>
-            <div>
-              <div className={styles.title}>学校名</div>
-              {schoolName}
-            </div>
-            <div>
-              <div className={styles.title}>学部・学科</div>
-              {academicDiscipline}
-            </div>
-            <div>
-              <div className={styles.title}>一番よくやるゲーム</div>
-              {favoriteGame}
+              <div>
+                <div className={styles.title}>都道府県</div>
+                <div className={styles.viewDetail}>{address}</div>
+              </div>
+              <div>
+                <div className={styles.title}>就学状況</div>
+                <div className={styles.viewDetail}>{education}</div>
+              </div>
+              <div>
+                <div className={styles.title}>学校区分</div>
+                <div className={styles.viewDetail}>{schoolType}</div>
+              </div>
+              <div>
+                <div className={styles.title}>学校名</div>
+                <div className={styles.viewDetail}>{schoolName}</div>
+              </div>
+              <div>
+                <div className={styles.title}>学部・学科</div>
+                <div className={styles.viewDetail}>{academicDiscipline}</div>
+              </div>
+              <div>
+                <div className={styles.title}>一番よくやるゲーム</div>
+                <div className={styles.viewDetail}>{favoriteGame}</div>
+              </div>
             </div>
 
             {/* <div>{birthday ? new Date(birthday).toLocaleDateString() : 'No birthday set'}</div> */}
