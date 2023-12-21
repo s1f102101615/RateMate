@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import type { CompanyModel } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
@@ -16,7 +17,6 @@ import styles6 from './index6.module.css';
 import styles7 from './index7.module.css';
 
 const Home = ({ totalItems, currentPage, onPageChange }) => {
-
   const [user] = useAtom(userAtom);
   const [label, setLabel] = useState('');
   const itemsPerPage = 10;
@@ -174,17 +174,17 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     });
   };
 
- // チェックボックスの状態を更新するハンドラ
- const handleCheckboxChange = (prefecture) => {
-  setCheckedPrefectures(prevState => {
-    // チェックされている場合は削除、そうでない場合は追加
-    if (prevState.includes(prefecture)) {
-      return prevState.filter(item => item !== prefecture);
-    } else {
-      return [...prevState, prefecture];
-    }
-  });
-};
+  // チェックボックスの状態を更新するハンドラ
+  const handleCheckboxChange = (prefecture) => {
+    setCheckedPrefectures((prevState) => {
+      // チェックされている場合は削除、そうでない場合は追加
+      if (prevState.includes(prefecture)) {
+        return prevState.filter((item) => item !== prefecture);
+      } else {
+        return [...prevState, prefecture];
+      }
+    });
+  };
   const fetchinfo = useFetchInfo();
 
   const FetchInfo = async () => {
@@ -284,7 +284,6 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     // 必要に応じて他の地域を追加
   };
 
-
   const categories2 = {
     chovu: ['管理', 'Swewwe', '1111', '.2333'],
     chovy: ['2', '項目212', '...'],
@@ -297,7 +296,6 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
     商22: ['項目1', '項目2', '...'],
     商2332: ['項目1', '項目2', '...'],
     商23542: ['項目1', '項目2', '...'],
-
 
     // ... 他のカテゴリーと項目を追加
   };
@@ -339,7 +337,6 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
   const closeModal3 = () => {
     setIsModalOpen3(false);
   };
-
 
   const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
     setLabel(e.target.value);
@@ -401,11 +398,9 @@ const Home = ({ totalItems, currentPage, onPageChange }) => {
                 <img src="/favicon.png" alt="logo" />
               </div>
               株式会社　フル
-
             </div>
             <div className={styles4.line} />
           </div>
-
 
           <div className={styles2.theme}>
             <a>転職・求人情報一覧</a>

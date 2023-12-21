@@ -203,83 +203,93 @@ const ProfileDetail: React.FC = () => {
         <div>
           <div>
             <div className={styles.header}>希望条件</div>
-            <button type="button" className={styles.edit} onClick={handleEditClick}>
-              編集
-            </button>
-            <div>
-              転職（就職）時の希望条件を入力します。応募時や、企業がスカウトを送る際の判断材料に
-              <br />
-              なるほか、条件に一致した求人があればメールでお知らせします。
-            </div>
 
-            <div id="separated">
-              <div className={styles.title}>企業選びで重視する事(3つまで)</div>
-              <div>
-                <div>{companySelection[0]}</div>
-                <div>{companySelection[1]}</div>
-                <div>{companySelection[2]}</div>
+            <div className={styles.detail}>
+              <div className={styles.bigtitle}>
+                希望条件{' '}
+                <button type="button" className={styles.edit} onClick={handleEditClick}>
+                  編集
+                </button>
               </div>
               <div>
-                <div className={styles.title}>志望企業のタイプ</div>
-                {/* チェックボックス */}
-                <div style={{ flexDirection: 'column', display: 'flex', gap: 10, marginLeft: 30 }}>
-                  <div style={{ flexDirection: 'row', display: 'flex' }}>
-                    <input
-                      type="checkbox"
-                      id="paper"
-                      name="paper"
-                      checked={companySelectionType.includes('大手企業')}
-                    />
-                    <div>大手企業</div>
-                  </div>
-                  <div style={{ flexDirection: 'row', display: 'flex' }}>
-                    <input
-                      type="checkbox"
-                      id="paper"
-                      name="paper"
-                      checked={companySelectionType.includes('中小企業')}
-                    />
-                    <div>中小企業</div>
-                  </div>
-                  <div style={{ flexDirection: 'row', display: 'flex' }}>
-                    <input
-                      type="checkbox"
-                      id="paper"
-                      name="paper"
-                      checked={companySelectionType.includes('メガベンチャー(500名以上～)')}
-                    />
-                    <div>メガベンチャー(500名以上～)</div>
-                  </div>
-                  <div style={{ flexDirection: 'row', display: 'flex' }}>
-                    <input
-                      type="checkbox"
-                      id="paper"
-                      name="paper"
-                      checked={companySelectionType.includes('ベンチャー企業')}
-                    />
-                    <div>ベンチャー企業</div>
+                転職（就職）時の希望条件を入力します。応募時や、企業がスカウトを送る際の <br />
+                判断材料に なるほか、条件に一致した求人があればメールでお知らせします。
+              </div>
+
+              <div id="separated">
+                <div className={styles.title}>企業選びで重視する事(3つまで)</div>
+                <div>
+                  <div className={styles.preferences}>・{companySelection[0] || '未記入'}</div>
+                  <div className={styles.preferences}>・{companySelection[1] || '未記入'}</div>
+                  <div className={styles.preferences}>・{companySelection[2] || '未記入'}</div>
+                </div>
+                <div>
+                  <div className={styles.title}>志望企業のタイプ</div>
+                  {/* チェックボックス */}
+                  <div
+                    style={{ flexDirection: 'column', display: 'flex', gap: 10, marginLeft: 30 }}
+                  >
+                    <div style={{ flexDirection: 'row', display: 'flex' }}>
+                      <input
+                        type="checkbox"
+                        id="paper"
+                        name="paper"
+                        checked={companySelectionType.includes('大手企業')}
+                      />
+                      <div>大手企業</div>
+                    </div>
+                    <div style={{ flexDirection: 'row', display: 'flex' }}>
+                      <input
+                        type="checkbox"
+                        id="paper"
+                        name="paper"
+                        checked={companySelectionType.includes('中小企業')}
+                      />
+                      <div>中小企業</div>
+                    </div>
+                    <div style={{ flexDirection: 'row', display: 'flex' }}>
+                      <input
+                        type="checkbox"
+                        id="paper"
+                        name="paper"
+                        checked={companySelectionType.includes('メガベンチャー(500名以上～)')}
+                      />
+                      <div>メガベンチャー(500名以上～)</div>
+                    </div>
+                    <div style={{ flexDirection: 'row', display: 'flex' }}>
+                      <input
+                        type="checkbox"
+                        id="paper"
+                        name="paper"
+                        checked={companySelectionType.includes('ベンチャー企業')}
+                      />
+                      <div>ベンチャー企業</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className={styles.title}>希望勤務地(複数選択可)</div>
-              <div>
-                {preferredLocations.map((location, index) => (
-                  <p key={index}>{location}</p>
-                ))}
-              </div>
-              <div className={styles.title}>希望詳細/その他</div>
-              <div>
-                {/* テキストエリア */}
-                <textarea
-                  value={preferredDetail}
-                  style={{
-                    width: '600px',
-                    height: '200px',
-                    backgroundColor: '#f3f3f3',
-                    borderRadius: '10px',
-                    margin: '10px',
-                  }}
-                />
+                <div className={styles.title}>希望勤務地(複数選択可)</div>
+                <div>
+                  {preferredLocations.map((location, index) => (
+                    <p key={index}>{location}</p>
+                  ))}
+                </div>
+                {preferredLocations.length === 0 && (
+                  <div className={styles.preferences}>・未記入</div>
+                )}
+                <div className={styles.title}>希望詳細/その他</div>
+                <div>
+                  {/* テキストエリア */}
+                  <textarea
+                    value={preferredDetail}
+                    style={{
+                      width: '600px',
+                      height: '200px',
+                      backgroundColor: '#f3f3f3',
+                      borderRadius: '10px',
+                      margin: '10px',
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

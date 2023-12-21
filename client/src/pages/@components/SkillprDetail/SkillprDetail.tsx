@@ -107,16 +107,19 @@ const ProfileDetail: React.FC = () => {
         <div>
           <div>
             <div className={styles.header}>スキルPR</div>
-            <button type="button" className={styles.edit} onClick={handleEditClick}>
-              編集
-            </button>
-            <div id="separated">
+            <div id="separated" className={styles.detail}>
+              <div className={styles.bigtitle}>
+                スキルPR
+                <button type="button" className={styles.edit} onClick={handleEditClick}>
+                  編集
+                </button>
+              </div>
               <div className={styles.title}>特技PR(スキル、実績、経験など)</div>
-              <div>20文字以内、最大3つまで</div>
+              <div style={{ color: 'gray', marginLeft: 10 }}>＊20文字以内、最大3つまで</div>
               <div>
-                <div className={styles.skill}>{skill1}</div>
-                <div className={styles.skill}>{skill2}</div>
-                <div className={styles.skill}>{skill3}</div>
+                <div className={styles.skill}>・{skill1}</div>
+                <div className={styles.skill}>・{skill2}</div>
+                <div className={styles.skill}>・{skill3}</div>
               </div>
               <div>
                 <div className={styles.title}>自己PR</div>

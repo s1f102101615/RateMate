@@ -240,143 +240,149 @@ const ProfileDetail: React.FC = () => {
         <div>
           <div>
             <div className={styles.header}>経歴情報</div>
-            <button type="button" className={styles.edit} onClick={handleEditClick}>
-              編集
-            </button>
-            <div
-              style={{
-                margin: '20px 0',
-              }}
-            >
-              研究内容やインターン・アルバイト経験を入力します。
-              <br />
-              入力することでより質の高いスカウトを受け取ることができます。 <br />
-              <span style={{ fontSize: 13, color: 'gray ' }}>
-                *こちらに入力された情報はスカウトを受け取る際に公開されます。 <br />
-                公開範囲についてはこちらからご確認いただけます。
-              </span>{' '}
-              <br />
-            </div>
 
-            <div id="separated">
-              <div className={styles.title}>研究内容</div>
-              <div>・研究テーマ</div>
-              <div style={{ marginLeft: '25px', marginBottom: '5px' }}>{theme || '未記入'}</div>
-              <div>・研究詳細</div>
-              <div style={{ marginLeft: '25px' }}>{reseatchdetails || '未記入'}</div>
-            </div>
-
-            <div id="separated">
-              <div className={styles.title}>研究実績</div>
-
-              <div>・研究実績</div>
+            <div className={styles.detail}>
+              <div className={styles.bigtitle}>
+                経歴情報
+                <button type="button" className={styles.edit} onClick={handleEditClick}>
+                  編集
+                </button>
+              </div>
               <div
                 style={{
-                  flexDirection: 'column',
-                  display: 'flex',
-                  gap: 10,
-                  marginLeft: 30,
-                  marginTop: 5,
-                  marginBottom: 5,
+                  margin: '20px 0',
                 }}
               >
-                <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
-                  <input type="checkbox" id="paper" name="paper" checked={paper} />
-                  <div>学会で表彰経験がある</div>
-                </div>
-                <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
-                  <input type="checkbox" id="paper" name="paper" checked={achievements} />
-                  <div>学術誌で論文が掲載されたことがある</div>
-                </div>
-                <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
-                  <input type="checkbox" id="paper" name="paper" checked={awards} />
-                  <div>学会での発表経験がある</div>
-                </div>
+                研究内容やインターン・アルバイト経験を入力します。
+                <br />
+                入力することでより質の高いスカウトを受け取ることができます。 <br />
+                <span style={{ fontSize: 13, color: 'gray ' }}>
+                  *こちらに入力された情報はスカウトを受け取る際に公開されます。 <br />
+                  公開範囲についてはこちらからご確認いただけます。
+                </span>{' '}
+                <br />
               </div>
 
-              <div>・研究詳細</div>
-              {/* テキストエリア */}
-              <textarea
-                value={presentation}
-                readOnly
-                style={{
-                  width: '600px',
-                  height: '200px',
-                  backgroundColor: '#f3f3f3',
-                  borderRadius: '10px',
-                  margin: '10px',
-                }}
-              />
-            </div>
-
-            <div id="separated">
-              <div className={styles.title}>大会・コンテスト</div>
-
-              <div>・入賞受賞経験</div>
-              <div
-                style={{
-                  flexDirection: 'column',
-                  display: 'flex',
-                  gap: 10,
-                  marginLeft: 30,
-                  marginTop: 5,
-                  marginBottom: 5,
-                }}
-              >
-                <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
-                  <input type="checkbox" id="paper" name="paper" checked={achievement} />
-                  <div>コンテストで入賞経験がある</div>
-                </div>
+              <div id="separated">
+                <div className={styles.title}>研究内容</div>
+                <div>・研究テーマ</div>
+                <div style={{ marginLeft: '25px', marginBottom: '5px' }}>{theme || '未記入'}</div>
+                <div>・研究詳細</div>
+                <div style={{ marginLeft: '25px' }}>{reseatchdetails || '未記入'}</div>
               </div>
 
-              <div>・入賞受賞詳細</div>
-              {/* テキストエリア */}
-              <textarea
-                value={competitiondetails}
-                readOnly
-                style={{
-                  width: '600px',
-                  height: '200px',
-                  backgroundColor: '#f3f3f3',
-                  borderRadius: '10px',
-                  margin: '10px',
-                }}
-              />
-            </div>
-            <div>
-              <div className={styles.title}>インターン・アルバイト経験</div>
-              <div
-                style={{
-                  flexDirection: 'column',
-                  display: 'flex',
-                  gap: 10,
-                  marginLeft: 30,
-                  marginBottom: 5,
-                }}
-              >
-                <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
-                  <input type="checkbox" id="paper" name="paper" checked={internship} readOnly />
-                  <div>インターン経験がある</div>
+              <div id="separated">
+                <div className={styles.title}>研究実績</div>
+
+                <div>・研究実績</div>
+                <div
+                  style={{
+                    flexDirection: 'column',
+                    display: 'flex',
+                    gap: 10,
+                    marginLeft: 30,
+                    marginTop: 5,
+                    marginBottom: 5,
+                  }}
+                >
+                  <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
+                    <input type="checkbox" id="paper" name="paper" checked={paper} />
+                    <div>学会で表彰経験がある</div>
+                  </div>
+                  <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
+                    <input type="checkbox" id="paper" name="paper" checked={achievements} />
+                    <div>学術誌で論文が掲載されたことがある</div>
+                  </div>
+                  <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
+                    <input type="checkbox" id="paper" name="paper" checked={awards} />
+                    <div>学会での発表経験がある</div>
+                  </div>
                 </div>
-                <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
-                  <input type="checkbox" id="paper" name="paper" checked={partTimeJob} readOnly />
-                  <div>アルバイト経験がある</div>
-                </div>
+
+                <div>・研究詳細</div>
+                {/* テキストエリア */}
+                <textarea
+                  value={presentation}
+                  readOnly
+                  style={{
+                    width: '600px',
+                    height: '200px',
+                    backgroundColor: '#f3f3f3',
+                    borderRadius: '10px',
+                    margin: '10px',
+                  }}
+                />
               </div>
 
-              <div>・インターン・アルバイト経験詳細</div>
-              {/* テキストエリア */}
-              <textarea
-                value={workExperienceDetails}
-                readOnly
-                style={{
-                  width: '600px',
-                  height: '200px',
-                  backgroundColor: '#f3f3f3',
-                  borderRadius: '10px',
-                  margin: '10px',
-                }}
-              />
+              <div id="separated">
+                <div className={styles.title}>大会・コンテスト</div>
+
+                <div>・入賞受賞経験</div>
+                <div
+                  style={{
+                    flexDirection: 'column',
+                    display: 'flex',
+                    gap: 10,
+                    marginLeft: 30,
+                    marginTop: 5,
+                    marginBottom: 5,
+                  }}
+                >
+                  <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
+                    <input type="checkbox" id="paper" name="paper" checked={achievement} />
+                    <div>コンテストで入賞経験がある</div>
+                  </div>
+                </div>
+
+                <div>・入賞受賞詳細</div>
+                {/* テキストエリア */}
+                <textarea
+                  value={competitiondetails}
+                  readOnly
+                  style={{
+                    width: '600px',
+                    height: '200px',
+                    backgroundColor: '#f3f3f3',
+                    borderRadius: '10px',
+                    margin: '10px',
+                  }}
+                />
+              </div>
+              <div>
+                <div className={styles.title}>インターン・アルバイト経験</div>
+                <div
+                  style={{
+                    flexDirection: 'column',
+                    display: 'flex',
+                    gap: 10,
+                    marginLeft: 30,
+                    marginBottom: 5,
+                  }}
+                >
+                  <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
+                    <input type="checkbox" id="paper" name="paper" checked={internship} readOnly />
+                    <div>インターン経験がある</div>
+                  </div>
+                  <div style={{ flexDirection: 'row', display: 'flex', gap: 5 }}>
+                    <input type="checkbox" id="paper" name="paper" checked={partTimeJob} readOnly />
+                    <div>アルバイト経験がある</div>
+                  </div>
+                </div>
+
+                <div>・インターン・アルバイト経験詳細</div>
+                {/* テキストエリア */}
+                <textarea
+                  value={workExperienceDetails}
+                  readOnly
+                  style={{
+                    width: '600px',
+                    height: '200px',
+                    backgroundColor: '#f3f3f3',
+                    borderRadius: '10px',
+                    margin: '10px',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
