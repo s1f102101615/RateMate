@@ -6,7 +6,7 @@ import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/Bas
 import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
-import Deviation from '../@components/Deviation';
+import Deviation, { RecommendedOccuoations } from '../@components/Deviation';
 import OfferList from '../@components/OfferList';
 import ProfilePercent from '../@components/Profilepercent';
 import useAuthRedirect from '../@hooks/useAuthRedirect';
@@ -56,7 +56,6 @@ const Home = () => {
       return dateB.getTime() - dateA.getTime();
     });
     setOffer(offer.body);
-    console.log(offer);
   };
 
   const handleShowMore = () => {
@@ -65,7 +64,6 @@ const Home = () => {
 
   const sortOffers = () => {
     const sortedOffers = [...(offer ?? [])];
-    console.log(sortedOffers);
     sortedOffers.sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
@@ -89,14 +87,7 @@ const Home = () => {
           {/* 420*300の四角を横に２つ並べる */}
           <div style={{ flexDirection: 'row', display: 'flex' }}>
             <Deviation />
-            <div
-              style={{
-                width: '420px',
-                height: '300px',
-                backgroundColor: 'gray',
-                margin: '5px',
-              }}
-            />
+            <RecommendedOccuoations />
           </div>
           <div style={{ flexDirection: 'row', display: 'flex' }}>
             <div

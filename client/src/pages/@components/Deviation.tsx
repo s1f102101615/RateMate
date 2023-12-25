@@ -151,3 +151,36 @@ export default function Deviation() {
     </Box>
   );
 }
+
+export function RecommendedOccuoations() {
+  const occupations = [
+    'ゲームクリエイター',
+    'ゲームプログラマー',
+    'ゲームデザイナー',
+    'ゲームプランナー',
+    'ゲームディレクター',
+    'ゲームプロデューサー',
+    'ゲームデバッガー',
+    'ゲームテスター',
+    'ゲームマーケター',
+    'ゲームコンサルタント',
+    'ゲームライター',
+    'ゲームイベントプランナー',
+    'ゲームイラストレーター',
+    'ゲームキャラクターデザイナー',
+    'ゲームシナリオライター',
+    'ゲーム音楽家',
+    'ゲーム声優',
+    'ゲームモーションキャプ',
+  ];
+  return (
+    <Box
+      width={420}
+      height={300}
+      padding={2}
+      margin={'5px'}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5 }}
+      bgcolor="white"
+    />
+  );
+}
