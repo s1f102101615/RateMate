@@ -1,6 +1,8 @@
+import type { OfferStatus } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
+import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
 import Chart from '../@components/Chart';
 import Deviation from '../@components/Deviation';
@@ -21,6 +23,34 @@ const Home = () => {
     { ability: 'ほげ', A: 65, B: 85, fullMark: 150 },
   ]);
   const [limit, setLimit] = useState(5); // 新しいstate変数
+  const [offer, setOffer] = useState<
+    | {
+        id: number;
+        companyId: number;
+        userId: string;
+        title: string;
+        salary: string;
+        location: string;
+        description: string;
+        status: OfferStatus;
+        createdAt: Date;
+        updatedAt: Date;
+      }[]
+    | null
+    | undefined
+  >(); // 通知のデータ構造(後で変更)
+
+  useEffect(() => {
+    setdataOffer();
+  }, []);
+
+  const setdataOffer = async () => {
+    // 通知のデータ（サーバーから取得すると仮定）
+    const offer = await apiClient.offer.get();
+
+    setOffer(offer.body);
+    console.log(offer);
+  };
 
   const Data = {
     companyName: '株式会社ほげんぽつ',
@@ -129,15 +159,18 @@ const Home = () => {
             }}
             className={styles.scrollbar}
           >
-            {offerData.slice(0, 10).map(
+            {offer?.slice(0, 10).map(
               (
                 news,
                 index // .sliceを追加
               ) => (
                 <OfferList
                   key={index}
-                  companyName={news.companyName}
+                  companyName={news.title}
                   description={news.description}
+                  location={news.location}
+                  salary={news.salary}
+                  createat={news.createdAt}
                   width="480px"
                   height="120px"
                 />

@@ -118,4 +118,6 @@ export const taskParser = z.object({
   created: z.number(),
 });
 
+export type OfferStatus = 'PENDING' | 'ACCEPTED' | 'REJECTED';
+
 export type TaskModel = z.infer<typeof taskParser>;
