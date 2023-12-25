@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { OfferStatus } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -39,6 +40,7 @@ const Home = () => {
     | null
     | undefined
   >(); // 通知のデータ構造(後で変更)
+  const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
     setdataOffer();
@@ -48,24 +50,34 @@ const Home = () => {
     // 通知のデータ（サーバーから取得すると仮定）
     const offer = await apiClient.offer.get();
 
+    offer.body?.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return dateB.getTime() - dateA.getTime();
+    });
     setOffer(offer.body);
     console.log(offer);
   };
 
-  const Data = {
-    companyName: '株式会社ほげんぽつ',
-    description: 'めちゃくちゃブラック企業です！非推奨',
-  };
-
-  const n = 10;
-
-  const offerData = Array.from({ length: n }, (_, i) => ({
-    companyName: `${Data.companyName} ${i + 1}`,
-    description: `${Data.description} ${i + 1}`,
-  }));
-
   const handleShowMore = () => {
     setLimit((prevLimit) => prevLimit + 5);
+  };
+
+  const sortOffers = () => {
+    const sortedOffers = [...(offer ?? [])];
+    console.log(sortedOffers);
+    sortedOffers.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      if (sortOrder === 'asc') {
+        console.log('ss');
+        return dateA.getTime() - dateB.getTime(); // Ascending order
+      } else {
+        return dateB.getTime() - dateA.getTime(); // Descending order
+      }
+    });
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    setOffer(sortedOffers); // 並び替えたオファーの配列をセット
   };
 
   return (
@@ -143,9 +155,18 @@ const Home = () => {
             </span>
             <div style={{ textAlign: 'right' }}>
               <div style={{ padding: 8, letterSpacing: '0' }}>
-                受け取った招待の数 <span style={{ fontSize: 22, fontWeight: 700 }}>10</span>
+                受け取った招待の数{' '}
+                <span style={{ fontSize: 22, fontWeight: 700 }}>{offer?.length}</span>
               </div>
-              <div style={{ marginRight: 10 }}>新着順↑↓</div>
+              {sortOrder === 'asc' ? (
+                <a style={{ marginRight: 10, fontWeight: 501 }} onClick={sortOffers}>
+                  新着順↑
+                </a>
+              ) : (
+                <a style={{ marginRight: 10, fontWeight: 501 }} onClick={sortOffers}>
+                  新着順↓
+                </a>
+              )}
             </div>
           </div>
           <div
@@ -182,5 +203,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
