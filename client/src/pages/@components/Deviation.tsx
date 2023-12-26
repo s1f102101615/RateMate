@@ -154,7 +154,7 @@ export default function Deviation() {
   );
 }
 
-export function RecommendedOccuoations() {
+export function Popularjobs() {
   const occupations = [
     'ゲームクリエイター',
     'ゲームプログラマー',
@@ -219,6 +219,50 @@ export function RecommendedOccuoations() {
         style={{ justifyContent: 'right', width: '100%', display: 'flex', paddingRight: 10 }}
       >
         すべてみる{'>'}
+      </Link>
+    </Box>
+  );
+}
+
+export function RecommendedOccuoations() {
+  const occupations = ['ゲームクリエイター', 'ゲームプログラマー', 'ゲームデザイナー'];
+  return (
+    <Box
+      width={420}
+      height={300}
+      padding={2}
+      margin={'5px'}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5 }}
+      bgcolor="white"
+    >
+      <div style={{ fontSize: 19, fontWeight: 600 }}>おすすめ職種</div>
+      <div style={{ color: 'grey', fontSize: 15 }}>*追加を押して希望職種に追加しましょう</div>
+      {occupations.map((occupation, index) => (
+        <div
+          key={index}
+          style={{
+            flexDirection: 'row',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px solid #e0e0e0',
+            margin: '11px',
+            fontSize: 20,
+            gap: 10,
+            height: 50,
+          }}
+        >
+          <div>
+            {index + 1}位: {occupation}
+          </div>
+          <div>追加</div>
+        </div>
+      ))}
+      <Link
+        href=""
+        style={{ justifyContent: 'right', width: '100%', display: 'flex', paddingRight: 10 }}
+      >
+        もっと詳しく{'>'}
       </Link>
     </Box>
   );
