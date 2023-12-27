@@ -91,22 +91,7 @@ const Home = () => {
           </div>
           <div style={{ flexDirection: 'row', display: 'flex' }}>
             <RecommendedOccuoations />
-            <div
-              style={{
-                width: '420px',
-                height: '300px',
-                backgroundColor: 'gray',
-                margin: '5px',
-              }}
-            />
-          </div>
-
-          <div className={styles.columndetail}>
-            <Deviation />
-
-            <Chart data={data} width={500} height={500} outerRadius={200} />
-
-            <div />
+            <Chart data={data} width={420} height={300} outerRadius={120} />
           </div>
         </div>
         <div
