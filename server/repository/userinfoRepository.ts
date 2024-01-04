@@ -20,6 +20,7 @@ export const userinfoRepository = {
         createdAt: userinfo.createdAt,
         firstName: userinfo.firstName,
         lastName: userinfo.lastName,
+        desiredIndustry: userinfo.desiredIndustry,
       },
       create: {
         userId: userinfo.userId,
@@ -34,6 +35,7 @@ export const userinfoRepository = {
         createdAt: userinfo.createdAt,
         firstName: userinfo.firstName,
         lastName: userinfo.lastName,
+        desiredIndustry: userinfo.desiredIndustry,
       },
     });
   },
@@ -76,9 +78,9 @@ export const userinfoRepository = {
               update: {
                 theme: userinfo.research.theme ?? '',
                 details: userinfo.research.details ?? '',
-                achievements: userinfo.research.achievements ?? '',
-                awards: userinfo.research.awards ?? '',
-                paper: userinfo.research.paper ?? '',
+                achievements: userinfo.research.achievements ?? false,
+                awards: userinfo.research.awards ?? false,
+                paper: userinfo.research.paper ?? false,
                 presentation: userinfo.research.presentation ?? '',
               },
             }
@@ -86,7 +88,7 @@ export const userinfoRepository = {
         competition: userinfo.competition
           ? {
               update: {
-                achievement: userinfo.competition.achievement ?? '',
+                achievement: userinfo.competition.achievement ?? false,
                 details: userinfo.competition.details ?? '',
               },
             }
@@ -108,9 +110,9 @@ export const userinfoRepository = {
               create: {
                 theme: userinfo.research.theme ?? '',
                 details: userinfo.research.details ?? '',
-                achievements: userinfo.research.achievements ?? '',
-                awards: userinfo.research.awards ?? '',
-                paper: userinfo.research.paper ?? '',
+                achievements: userinfo.research.achievements ?? false,
+                awards: userinfo.research.awards ?? false,
+                paper: userinfo.research.paper ?? false,
                 presentation: userinfo.research.presentation ?? '',
               },
             }
@@ -118,7 +120,7 @@ export const userinfoRepository = {
         competition: userinfo.competition
           ? {
               create: {
-                achievement: userinfo.competition.achievement ?? '',
+                achievement: userinfo.competition.achievement ?? false,
                 details: userinfo.competition.details ?? '',
               },
             }

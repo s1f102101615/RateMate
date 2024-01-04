@@ -55,6 +55,7 @@ export type UserInfo = {
   createdAt: Date;
   firstName: string;
   lastName: string;
+  desiredIndustry: string[];
 };
 
 //

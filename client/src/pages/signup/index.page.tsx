@@ -25,6 +25,7 @@ const Signup = () => {
   const [day, setDay] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [desiredIndustry, setDesiredIndustry] = useState<string[]>([]);
 
   // yearの選択肢
   const currentYear = new Date().getFullYear();
@@ -155,6 +156,7 @@ const Signup = () => {
       createdAt: new Date(),
       firstName,
       lastName,
+      desiredIndustry,
     };
     await apiClient.userinfo.post({ body: userinfo });
   };
@@ -541,6 +543,19 @@ const Signup = () => {
                       </select>
                     </div>
                     <div className={styles.formGroup}>
+                      <label htmlFor="desiredIndustry" className={styles.label}>
+                        希望業界
+                      </label>
+                      <input
+                        type="text"
+                        id="desiredIndustry"
+                        name="desiredIndustry"
+                        value={desiredIndustry}
+                        onChange={(e) => setDesiredIndustry(e.target.value.split(','))}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
                       <label htmlFor="favoriteGame" className={styles.label}>
                         一番よくやるゲーム
                       </label>
@@ -555,7 +570,7 @@ const Signup = () => {
                     </div>
                   </form>
                 </div>
-                <div style={{ flexDirection: 'row', display: 'flex', gap: '40px' }}>
+                <div style={{ flexDirection: 'row', display: 'flex', gap: '40px', paddingTop: 50 }}>
                   <button onClick={handleback} className={styles.btn} style={{ marginTop: '20px' }}>
                     戻る
                   </button>

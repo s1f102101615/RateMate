@@ -22,6 +22,7 @@ const ProfileDetail: React.FC = () => {
   const [lastName, setLastName] = useState('');
   const [edit, setEdit] = useState(false);
   const [predictions, setPredictions] = useState<string[]>([]);
+  const [desiredIndustry, setDesiredIndustry] = useState<string[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -36,6 +37,7 @@ const ProfileDetail: React.FC = () => {
       setFavoriteGame(userdata.body?.favoriteGame ?? '');
       setFirstName(userdata.body?.firstName ?? '');
       setLastName(userdata.body?.lastName ?? '');
+      setDesiredIndustry(userdata.body?.desiredIndustry ?? []);
     };
     fetch();
   }, []);
@@ -58,6 +60,7 @@ const ProfileDetail: React.FC = () => {
       createdAt: new Date(),
       firstName,
       lastName,
+      desiredIndustry,
     };
     await apiClient.userinfo.post({ body: userinfoupdate });
     setEdit(false);
@@ -342,6 +345,16 @@ const ProfileDetail: React.FC = () => {
               </select>
             </div>
             <div>
+              <div className={styles.title}>希望職種</div>
+              <TextField
+                label={'希望職種'}
+                variant="outlined"
+                style={{ margin: '16px 32px' }}
+                value={desiredIndustry}
+                onChange={(event) => setDesiredIndustry([event.target.value])}
+              />
+            </div>
+            <div>
               <div className={styles.title}>一番よくやるゲーム</div>
               <TextField
                 label={'一番よくやるゲーム'}
@@ -409,6 +422,10 @@ const ProfileDetail: React.FC = () => {
               <div>
                 <div className={styles.title}>学部・学科</div>
                 <div className={styles.viewDetail}>{academicDiscipline}</div>
+              </div>
+              <div>
+                <div className={styles.title}>希望職種</div>
+                <div className={styles.viewDetail}>{desiredIndustry}</div>
               </div>
               <div>
                 <div className={styles.title}>一番よくやるゲーム</div>

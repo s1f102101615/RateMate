@@ -16,6 +16,7 @@ export type Methods = DefineMethods<{
       createdAt: Date;
       firstName: string;
       lastName: string;
+      desiredIndustry: string[];
     } | null;
   };
   post: {

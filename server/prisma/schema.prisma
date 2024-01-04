@@ -60,6 +60,7 @@ model User {
   createdAt          DateTime
   firstName          String
   lastName           String
+  desiredIndustry    String[]
 }
 
 enum OfferStatus {

@@ -18,6 +18,7 @@ export const userinfoUsecase = {
       createdAt: label.createdAt,
       firstName: label.firstName,
       lastName: label.lastName,
+      desiredIndustry: label.desiredIndustry,
     };
     await userinfoRepository.save(newUser);
     return 'ok';
