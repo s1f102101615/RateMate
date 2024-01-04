@@ -76,8 +76,8 @@
 
 .rightPanel ul {
   padding: 0;
-  list-style-type: none;
   font-size: 19px;
+  list-style-type: none;
 }
 
 .rightPanel ul li {
@@ -90,12 +90,14 @@
   color: #888; /* 灰色 */
   content: '✔'; /* チェックマーク */
 }
-.rightPanel ul li input[type="checkbox"] {
-  margin-right: 10px;  /* 10px の間隔を設定。必要に応じて値を調整してください */
-  width: 15px;   /* 幅を25pxに設定 */
-  height: 15px;  /* 高さを25pxに設定 */
+
+.rightPanel ul li input[type='checkbox'] {
+  width: 15px; /* 幅を25pxに設定 */
+  height: 15px; /* 高さを25pxに設定 */
+  margin-right: 10px; /* 10px の間隔を設定。必要に応じて値を調整してください */
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .leftPanel li {
   height: 35px;
   padding-left: 13px; /* 文字の太さを変更 */
