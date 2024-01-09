@@ -83,3 +83,39 @@
   color: #fff;
   background-color: #4caf50; /* ホバー時に緑色に */
 }
+
+.button {
+  /* buttonのcss */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #008a0b;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #008a0b;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.gamenameinput {
+  width: 280px;
+  height: 35px;
+  padding: 0 10px;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  border: 1px solid #6e6e6e;
+  border-radius: 5px;
+}
+
+.gamebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+}

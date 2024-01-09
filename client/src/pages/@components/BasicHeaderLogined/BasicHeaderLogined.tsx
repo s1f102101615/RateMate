@@ -129,7 +129,7 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
                 <Link href="/mypage/profile/">
                   <div className={styles.dropdownItem}>マイページ</div>
                 </Link>
-                <div className={styles.dropdownItem} onClick={handleLogout}>
+                <div className={styles.dropdownItemdown} onClick={handleLogout}>
                   ログアウト
                 </div>
               </div>

@@ -94,6 +94,26 @@
   padding: 8px;
   font-size: 14px;
   cursor: pointer;
+  border-top: 1px solid rgb(189 189 189);
+  border-right: 1px solid rgb(189 189 189);
+  border-bottom: 1px solid rgb(189 189 189);
+  border-left: 1px solid rgb(189 189 189);
+}
+
+.dropdownItemdown {
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-right: 1px solid rgb(189 189 189);
+  border-bottom: 1px solid rgb(189 189 189);
+  border-left: 1px solid rgb(189 189 189);
+}
+
+.dropdownItemdown:hover {
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #c3fbff;
   border-right: 1px solid rgb(189 189 189);
   border-bottom: 1px solid rgb(189 189 189);
   border-left: 1px solid rgb(189 189 189);

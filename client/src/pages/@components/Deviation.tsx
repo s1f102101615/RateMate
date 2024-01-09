@@ -148,7 +148,9 @@ export default function Deviation() {
         }}
       >
         最終更新日時: 2023-10-24 20:59
-        <div style={{ color: 'black', marginLeft: 10, fontWeight: 'bold' }}>Re:再連携</div>
+        <Link href="../mypage/account">
+          <div style={{ color: 'black', marginLeft: 10, fontWeight: 'bold' }}>Re:再連携</div>
+        </Link>
       </div>
     </Box>
   );
