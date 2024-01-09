@@ -47,8 +47,9 @@ const ProfileDetail: React.FC = () => {
           style={{
             backgroundColor: '#dddddd',
             width: '750px',
-            height: '500px',
+            height: '580px',
             borderRadius: '10px',
+            marginBottom: '20px',
           }}
         >
           <div>
@@ -58,7 +59,11 @@ const ProfileDetail: React.FC = () => {
                 Valorant
               </div>
               <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
-                {valorant ? <input className={styles.gamenameinput} /> : <div />}
+                {valorant ? (
+                  <input className={styles.gamenameinput} placeholder="RiotIDを入力してください" />
+                ) : (
+                  <div />
+                )}
                 <div onClick={switchValorant} className={styles.button}>
                   登録する
                 </div>
@@ -66,8 +71,13 @@ const ProfileDetail: React.FC = () => {
             </div>
             <div className={styles.gamebar}>
               <div>
-                <img src="../../../images/valorantLogo.svg" alt="Valorant" width={50} height={50} />
-                Valorant
+                <img
+                  src="../../../images/LoL_icon.svg"
+                  alt="League of Legends"
+                  width={50}
+                  height={50}
+                />
+                League of Legends
               </div>
               <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
                 {valorant ? <input className={styles.gamenameinput} /> : <div />}
@@ -78,8 +88,8 @@ const ProfileDetail: React.FC = () => {
             </div>
             <div className={styles.gamebar}>
               <div>
-                <img src="../../../images/valorantLogo.svg" alt="Valorant" width={50} height={50} />
-                Valorant
+                <img src="../../../images/apexLogo.png" alt="Apex" width={50} height={50} />
+                Apex
               </div>
               <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
                 {valorant ? <input className={styles.gamenameinput} /> : <div />}
@@ -90,8 +100,8 @@ const ProfileDetail: React.FC = () => {
             </div>
             <div className={styles.gamebar}>
               <div>
-                <img src="../../../images/valorantLogo.svg" alt="Valorant" width={50} height={50} />
-                Valorant
+                <img src="../../../images/ow2Logo.jpg" alt="OverWatch2" width={50} height={50} />
+                OverWatch2
               </div>
               <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
                 {valorant ? <input className={styles.gamenameinput} /> : <div />}
@@ -102,8 +112,59 @@ const ProfileDetail: React.FC = () => {
             </div>
             <div className={styles.gamebar}>
               <div>
-                <img src="../../../images/valorantLogo.svg" alt="Valorant" width={50} height={50} />
-                Valorant
+                <img
+                  src="../../../images/r6sLogo.webp"
+                  alt="Rainbow Six Siege"
+                  width={50}
+                  height={50}
+                />
+                Rainbow Six Siege
+              </div>
+              <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
+                {valorant ? <input className={styles.gamenameinput} /> : <div />}
+                <div onClick={switchValorant} className={styles.button}>
+                  登録する
+                </div>
+              </div>
+            </div>
+            <div className={styles.gamebar}>
+              <div>
+                <img
+                  src="../../../images/hearthstoneLogo.jpg"
+                  alt="HearthStone"
+                  width={50}
+                  height={50}
+                />
+                HearthStone
+              </div>
+              <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
+                {valorant ? <input className={styles.gamenameinput} /> : <div />}
+                <div onClick={switchValorant} className={styles.button}>
+                  登録する
+                </div>
+              </div>
+            </div>
+            <div className={styles.gamebar}>
+              <div>
+                <img src="../../../images/fortniteLogo.jpg" alt="Fortnite" width={50} height={50} />
+                Fortnite
+              </div>
+              <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
+                {valorant ? <input className={styles.gamenameinput} /> : <div />}
+                <div onClick={switchValorant} className={styles.button}>
+                  登録する
+                </div>
+              </div>
+            </div>
+            <div className={styles.gamebar}>
+              <div>
+                <img
+                  src="../../../images/sf6Logo.png"
+                  alt="Street Fighter 6"
+                  width={50}
+                  height={50}
+                />
+                Street Fighter 6
               </div>
               <div style={{ flexDirection: 'row', display: 'flex', gap: 20, alignItems: 'center' }}>
                 {valorant ? <input className={styles.gamenameinput} /> : <div />}
