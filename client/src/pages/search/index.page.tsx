@@ -1,4 +1,8 @@
+
 /* eslint-disable max-lines */
+
+/* eslint-disable complexity */
+
 import type { CompanyModel } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
@@ -15,6 +19,7 @@ import styles4 from './index4.module.css';
 import styles5 from './index5.module.css';
 import styles6 from './index6.module.css';
 import styles7 from './index7.module.css';
+
 
 // eslint-disable-next-line complexity
 const Home = () => {
@@ -80,6 +85,7 @@ const Home = () => {
     中国: ['岡山県', '広島県', '鳥取県', '島根県', '山口県'],
     四国: ['香川県', '徳島県', '愛媛県', '高知県'],
   };
+
 
   const router = useRouter();
 
@@ -303,7 +309,10 @@ const Home = () => {
     setIsModalOpen3(false);
   };
 
-  const [local, setLocal] = useState<string | undefined>();
+
+
+  const [local, setLocal] = useState('');
+
 
   const handleCheckboxChange = (prefecture: string) => {
     setLocal((prevLocal) => {
@@ -340,6 +349,7 @@ const Home = () => {
   function handleClick(companyId: number) {
     FetchInfoDetail(companyId);
   }
+
 
   const searchInfo = useSearchInfo();
 
@@ -424,6 +434,7 @@ const Home = () => {
                   </div>
                   <div className={styles4.rightBox4}>株式会社 フル</div>
                 </div>
+
               </div>
               <div className={styles.container2}>
                 <div className={styles2.theme}>

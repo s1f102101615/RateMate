@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import type { Experience, UserInfo } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
-import type { SkillPr } from '@prisma/client';
+import type { Preference, SkillPr } from '@prisma/client';
 
 export const userinfoRepository = {
   save: async (userinfo: UserInfo) => {
@@ -20,6 +20,7 @@ export const userinfoRepository = {
         createdAt: userinfo.createdAt,
         firstName: userinfo.firstName,
         lastName: userinfo.lastName,
+        desiredIndustry: userinfo.desiredIndustry,
       },
       create: {
         userId: userinfo.userId,
@@ -34,8 +35,15 @@ export const userinfoRepository = {
         createdAt: userinfo.createdAt,
         firstName: userinfo.firstName,
         lastName: userinfo.lastName,
+        desiredIndustry: userinfo.desiredIndustry,
       },
     });
+  },
+  find: async (userId: string) => {
+    const userInfo = await prismaClient.user.findUnique({
+      where: { userId },
+    });
+    return userInfo;
   },
   SkillPrSave: async (userinfo: SkillPr) => {
     await prismaClient.skillPr.upsert({
@@ -55,6 +63,12 @@ export const userinfoRepository = {
       },
     });
   },
+  SkillPrFind: async (userId: string) => {
+    const skillPr = await prismaClient.skillPr.findUnique({
+      where: { userid: userId },
+    });
+    return skillPr;
+  },
   ExperienceSave: async (userinfo: Experience) => {
     await prismaClient.experience.upsert({
       where: { userid: userinfo.userid },
@@ -64,9 +78,9 @@ export const userinfoRepository = {
               update: {
                 theme: userinfo.research.theme ?? '',
                 details: userinfo.research.details ?? '',
-                achievements: userinfo.research.achievements ?? '',
-                awards: userinfo.research.awards ?? '',
-                paper: userinfo.research.paper ?? '',
+                achievements: userinfo.research.achievements ?? false,
+                awards: userinfo.research.awards ?? false,
+                paper: userinfo.research.paper ?? false,
                 presentation: userinfo.research.presentation ?? '',
               },
             }
@@ -74,7 +88,7 @@ export const userinfoRepository = {
         competition: userinfo.competition
           ? {
               update: {
-                achievement: userinfo.competition.achievement ?? '',
+                achievement: userinfo.competition.achievement ?? false,
                 details: userinfo.competition.details ?? '',
               },
             }
@@ -96,9 +110,9 @@ export const userinfoRepository = {
               create: {
                 theme: userinfo.research.theme ?? '',
                 details: userinfo.research.details ?? '',
-                achievements: userinfo.research.achievements ?? '',
-                awards: userinfo.research.awards ?? '',
-                paper: userinfo.research.paper ?? '',
+                achievements: userinfo.research.achievements ?? false,
+                awards: userinfo.research.awards ?? false,
+                paper: userinfo.research.paper ?? false,
                 presentation: userinfo.research.presentation ?? '',
               },
             }
@@ -106,7 +120,7 @@ export const userinfoRepository = {
         competition: userinfo.competition
           ? {
               create: {
-                achievement: userinfo.competition.achievement ?? '',
+                achievement: userinfo.competition.achievement ?? false,
                 details: userinfo.competition.details ?? '',
               },
             }
@@ -122,5 +136,40 @@ export const userinfoRepository = {
           : undefined,
       },
     });
+  },
+  ExperienceFind: async (userId: string) => {
+    const experience = await prismaClient.experience.findUnique({
+      where: { userid: userId },
+      include: {
+        research: true,
+        competition: true,
+        experience: true,
+      },
+    });
+    return experience;
+  },
+  PreferenceSave: async (userId: string, userinfo: Preference) => {
+    await prismaClient.preference.upsert({
+      where: { userid: userId },
+      update: {
+        companySelection: userinfo.companySelection,
+        companySelectionType: userinfo.companySelectionType,
+        preferredLocations: userinfo.preferredLocations,
+        preferredDetail: userinfo.preferredDetail,
+      },
+      create: {
+        userid: userId,
+        companySelection: userinfo.companySelection,
+        companySelectionType: userinfo.companySelectionType,
+        preferredLocations: userinfo.preferredLocations,
+        preferredDetail: userinfo.preferredDetail,
+      },
+    });
+  },
+  PreferenceFind: async (userId: string) => {
+    const preference = await prismaClient.preference.findUnique({
+      where: { userid: userId },
+    });
+    return preference;
   },
 };

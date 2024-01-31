@@ -26,6 +26,7 @@ export type CompanyModel = {
   publicationstartdate: string;
 };
 
+
 export type UserInfo = {
   userId: string;
   birthday: Date;
@@ -39,16 +40,17 @@ export type UserInfo = {
   createdAt: Date;
   firstName: string;
   lastName: string;
+  desiredIndustry: string[];
 };
 
 //
 
 export type SkillPr = {
   userid: string;
-  skill1?: string | undefined;
-  skill2?: string | undefined;
-  skill3?: string | undefined;
-  selfPr?: string | undefined;
+  skill1: string;
+  skill2: string;
+  skill3: string;
+  selfPr: string;
 };
 
 //
@@ -57,16 +59,16 @@ export type Research = {
   userid: string;
   theme: string | undefined;
   details: string | undefined;
-  achievements: string | undefined;
-  awards: string | undefined;
-  paper: string | undefined;
+  achievements: boolean | undefined;
+  awards: boolean | undefined;
+  paper: boolean | undefined;
   presentation: string | undefined;
   experience?: Experience; // Experience型がオプション
 };
 
 export type Competition = {
   userid: string;
-  achievement: string | undefined;
+  achievement: boolean | undefined;
   details: string | undefined;
   experience?: Experience;
 };
@@ -86,12 +88,23 @@ export type Experience = {
   workExperience?: WorkExperience;
 };
 
+// Preference
+export type Preference = {
+  userid: string;
+  companySelection: string[];
+  companySelectionType: string[];
+  preferredLocations: string[];
+  preferredDetail: string;
+};
+
 export const taskParser = z.object({
   id: taskIdParser,
   label: z.string(),
   done: z.boolean(),
   created: z.number(),
 });
+
+export type OfferStatus = 'PENDING' | 'ACCEPTED' | 'REJECTED';
 
 export type TaskModel = z.infer<typeof taskParser>;
 
