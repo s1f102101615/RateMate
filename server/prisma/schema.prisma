@@ -15,11 +15,11 @@ model Task {
   createdAt DateTime
 }
 
-model Company {
+model CompanyDetail {
   id                   Int      @id @default(autoincrement())
   companyId            Int
   companyName          String
-  annualincome         String
+  annualincome         Int
   industry             String
   local                String
   occupation           String
@@ -31,21 +31,6 @@ model Company {
   publicationstartdate String
 }
 
-model CompanyDetail {
-  id                   Int      @id @default(autoincrement())
-  companyId            Int
-  companyName          String
-  annualincome         String
-  industry             String
-  local                String
-  occupation           String
-  occupationdetail     String[]
-  jobdescription       String
-  jobdescriptiondetail String[]
-  businesscontent      String
-  requiredability      String
-  publicationstartdate String
-}
 model User {
   userId             String   @id
   birthday           DateTime
@@ -73,7 +58,7 @@ model Offer {
   userId      String
   title       String
   salary      String
-  location    String
+  location    String[]
   description String
   status      OfferStatus
   createdAt   DateTime    @default(now())
@@ -88,10 +73,11 @@ model Skill {
 }
 
 model Company {
-  id           Int    @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   companyName  String
   annualIncome String
-  industry     String
+  industry     String[]
+  occupation   String[]
 }
 
 model Notification {
