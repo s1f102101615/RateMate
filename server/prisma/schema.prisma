@@ -44,6 +44,7 @@ model User {
   createdAt          DateTime
   firstName          String
   lastName           String
+  desiredIndustry    String[]
 }
 
 enum OfferStatus {
@@ -72,6 +73,7 @@ model Skill {
   level  String
 }
 
+
 model Company {
   id           Int      @id @default(autoincrement())
   companyName  String
@@ -83,7 +85,9 @@ model Company {
 model Notification {
   id        Int      @id @default(autoincrement())
   userId    String
+  title     String
   content   String
+  url       String
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
 }
@@ -125,16 +129,16 @@ model Research {
   userid       String     @id
   theme        String
   details      String
-  achievements String
-  awards       String
-  paper        String
+  achievements Boolean
+  awards       Boolean
+  paper        Boolean
   presentation String
   experience   Experience @relation(fields: [userid], references: [userid])
 }
 
 model Competition {
   userid      String     @id
-  achievement String
+  achievement Boolean
   details     String
   experience  Experience @relation(fields: [userid], references: [userid])
 }
@@ -152,4 +156,14 @@ model Experience {
   research    Research?
   competition Competition?
   experience  WorkExperience?
+}
+
+//
+
+model Preference {
+  userid               String   @id
+  companySelection     String[]
+  companySelectionType String[]
+  preferredLocations   String[]
+  preferredDetail      String
 }

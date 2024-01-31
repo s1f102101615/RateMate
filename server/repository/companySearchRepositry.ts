@@ -1,7 +1,11 @@
+
 /* eslint-disable max-depth */
+
 /* eslint-disable complexity */
 import type { CompanyModel } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
+
+
 
 export const companySearchRepository = {
   fetchinfo: async (params: {
@@ -18,6 +22,7 @@ export const companySearchRepository = {
 
     // category1が与えられている場合、ANDクエリでそのいずれかが含まれるレコードを取得する
     if (params.category1 && params.category1.length > 0) {
+
       whereClause.AND.push({
         industry: { in: params.category1 },
       });
@@ -66,6 +71,7 @@ export const companySearchRepository = {
       console.log(JSON.stringify(whereClause, null, 2));
     } catch (error) {
       console.error('Error caught:', error);
+
     }
     console.log('aw');
     // 以下、minSalary、maxSalary、labelに関する処理は前述のコードを参照してください。

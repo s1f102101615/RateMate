@@ -1,21 +1,19 @@
 import type { UserModel } from 'commonTypesWithClient/models';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBell } from 'react-icons/fa';
 import { HumanIcon } from 'src/components/icons/HumanIcon';
+import { apiClient } from 'src/utils/apiClient';
 import { createAuth } from 'src/utils/firebase';
 import { logout } from 'src/utils/login';
 import styles from './BasicHeaderLogined.module.css';
 
 // ...
 
-<Link href="/notification">
-  <FaBell size={24} />
-</Link>;
-
 // eslint-disable-next-line complexity
 export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [notifications, setNotifications] = useState(0);
 
   const verified = createAuth().currentUser?.emailVerified as boolean;
 
@@ -35,6 +33,18 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
     if (confirm('ログアウトしますか？')) await logout();
   };
   // userの状況を監視して、nullの場合は初期画面に飛ばす
+
+  const setNotificationsFirst = async () => {
+    // 通知のデータ（サーバーから取得すると仮定）
+    const notification = await apiClient.notification.get();
+
+    setNotifications(notification.body.length);
+    console.log(notification.body.length);
+  };
+
+  useEffect(() => {
+    setNotificationsFirst();
+  }, []);
 
   return (
     <nav className={styles.container} role="navigation">
@@ -57,6 +67,27 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
         <div style={{ flexDirection: 'row', display: 'flex' }}>
           <Link style={{ marginTop: 6, marginRight: 3 }} href="/notification">
             <FaBell size={23.5} />
+            {notifications > 0 && (
+              <div
+                style={{
+                  position: 'relative',
+                  top: -27,
+                  right: -11,
+                  width: 15,
+                  height: 15,
+                  backgroundColor: 'red',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  fontSize: 10,
+                  color: 'white',
+                  fontWeight: 'bold',
+                }}
+              >
+                {notifications}
+              </div>
+            )}
           </Link>
 
           <div className={styles.users}>
@@ -98,7 +129,7 @@ export const BasicHeaderLogined = ({ user }: { user: UserModel | null }) => {
                 <Link href="/mypage/profile/">
                   <div className={styles.dropdownItem}>マイページ</div>
                 </Link>
-                <div className={styles.dropdownItem} onClick={handleLogout}>
+                <div className={styles.dropdownItemdown} onClick={handleLogout}>
                   ログアウト
                 </div>
               </div>

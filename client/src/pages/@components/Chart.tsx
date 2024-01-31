@@ -23,7 +23,7 @@ function Chart(props: {
       cy={height / 2}
       outerRadius={outerRadius}
       data={data}
-      style={{ boxShadow: '0px 0px 5px #c9c9c9', marginTop: 30, borderRadius: 5 }}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5, padding: 2, margin: '5px' }}
     >
       {/* レーダーチャートの蜘蛛の巣のような線 */}
       <PolarGrid />
@@ -35,7 +35,6 @@ function Chart(props: {
         angle={30} // 中心点から水平を0°とした時の角度 垂直にしたいなら90を指定
         domain={[0, 150]} // リストの１番目の要素が最小値、2番目の要素が最大値
       />
-
       <Radar
         name="平均" // そのチャートが誰のデータか指定(チャート下にここで指定した値が表示される)
         dataKey="A" // 表示する値と対応するdata内のキー

@@ -1,5 +1,7 @@
+/* eslint-disable max-lines */
 import { Box, List } from '@mui/material';
 import { erf } from 'mathjs';
+import Link from 'next/link';
 function normDist(x: number): number {
   const mean = 50; // 平均値
   const stdDev = 10; // 標準偏差
@@ -146,8 +148,124 @@ export default function Deviation() {
         }}
       >
         最終更新日時: 2023-10-24 20:59
-        <div style={{ color: 'black', marginLeft: 10, fontWeight: 'bold' }}>Re:再連携</div>
+        <Link href="../mypage/account">
+          <div style={{ color: 'black', marginLeft: 10, fontWeight: 'bold' }}>Re:再連携</div>
+        </Link>
       </div>
+    </Box>
+  );
+}
+
+export function Popularjobs() {
+  const occupations = [
+    'ゲームクリエイター',
+    'ゲームプログラマー',
+    'ゲームデザイナー',
+    'ゲームプランナー',
+    'ゲームディレクター',
+    'ゲームプロデューサー',
+    'ゲームデバッガー',
+    'ゲームテスター',
+    'ゲームマーケター',
+    'ゲームコンサルタント',
+    'ゲームライター',
+    'ゲームイベントプランナー',
+    'ゲームイラストレーター',
+    'ゲームキャラクターデザイナー',
+    'ゲームシナリオライター',
+    'ゲーム音楽家',
+    'ゲーム声優',
+    'ゲームモーションキャプ',
+  ];
+
+  const popularJobs = [
+    { title: '求人1求人1求人1求人1', image: '画像URL1' },
+    { title: '求人2求人1求人1求人1', image: '画像URL2' },
+    { title: '求人3求人1求人1求人1', image: '画像URL3' },
+    { title: '求人3求人1求人1求人1', image: '画像URL3' },
+    { title: '求人3求人1求人1求人1', image: '画像URL3' },
+  ];
+
+  return (
+    <Box
+      width={420}
+      height={300}
+      padding={2}
+      margin={'5px'}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5 }}
+      bgcolor="white"
+    >
+      <div style={{ fontSize: 19, fontWeight: 600 }}>人気の求人</div>
+      {popularJobs.map((job, index) => (
+        <div
+          key={index}
+          style={{
+            flexDirection: 'row',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px solid #e0e0e0',
+            margin: '5px',
+            fontSize: 20,
+            gap: 10,
+            height: 38.5,
+          }}
+        >
+          {/* <img src={job.image} alt={job.title} /> */}
+          <div style={{ width: 20, height: 20, backgroundColor: 'black' }} />
+          <div>{job.title}</div>
+        </div>
+      ))}
+      <Link
+        href=""
+        style={{ justifyContent: 'right', width: '100%', display: 'flex', paddingRight: 10 }}
+      >
+        すべてみる{'>'}
+      </Link>
+    </Box>
+  );
+}
+
+export function RecommendedOccuoations() {
+  const occupations = ['ゲームクリエイター', 'ゲームプログラマー', 'ゲームデザイナー'];
+  return (
+    <Box
+      width={420}
+      height={300}
+      padding={2}
+      margin={'5px'}
+      style={{ boxShadow: '0px 0px 5px #c9c9c9', borderRadius: 5 }}
+      bgcolor="white"
+    >
+      <div style={{ fontSize: 19, fontWeight: 600 }}>おすすめ職種</div>
+      <div style={{ color: 'grey', fontSize: 15 }}>*追加を押して希望職種に追加しましょう</div>
+      {occupations.map((occupation, index) => (
+        <div
+          key={index}
+          style={{
+            flexDirection: 'row',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px solid #e0e0e0',
+            margin: '11px',
+            fontSize: 20,
+            gap: 10,
+            height: 50,
+          }}
+        >
+          <div>
+            {index + 1}位: {occupation}
+          </div>
+          <div>追加</div>
+        </div>
+      ))}
+      <Link
+        href=""
+        style={{ justifyContent: 'right', width: '100%', display: 'flex', paddingRight: 10 }}
+      >
+        もっと詳しく{'>'}
+      </Link>
     </Box>
   );
 }

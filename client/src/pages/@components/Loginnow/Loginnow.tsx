@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BasicHeader } from '../BasicHeader/BasicHeader';
 import styles from './Loginnow.module.css';
 
-type LoginnowProps = {
+export type LoginnowProps = {
   registered: boolean;
   account: boolean;
 };
@@ -46,7 +46,7 @@ const Loginnow = (props: LoginnowProps) => {
   return (
     <>
       <BasicHeader user={null} />
-      <div style={{ paddingTop: 90 }}>
+      <div style={{ paddingTop: 60 }}>
         <div className={styles.stepbar}>
           <ul>
             <li className={styles.li}>

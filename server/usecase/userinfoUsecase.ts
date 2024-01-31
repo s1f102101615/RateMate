@@ -1,6 +1,7 @@
 import type { UserId } from '$/commonTypesWithClient/ids';
 import type { Experience, SkillPr, UserInfo } from '$/commonTypesWithClient/models';
 import { userinfoRepository } from '$/repository/userinfoRepository';
+import type { Preference } from '@prisma/client';
 
 export const userinfoUsecase = {
   create: async (user: UserId, label: UserInfo) => {
@@ -17,9 +18,14 @@ export const userinfoUsecase = {
       createdAt: label.createdAt,
       firstName: label.firstName,
       lastName: label.lastName,
+      desiredIndustry: label.desiredIndustry,
     };
     await userinfoRepository.save(newUser);
     return 'ok';
+  },
+  get: async (user: UserId) => {
+    const userInfo = await userinfoRepository.find(user);
+    return userInfo;
   },
   ExperienceCreate: async (user: UserId, label: Experience) => {
     const newUser: Experience = {
@@ -48,16 +54,38 @@ export const userinfoUsecase = {
     await userinfoRepository.ExperienceSave(newUser);
     return 'ok';
   },
+  ExperienceGet: async (user: UserId) => {
+    const experience = await userinfoRepository.ExperienceFind(user);
+    return experience;
+  },
   SkillPrCreate: async (user: UserId, label: SkillPr) => {
-    const newUser: SkillPr = {
+    const newUsers: SkillPr = {
       userid: user,
       skill1: label?.skill1,
       skill2: label?.skill2,
       skill3: label?.skill3,
       selfPr: label?.selfPr,
     };
-    console.log(newUser);
-    await userinfoRepository.SkillPrSave(newUser);
+    await userinfoRepository.SkillPrSave(newUsers);
     return 'ok';
+  },
+  SkillPrGet: async (user: UserId) => {
+    const skillPr = await userinfoRepository.SkillPrFind(user);
+    return skillPr;
+  },
+  PreferenceCreate: async (user: UserId, label: Preference) => {
+    const newUser: Preference = {
+      userid: user,
+      companySelection: label.companySelection,
+      companySelectionType: label.companySelectionType,
+      preferredLocations: label.preferredLocations,
+      preferredDetail: label.preferredDetail,
+    };
+    await userinfoRepository.PreferenceSave(user, newUser);
+    return 'ok';
+  },
+  PreferenceGet: async (user: UserId) => {
+    const preference = await userinfoRepository.PreferenceFind(user);
+    return preference;
   },
 };

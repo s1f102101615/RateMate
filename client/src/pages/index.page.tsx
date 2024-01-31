@@ -16,8 +16,13 @@ const Home = () => {
   }
   if (createAuth().currentUser?.emailVerified === false) {
     logout();
+    // alert('メールアドレスの認証が完了していません。');
+    // アラートを表示すると２回表示されてしまう(おそらくlogout処理のせい)
+    // メッセージは表示したい為変わりがあれば採用したい
+    // 認証してなかったら認証してくださいと書いたページに飛ばしてそこから再度メールを送れるようにする案あり
     return null;
   }
+
   return (
     <>
       <BasicHeader user={user} />

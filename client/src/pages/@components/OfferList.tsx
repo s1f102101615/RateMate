@@ -4,8 +4,12 @@ import type { CSSProperties } from 'react';
 interface OfferListProps {
   companyName: string;
   description: string;
+  location: string;
   width: string;
   height: string;
+
+  salary: string;
+  createat: Date;
 }
 
 const offerListStyle: CSSProperties = {
@@ -16,7 +20,15 @@ const offerListStyle: CSSProperties = {
   display: 'flex',
 };
 
-function OfferList({ companyName, description, width, height }: OfferListProps) {
+function OfferList({
+  companyName,
+  description,
+  width,
+  height,
+  location,
+  salary,
+  createat,
+}: OfferListProps) {
   return (
     <Paper style={{ width, height, ...offerListStyle }}>
       <img
@@ -32,11 +44,16 @@ function OfferList({ companyName, description, width, height }: OfferListProps) 
         <span>{description}</span>
         <br />
         <div style={{ flexDirection: 'row' }}>
-          <span>年収500$ </span>
-          <span>L赤羽</span>
+          <span>年収{salary}円 </span>
+          <span>{location}</span>
         </div>
         <div style={{ justifyContent: 'flex-end', display: 'flex', marginTop: -5 }}>
-          2023/10/27 残り?日
+          {new Date(createat).toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+          })}
+          　残り？日
         </div>
       </div>
     </Paper>
