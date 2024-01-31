@@ -303,7 +303,7 @@ const Home = () => {
     setIsModalOpen3(false);
   };
 
-  const [local, setLocal] = useState('');
+  const [local, setLocal] = useState<string | undefined>();
 
   const handleCheckboxChange = (prefecture: string) => {
     setLocal((prevLocal) => {
@@ -344,20 +344,26 @@ const Home = () => {
   const searchInfo = useSearchInfo();
 
   const fetchFilteredInfo = async () => {
-    const params = {
-      category1: checkedItemsIndustry,
-      category2: checkedItemsOccupation,
-      category3: local,
-      minSalary: selectedSalary,
-      maxSalary: selectedSalary2,
-      label: checkedCategories,
-    };
-    console.log(params);
-    console.log(checkedCategories);
+    try {
+      const params = {
+        category1: checkedItemsIndustry,
+        category2: checkedItemsOccupation,
+        category3: local,
+        minSalary: selectedSalary,
+        maxSalary: selectedSalary2,
+        label: checkedCategories,
+      };
+      console.log(params);
+      console.log(checkedCategories);
 
-    const filteredData = await searchInfo(params);
-    console.log(filteredData);
-    setData(filteredData.body);
+      const filteredData = await searchInfo(params);
+      console.log(filteredData);
+      setData(filteredData.body);
+    } catch (error) {
+      // エラーハンドリング
+      console.error('エラーが発生しました:', error);
+      // エラーメッセージをユーザーに表示するか、適切な手順を提供するなどのアクションを実行することができます
+    }
   };
 
   const handleSearchButtonClick = () => {
@@ -379,9 +385,27 @@ const Home = () => {
     }
   };
 
+  const itemsPerPage = 5;
+  const totalItems = data.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // 現在のページに表示するアイテムの配列を取得
+  const currentItems = data.slice(startIndex, endIndex);
+
+  // ページを切り替える関数
+  const changePage = (page: SetStateAction<number>) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <BasicHeader user={user} />
+
       <div className={styles.milkyWay}>
         <div className={styles.background2}>
           <div className={styles.background}>
@@ -487,7 +511,9 @@ const Home = () => {
                           </div>
 
                           <div className={styles6.modalFooter}>
-                            <button className={styles6.submitButton}>決定</button>
+                            <button className={styles6.submitButton} onClick={closeModal}>
+                              決定
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -568,7 +594,9 @@ const Home = () => {
                           </div>
 
                           <div className={styles6.modalFooter}>
-                            <button className={styles6.submitButton}>決定</button>
+                            <button className={styles6.submitButton} onClick={closeModal2}>
+                              決定
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -611,7 +639,9 @@ const Home = () => {
                               </div>
                             ))}
 
-                            <button className={styles7.submitButton}>決定</button>
+                            <button className={styles7.submitButton} onClick={closeModal3}>
+                              決定
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -703,29 +733,36 @@ const Home = () => {
                 </div>
                 <div className={styles5.leftBoxAll}>
                   <div className={styles5.pagination}>
-                    <span>1ページ〜50ページ</span>
-                    <span>（全251636件中）</span>
-                    <ul>
-                      <li>
-                        <a href="#page1" className={styles5.active}>
-                          1
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#page2">2</a>
-                      </li>
-                      <li>
-                        <a href="#page3">3</a>
-                      </li>
-                      <li>
-                        <a href="#page4">4</a>
-                      </li>
-                    </ul>
+                    <div>
+                      <div>
+                        <button
+                          onClick={() => changePage(currentPage - 1)}
+                          disabled={currentPage === 1}
+                        >
+                          Previous
+                        </button>
+                        {Array.from({ length: totalPages }, (_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => changePage(index + 1)}
+                            disabled={index + 1 === currentPage}
+                          >
+                            {index + 1}
+                          </button>
+                        ))}
+                        <button
+                          onClick={() => changePage(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
                   <div className={styles5.leftBox2}>
                     <div>
-                      {data.map((company) => (
+                      {currentItems.map((company) => (
                         <div className={styles5.joblisting} key={company.id}>
                           <div className={styles5.header}>
                             <div className={styles5.newtag}>NEW</div>

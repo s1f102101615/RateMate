@@ -16,14 +16,25 @@ export const companySearchRepository = {
     console.log('awwawds');
     const whereClause: any = { AND: [] }; // whereClause.AND を配列として初期化
 
-    // category1が与えられている場合、ANDクエリでそのいずれかが含まれるレコードを取得する
-    if (params.category1 && params.category1.length > 0) {
-      whereClause.AND.push({
-        industry: { in: params.category1 },
-      });
+    try {
+      // category1が与えられている場合、ANDクエリでそのいずれかが含まれるレコードを取得する
+      if (params.category1 && params.category1.length > 0) {
+        // whereClause.AND は既に配列として初期化されているので、そのまま push を使用する
+        whereClause.AND.push({
+          industry: { in: params.category1 },
+        });
+      }
+      console.log('d');
+    } catch (error) {
+      console.log(error);
     }
 
-    console.log('d');
+    if (params.category2 && params.category2.length > 0) {
+      whereClause.AND = Boolean(whereClause.AND) || [];
+      whereClause.AND.push({
+        occupation: { in: params.category2 },
+      });
+    }
 
     // category3が与えられている場合（null、undefined、空文字列を除く）、ANDクエリで一致するレコードを取得する
     if (params.category3 !== null) {
@@ -33,37 +44,39 @@ export const companySearchRepository = {
     }
 
     try {
+      console.log("DA22WD")
       let minSalaryValue;
       let maxSalaryValue;
+      console.log(params.minSalary,"dd555")
+      console.log(params.maxSalary)
 
-      if (params.minSalary !== null && params.minSalary !== undefined) {
+      // eslint-disable-next-line eqeqeq
+      if (params.minSalary !== null && params.minSalary !== undefined && params.minSalary !== "") { 
+        console.log("DA33322WD")
         minSalaryValue = parseInt(params.minSalary.replace(/\D/g, ''));
-        if (isNaN(minSalaryValue)) {
-          minSalaryValue = undefined;
+        if (!isNaN(minSalaryValue)) {
+          console.log("DAWD")
+          whereClause.AND.push({
+            annualincome: {
+              gte: minSalaryValue,
+            },
+          });
         }
       }
 
-      if (params.maxSalary !== null && params.maxSalary !== undefined) {
+      // eslint-disable-next-line eqeqeq
+      if (params.maxSalary !== null && params.maxSalary !== undefined && params.maxSalary !== "") {
+        console.log("DA2222332WD")
         maxSalaryValue = parseInt(params.maxSalary.replace(/\D/g, ''));
-        if (isNaN(maxSalaryValue)) {
-          maxSalaryValue = undefined;
+        if (!isNaN(maxSalaryValue)) {
+          console.log("DA22666WD")
+          whereClause.AND.push({
+            annualincome: {
+              lte: maxSalaryValue,
+            },
+          });
         }
       }
-
-      if (minSalaryValue !== undefined || maxSalaryValue !== undefined) {
-        const incomeCondition: { gte?: number; lte?: number } = {};
-        if (minSalaryValue !== undefined) {
-          incomeCondition.gte = minSalaryValue;
-        }
-        if (maxSalaryValue !== undefined) {
-          incomeCondition.lte = maxSalaryValue;
-        }
-        whereClause.AND.push({
-          annualincome: incomeCondition,
-        });
-      }
-
-      console.log(JSON.stringify(whereClause, null, 2));
     } catch (error) {
       console.error('Error caught:', error);
     }
@@ -78,6 +91,7 @@ export const companySearchRepository = {
     });
 
     console.log('daw');
+    console.log(companies);
 
     return companies;
   },

@@ -9,10 +9,12 @@ const DetailPage = () => {
   const fetchinfodetail = useFetchInfoDetail();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (id) {
       // id が存在する場合のみ FetchInfoDetail を実行
       FetchInfoDetail(Number(id));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]); // id が変更されるたびに効果を再実行
 
   const FetchInfoDetail = async (companyId: number) => {

@@ -82,6 +82,14 @@
   border: 1px solid red; /* 要素の境界を明確にする */
 }
 
+.parentOfMilkyWay {
+  /* 親要素の実際のクラス名に置き換えてください */
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+  justify-content: center; /* 水平方向の中央揃え */
+  height: 100vh; /* 親要素の高さをビューポートの高さに設定 */
+}
+
 .container2 {
   position: relative;
   right: 100px;
