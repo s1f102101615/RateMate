@@ -11,10 +11,22 @@
   margin-bottom: 10px;
 }
 
+.container3 {
+  position: relative;
+  top: -20px;
+  left: 930px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 子要素を中央に揃える場合 */
+  justify-content: space-around; /* 子要素の間に均等なスペースを設定する場合 */
+  width: 100px;
+  height: 400px;
+}
+
 .cpbgpattern06 {
   z-index: -999;
   width: 100%;
-  height: 2400px;
+  height: auto;
   background: linear-gradient(#7afa89, #00ff3c);
   background-color: #4fff5b;
 }
@@ -22,7 +34,7 @@
 .cpbgpattern06::after {
   display: block;
   width: 100%;
-  height: 500%;
+  height: auto;
   content: '';
   background-image: linear-gradient(
       rgb(255 255 255 / 25%) 3%,
@@ -48,12 +60,18 @@
   position: relative; /* 追加 */
   top: 160px;
   left: 250px;
-  width: 800px;
-  height: 2400px;
-  background-color: #edecec;
+  width: 900px;
+  margin-bottom: 260px;
+}
+
+.background2 {
+  position: relative; /* 追加 */
+  height: 100%;
 }
 
 .milkyWay {
+  height: calc(100% + 700px);
+  background-color: lightblue; /* 要素の高さを視覚的に確認する */
   background-color: #646770;
   /* stylelint-disable-next-line function-linear-gradient-no-nonstandard-direction */
   background-image: linear-gradient(bottom, rgb(255 255 255 / 40%) 0%, rgb(0 0 0 / 40%) 100%),
@@ -61,4 +79,41 @@
   background-image: linear-gradient(0deg, rgb(255 255 255 / 40%) 0%, rgb(0 0 0 / 40%) 100%),
     radial-gradient(at 50% 87%, rgb(255 255 255 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
   background-blend-mode: multiply, normal;
+  border: 1px solid red; /* 要素の境界を明確にする */
+}
+
+.parentOfMilkyWay {
+  /* 親要素の実際のクラス名に置き換えてください */
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+  justify-content: center; /* 水平方向の中央揃え */
+  height: 100vh; /* 親要素の高さをビューポートの高さに設定 */
+}
+
+.container2 {
+  position: relative;
+  right: 100px;
+  width: 1100px;
+  height: auto;
+  background: #edecec; /* 半透明の白背景を追加 */
+}
+
+.container1 {
+  display: flex;
+  align-items: flex-start; /* 上端を揃える */
+  height: 100%;
+}
+
+.container5 {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* 子要素を縦方向に並べる */
+  align-items: flex-start; /* 子要素の水平方向の配置を開始位置に揃える */
+  height: 100%;
+}
+
+.allContainer {
+  height: 140%;
+  padding: 0;
+  margin: 0;
 }

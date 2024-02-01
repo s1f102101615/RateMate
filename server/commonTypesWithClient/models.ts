@@ -14,7 +14,7 @@ export type CompanyModel = {
   id: number;
   companyId: number;
   companyName: string;
-  annualincome: string;
+  annualincome: number;
   industry: string;
   local: string;
   occupation: string;
@@ -26,21 +26,6 @@ export type CompanyModel = {
   publicationstartdate: string;
 };
 
-export type CompanyDetailModel = {
-  id: number;
-  companyId: number;
-  companyName: string;
-  annualincome: string;
-  industry: string;
-  local: string;
-  occupation: string;
-  occupationdetail: string[];
-  jobdescription: string;
-  jobdescriptiondetail: string[];
-  businesscontent: string;
-  requiredability: string;
-  publicationstartdate: string;
-};
 
 export type UserInfo = {
   userId: string;
@@ -122,3 +107,11 @@ export const taskParser = z.object({
 export type OfferStatus = 'PENDING' | 'ACCEPTED' | 'REJECTED';
 
 export type TaskModel = z.infer<typeof taskParser>;
+
+export type CompaniesModel = {
+  id: number;
+  companyName: string;
+  annualIncome: string;
+  industry: string[];
+  occupation: string[];
+};

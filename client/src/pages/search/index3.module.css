@@ -1,13 +1,10 @@
 .registerBox {
-  position: absolute;
-  top: 50px;
-  left: 830px;
+  position: relative;
   width: 190px;
   height: 100px;
   background-color: #fff;
   border-right: 1px solid #ccc;
   box-shadow: rgb(50 50 93 / 25%) 0 50px 100px -20px, rgb(0 0 0 / 30%) 0 30px 60px -30px;
-  transform: translateY(-50%);
 }
 
 .blueBox2 {

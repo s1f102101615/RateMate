@@ -1,5 +1,4 @@
-
-import type { CompanyDetailModel, CompanyModel } from '$/commonTypesWithClient/models';
+import type { CompaniesModel, CompanyModel } from '$/commonTypesWithClient/models';
 
 export type Methods = {
   post: {
@@ -9,8 +8,8 @@ export type Methods = {
       category3?: string;
       minSalary?: string;
       maxSalary?: string;
-      label?: string;
+      label?: string[];
     };
-    resBody: CompanyModel[] // 結果はCompanyModelの配列として返されると仮定しています。
+    resBody: CompanyModel[]; // 結果はCompanyModelの配列として返されると仮定しています。
   };
 };
