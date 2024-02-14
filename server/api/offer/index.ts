@@ -10,7 +10,7 @@ export type Methods = DefineMethods<{
           userId: string;
           title: string;
           salary: string;
-          location: string;
+          location: string[];
           description: string;
           status: $Enums.OfferStatus;
           createdAt: Date;
