@@ -13,30 +13,11 @@ CREATE TABLE "Task" (
 );
 
 -- CreateTable
-CREATE TABLE "Company" (
-    "id" SERIAL NOT NULL,
-    "companyId" INTEGER NOT NULL,
-    "companyName" TEXT NOT NULL,
-    "annualincome" TEXT NOT NULL,
-    "industry" TEXT NOT NULL,
-    "local" TEXT NOT NULL,
-    "occupation" TEXT NOT NULL,
-    "occupationdetail" TEXT[],
-    "jobdescription" TEXT NOT NULL,
-    "jobdescriptiondetail" TEXT[],
-    "businesscontent" TEXT NOT NULL,
-    "requiredability" TEXT NOT NULL,
-    "publicationstartdate" TEXT NOT NULL,
-
-    CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "CompanyDetail" (
     "id" SERIAL NOT NULL,
     "companyId" INTEGER NOT NULL,
     "companyName" TEXT NOT NULL,
-    "annualincome" TEXT NOT NULL,
+    "annualincome" INTEGER NOT NULL,
     "industry" TEXT NOT NULL,
     "local" TEXT NOT NULL,
     "occupation" TEXT NOT NULL,
@@ -64,6 +45,7 @@ CREATE TABLE "User" (
     "createdAt" TIMESTAMP(3) NOT NULL,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
+    "desiredIndustry" TEXT[],
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
 );
@@ -75,7 +57,7 @@ CREATE TABLE "Offer" (
     "userId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "salary" TEXT NOT NULL,
-    "location" TEXT NOT NULL,
+    "location" TEXT[],
     "description" TEXT NOT NULL,
     "status" "OfferStatus" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -95,10 +77,23 @@ CREATE TABLE "Skill" (
 );
 
 -- CreateTable
+CREATE TABLE "Company" (
+    "id" SERIAL NOT NULL,
+    "companyName" TEXT NOT NULL,
+    "annualIncome" TEXT NOT NULL,
+    "industry" TEXT[],
+    "occupation" TEXT[],
+
+    CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Notification" (
     "id" SERIAL NOT NULL,
     "userId" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
     "isRead" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -151,9 +146,9 @@ CREATE TABLE "Research" (
     "userid" TEXT NOT NULL,
     "theme" TEXT NOT NULL,
     "details" TEXT NOT NULL,
-    "achievements" TEXT NOT NULL,
-    "awards" TEXT NOT NULL,
-    "paper" TEXT NOT NULL,
+    "achievements" BOOLEAN NOT NULL,
+    "awards" BOOLEAN NOT NULL,
+    "paper" BOOLEAN NOT NULL,
     "presentation" TEXT NOT NULL,
 
     CONSTRAINT "Research_pkey" PRIMARY KEY ("userid")
@@ -162,7 +157,7 @@ CREATE TABLE "Research" (
 -- CreateTable
 CREATE TABLE "Competition" (
     "userid" TEXT NOT NULL,
-    "achievement" TEXT NOT NULL,
+    "achievement" BOOLEAN NOT NULL,
     "details" TEXT NOT NULL,
 
     CONSTRAINT "Competition_pkey" PRIMARY KEY ("userid")
@@ -183,6 +178,17 @@ CREATE TABLE "Experience" (
     "userid" TEXT NOT NULL,
 
     CONSTRAINT "Experience_pkey" PRIMARY KEY ("userid")
+);
+
+-- CreateTable
+CREATE TABLE "Preference" (
+    "userid" TEXT NOT NULL,
+    "companySelection" TEXT[],
+    "companySelectionType" TEXT[],
+    "preferredLocations" TEXT[],
+    "preferredDetail" TEXT NOT NULL,
+
+    CONSTRAINT "Preference_pkey" PRIMARY KEY ("userid")
 );
 
 -- AddForeignKey

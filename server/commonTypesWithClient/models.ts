@@ -26,7 +26,6 @@ export type CompanyModel = {
   publicationstartdate: string;
 };
 
-
 export type UserInfo = {
   userId: string;
   birthday: Date;

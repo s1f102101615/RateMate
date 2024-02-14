@@ -14,7 +14,7 @@ const DetailPage = () => {
       // id が存在する場合のみ FetchInfoDetail を実行
       FetchInfoDetail(Number(id));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]); // id が変更されるたびに効果を再実行
 
   const FetchInfoDetail = async (companyId: number) => {
@@ -25,14 +25,13 @@ const DetailPage = () => {
 
   return (
     <div className={styles.milkyWay}>
-              <div className={styles.background}>
-    <div>
-      <h1>詳細ページ: {id}</h1>
-      {/* ここにその他のページコンテンツ */}
+      <div className={styles.background}>
+        <div>
+          <h1>詳細ページ: {id}</h1>
+          {/* ここにその他のページコンテンツ */}
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    
   );
 };
 

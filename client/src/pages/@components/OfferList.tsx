@@ -53,7 +53,7 @@ function OfferList({
             month: 'numeric',
             day: 'numeric',
           })}
-          　残り？日
+          残り？日
         </div>
       </div>
     </Paper>

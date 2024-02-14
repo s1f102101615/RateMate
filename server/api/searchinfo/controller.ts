@@ -1,4 +1,3 @@
-
 import { companySearchUsecase } from '$/usecase/companySerchUsecase';
 import { defineController } from './$relay';
 

@@ -1,11 +1,8 @@
-
 /* eslint-disable max-depth */
 
 /* eslint-disable complexity */
 import type { CompanyModel } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
-
-
 
 export const companySearchRepository = {
   fetchinfo: async (params: {
@@ -20,7 +17,6 @@ export const companySearchRepository = {
     console.log('awwawds');
     const whereClause: any = { AND: [] }; // whereClause.AND を配列として初期化
 
-<<<<<<< HEAD
     try {
       // category1が与えられている場合、ANDクエリでそのいずれかが含まれるレコードを取得する
       if (params.category1 && params.category1.length > 0) {
@@ -36,11 +32,6 @@ export const companySearchRepository = {
 
     if (params.category2 && params.category2.length > 0) {
       whereClause.AND = Boolean(whereClause.AND) || [];
-=======
-    // category1が与えられている場合、ANDクエリでそのいずれかが含まれるレコードを取得する
-    if (params.category1 && params.category1.length > 0) {
-
->>>>>>> origin/main
       whereClause.AND.push({
         occupation: { in: params.category2 },
       });
@@ -54,18 +45,18 @@ export const companySearchRepository = {
     }
 
     try {
-      console.log("DA22WD")
+      console.log('DA22WD');
       let minSalaryValue;
       let maxSalaryValue;
-      console.log(params.minSalary,"dd555")
-      console.log(params.maxSalary)
+      console.log(params.minSalary, 'dd555');
+      console.log(params.maxSalary);
 
       // eslint-disable-next-line eqeqeq
-      if (params.minSalary !== null && params.minSalary !== undefined && params.minSalary !== "") { 
-        console.log("DA33322WD")
+      if (params.minSalary !== null && params.minSalary !== undefined && params.minSalary !== '') {
+        console.log('DA33322WD');
         minSalaryValue = parseInt(params.minSalary.replace(/\D/g, ''));
         if (!isNaN(minSalaryValue)) {
-          console.log("DAWD")
+          console.log('DAWD');
           whereClause.AND.push({
             annualincome: {
               gte: minSalaryValue,
@@ -75,11 +66,11 @@ export const companySearchRepository = {
       }
 
       // eslint-disable-next-line eqeqeq
-      if (params.maxSalary !== null && params.maxSalary !== undefined && params.maxSalary !== "") {
-        console.log("DA2222332WD")
+      if (params.maxSalary !== null && params.maxSalary !== undefined && params.maxSalary !== '') {
+        console.log('DA2222332WD');
         maxSalaryValue = parseInt(params.maxSalary.replace(/\D/g, ''));
         if (!isNaN(maxSalaryValue)) {
-          console.log("DA22666WD")
+          console.log('DA22666WD');
           whereClause.AND.push({
             annualincome: {
               lte: maxSalaryValue,
@@ -89,7 +80,6 @@ export const companySearchRepository = {
       }
     } catch (error) {
       console.error('Error caught:', error);
-
     }
     console.log('aw');
     // 以下、minSalary、maxSalary、labelに関する処理は前述のコードを参照してください。
