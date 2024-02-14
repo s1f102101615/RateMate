@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { Button, Paper, Typography } from '@mui/material';
 import { useCallback, useState } from 'react';
 
 const ImageUpload = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const onDragOver = (e: { preventDefault: () => void }) => {
+  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
 
@@ -20,6 +19,7 @@ const ImageUpload = () => {
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       if (file && file.type.startsWith('image/')) {
         setSelectedFile(file);
       }

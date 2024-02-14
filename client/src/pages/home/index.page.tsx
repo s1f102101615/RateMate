@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import type { OfferStatus } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { BasicHeaderLogined } from 'src/pages/@components/BasicHeaderLogined/BasicHeaderLogined';
@@ -33,12 +32,11 @@ const Home = () => {
         salary: string;
         location: string[];
         description: string;
-        status: OfferStatus;
+        status: string;
         createdAt: Date;
         updatedAt: Date;
       }[]
     | null
-    | undefined
   >(); // 通知のデータ構造(後で変更)
   const [sortOrder, setSortOrder] = useState('asc');
 
