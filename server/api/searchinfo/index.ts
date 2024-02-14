@@ -1,4 +1,4 @@
-import type { CompanyModel } from '$/commonTypesWithClient/models';
+import type { CompanyModel } from 'commonTypesWithClient/models';
 
 export type Methods = {
   post: {
