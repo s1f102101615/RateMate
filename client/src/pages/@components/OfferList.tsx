@@ -4,7 +4,7 @@ import type { CSSProperties } from 'react';
 interface OfferListProps {
   companyName: string;
   description: string;
-  location: string;
+  location: string[];
   width: string;
   height: string;
 
@@ -45,7 +45,7 @@ function OfferList({
         <br />
         <div style={{ flexDirection: 'row' }}>
           <span>年収{salary}円 </span>
-          <span>{location}</span>
+          <span>{location.join(', ')}</span>
         </div>
         <div style={{ justifyContent: 'flex-end', display: 'flex', marginTop: -5 }}>
           {new Date(createat).toLocaleDateString('ja-JP', {

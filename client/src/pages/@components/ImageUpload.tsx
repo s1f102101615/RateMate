@@ -3,13 +3,13 @@ import { Button, Paper, Typography } from '@mui/material';
 import { useCallback, useState } from 'react';
 
 const ImageUpload = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const onDragOver = (e) => {
+  const onDragOver = (e: { preventDefault: () => void }) => {
     e.preventDefault();
   };
 
-  const onDrop = (e) => {
+  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (file !== null && file !== undefined && file.type.startsWith('image/')) {
@@ -17,10 +17,12 @@ const ImageUpload = () => {
     }
   };
 
-  const onFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file !== null && file !== undefined && file.type.startsWith('image/')) {
-      setSelectedFile(file);
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        setSelectedFile(file);
+      }
     }
   };
 

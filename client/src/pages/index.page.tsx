@@ -28,7 +28,7 @@ const Home = () => {
       <BasicHeader user={user} />
       {/* 画像とモチベーティブな言葉のhead */}
       <div className={styles.head}>
-        <img className={styles.proimage} src="/images/progame.jpg" alt="My Image" width="100%" />
+        <img src="/images/progame.jpg" alt="My Image" width="100%" />
 
         {/* <div className={styles.title} style={{}}>
           熱中した過去に

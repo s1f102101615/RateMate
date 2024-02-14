@@ -31,7 +31,7 @@ const Home = () => {
         userId: string;
         title: string;
         salary: string;
-        location: string;
+        location: string[];
         description: string;
         status: OfferStatus;
         createdAt: Date;

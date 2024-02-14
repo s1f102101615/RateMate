@@ -8,7 +8,7 @@ function Chart(props: {
     A: number; // 平均点
     B: number; // 自分の点数
     fullMark: number; // MAX点
-  };
+  }[];
   width: number;
   height: number;
   outerRadius: number;
