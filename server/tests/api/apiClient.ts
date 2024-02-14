@@ -21,7 +21,17 @@ export const apiClient = api(
 
 beforeAll(async () => {
   const auth = getAuth(initializeApp({ apiKey: 'fake-api-key', authDomain: 'localhost' }));
-  connectAuthEmulator(auth, `http://${FIREBASE_AUTH_EMULATOR_HOST}`, { disableWarnings: true });
+  try {
+    const response = await axios.get(`http://${FIREBASE_AUTH_EMULATOR_HOST}`);
+    if (response.status === 200) {
+      console.log('Firebase Authentication エミュレーターは起動しています');
+    } else {
+      console.error('Firebase Authentication エミュレーターが正常に起動していません');
+    }
+  } catch (error) {
+    console.error('Firebase Authentication エミュレーターへの接続中にエラーが発生しました');
+  }
+  connectAuthEmulator(auth, `http://127.0.0.1:9099`, { disableWarnings: true });
   const result = await signInWithCredential(
     auth,
     GithubAuthProvider.credential(JSON.stringify({ sub: testUser.name, email: testUser.email }))
