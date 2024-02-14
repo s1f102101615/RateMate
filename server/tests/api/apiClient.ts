@@ -21,21 +21,6 @@ export const apiClient = api(
 
 beforeAll(async () => {
   const auth = getAuth(initializeApp({ apiKey: 'fake-api-key', authDomain: 'localhost' }));
-  try {
-    const response = await axios.get(
-      `${FIREBASE_AUTH_EMULATOR_HOST}/identitytoolkit.googleapis.com/v1/accounts:signInWithIdp`
-    );
-    if (response.status === 200) {
-      console.log('Firebase Authentication エミュレーターは起動しています');
-    } else {
-      console.error('Firebase Authentication エミュレーターが正常に起動していません');
-    }
-  } catch (error: any) {
-    console.error(
-      'Firebase Authentication エミュレーターへの接続中にエラーが発生しました',
-      error.message
-    );
-  }
   connectAuthEmulator(auth, `http://${FIREBASE_AUTH_EMULATOR_HOST}`, { disableWarnings: true });
   const result = await signInWithCredential(
     auth,
