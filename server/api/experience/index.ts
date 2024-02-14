@@ -1,5 +1,5 @@
-import type { Experience } from '$/commonTypesWithClient/models';
 import type { DefineMethods } from 'aspida';
+import type { Experience } from 'commonTypesWithClient/models';
 
 export type Methods = DefineMethods<{
   get: {
