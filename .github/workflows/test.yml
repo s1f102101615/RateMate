@@ -6,6 +6,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      DISABLE_IPV6: true
     steps:
       - uses: actions/checkout@v3
       - run: |
