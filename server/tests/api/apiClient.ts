@@ -20,7 +20,7 @@ export const apiClient = api(
 );
 
 beforeAll(async () => {
-  const auth = getAuth(initializeApp({ apiKey: 'fake-api-key', authDomain: '127.0.0.1' }));
+  const auth = getAuth(initializeApp({ apiKey: 'fake-api-key', authDomain: 'localhost' }));
   connectAuthEmulator(auth, `http://${FIREBASE_AUTH_EMULATOR_HOST}`, { disableWarnings: true });
   const result = await signInWithCredential(
     auth,
