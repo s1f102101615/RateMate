@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 
 import type { ChangeEvent, SetStateAction } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { useFetchInfo, useFetchInfoDetail, useSearchInfo } from 'src/utils/fetchinfo';
 import { userAtom } from '../../atoms/user';
+import { BasicHeaderLogined } from '../@components/BasicHeaderLogined/BasicHeaderLogined';
 import styles from './index.module.css';
 import styles2 from './index2.module.css';
 import styles3 from './index3.module.css';
@@ -407,7 +407,7 @@ const Home = () => {
 
   return (
     <>
-      <BasicHeader user={user} />
+      <BasicHeaderLogined user={user} />
 
       <div className={styles.milkyWay}>
         <div className={styles.background2}>

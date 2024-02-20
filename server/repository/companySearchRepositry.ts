@@ -20,21 +20,24 @@ export const companySearchRepository = {
     try {
       // category1が与えられている場合、ANDクエリでそのいずれかが含まれるレコードを取得する
       if (params.category1 && params.category1.length > 0) {
-        // whereClause.AND は既に配列として初期化されているので、そのまま push を使用する
+        // whereClauseにparams.category1の要素を含むindustryのレコードを取得するANDクエリを追加する
         whereClause.AND.push({
           industry: { in: params.category1 },
         });
       }
-      console.log('d');
     } catch (error) {
       console.log(error);
     }
 
-    if (params.category2 && params.category2.length > 0) {
-      whereClause.AND = Boolean(whereClause.AND) || [];
-      whereClause.AND.push({
-        occupation: { in: params.category2 },
-      });
+    try {
+      if (params.category2 && params.category2.length > 0) {
+        //  whereClause.AND = Boolean(whereClause.AND) || [];
+        whereClause.AND.push({
+          occupation: { in: params.category2 },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
 
     // category3が与えられている場合（null、undefined、空文字列を除く）、ANDクエリで一致するレコードを取得する
