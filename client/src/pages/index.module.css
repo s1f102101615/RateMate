@@ -83,6 +83,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  font-weight: 550;
+
+  /* 文字間隔 */
+  letter-spacing: 0.02em;
 }
 
 .yellow {

@@ -155,7 +155,11 @@ const Home = () => {
       {/* 演出方法を考えなければいけない */}
       <div className={styles.wid}>
         <div className={styles.poem}>
-          <h1>「RateMate就活」 - ゲームから社会への新たな可能性</h1>
+          <h1 style={{ marginBottom: 27 }}>
+            <span style={{ borderBottom: '3px solid #55ec82' }}>
+              「RateMate就活」 - ゲームから社会への新たな可能性
+            </span>
+          </h1>
           昨今、メディアやSNSで一度は聞いたことがある「e-sports」という業界。
           <br />
           これはゲームを通してクラブチームに所属し大会に出場したり、個人でアマチュア大会に出場または養った知識を活かし大会の運営に携わる仕事など幅広い活躍の場をみせています。

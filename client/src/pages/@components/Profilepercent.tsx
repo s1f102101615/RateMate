@@ -19,6 +19,7 @@ const ProfilePercent: React.FC<ProfilePercentProps> = ({ percentage }) => {
     borderRadius: 5,
     flexDirection: 'row',
     marginBottom: '7px',
+    backgroundColor: 'white',
   };
 
   const buttonStyle = {
