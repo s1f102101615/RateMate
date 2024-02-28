@@ -1,8 +1,8 @@
-import type { CompanyModel } from 'commonTypesWithClient/models';
+import type { OfferModel } from 'commonTypesWithClient/models';
 
 export type Methods = {
   post: {
     reqBody: { companyId: number };
-    resBody: CompanyModel;
+    resBody: OfferModel;
   };
 };

@@ -10,7 +10,7 @@ export type UserModel = {
 };
 
 //会社の情報
-export type CompanyModel = {
+export type OfferModel = {
   id: number;
   companyId: number;
   companyName: string;

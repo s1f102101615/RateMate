@@ -15,7 +15,7 @@ model Task {
   createdAt DateTime
 }
 
-model CompanyDetail {
+model OfferDetail {
   id                   Int      @id @default(autoincrement())
   companyId            Int
   companyName          String
@@ -72,7 +72,6 @@ model Skill {
   name   String
   level  String
 }
-
 
 model Company {
   id           Int      @id @default(autoincrement())

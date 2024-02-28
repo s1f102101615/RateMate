@@ -1,9 +1,9 @@
-import type { CompanyModel } from '$/commonTypesWithClient/models';
+import type { OfferModel } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
 
-export const companyRepository = {
-  save: async (company: CompanyModel) => {
-    await prismaClient.companyDetail.upsert({
+export const offerRepository = {
+  save: async (company: OfferModel) => {
+    await prismaClient.offerDetail.upsert({
       where: { id: company.id },
       update: {
         companyId: company.companyId,
@@ -31,9 +31,8 @@ export const companyRepository = {
       },
     });
   },
-  fetchinfo: async (): Promise<CompanyModel[] | undefined> => {
-    const companylist = await prismaClient.companyDetail.findMany();
-    console.log(companylist);
+  fetchinfo: async (): Promise<OfferModel[] | undefined> => {
+    const companylist = await prismaClient.offerDetail.findMany();
     return companylist;
   },
 };

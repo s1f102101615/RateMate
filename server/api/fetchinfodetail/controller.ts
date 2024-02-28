@@ -1,9 +1,9 @@
-import { companyDetailUsecase } from '$/usecase/companyDetailUsecase';
+import { offerDetailUsecase } from '$/usecase/offerDetailUsecase';
 import { defineController } from './$relay';
 
 export default defineController(() => ({
   post: async ({ body }) => ({
     status: 201,
-    body: await companyDetailUsecase.fetchinfo(body.companyId),
+    body: await offerDetailUsecase.fetchinfo(body.companyId),
   }),
 }));

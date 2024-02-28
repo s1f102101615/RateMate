@@ -1,4 +1,4 @@
-import { offerUsecase } from '$/usecase/offerUseCase';
+import { offerUsecase } from '$/usecase/offermeUseCase';
 import { defineController } from './$relay';
 
 export default defineController(() => ({
