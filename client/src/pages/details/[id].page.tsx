@@ -15,11 +15,12 @@ const DetailPage = () => {
   const fetchinfodetail = useFetchInfoDetail();
 
   ///
-  const [tags, setTags] = useState(['Python', 'Apache', 'AWS', 'Docker', 'GCP', 'フリーテキスト']);
+  const [tags, setTags] = useState(['正社員', '2025卒', '説明会求人']);
   const [title, setTitle] = useState(
     `【速攻退職OK】 株式会社ほげんぽつ  バックエンドエンジニア募集`
   );
   const [salary, setSalary] = useState('バックエンドエンジニア 600万円~1,000万円');
+  const [conpanyName, setConpanyName] = useState('株式会社ほげんぽつ');
   const [description, setDescription] = useState(
     '私たち「ほげんぽつ」は、2005年の設立以来、テクノロジーの力を活用して、企業や個人が直面する課題を解決するソリューションを提供してきました。特に、クラウドコンピューティング、AI、IoTの分野での実績が豊富であり、多くのクライアントから信頼を得ています。私たちのモットーは「技術で世界を変える」。日々進化するテクノロジーを駆使し、社会や人々の生活をより良くするための新しい価値を創出しています。経験豊富なエンジニアと専門家たちがチームを組み、お客様のニーズに応じた最適なソリューションを提案します。未来を共に切り開くパートナーとして、テックワールドをご信頼ください。'
   );
@@ -48,7 +49,8 @@ const DetailPage = () => {
 
   const FetchInfoDetail = async (companyId: number) => {
     const fetchInfo = await fetchinfodetail(companyId);
-    setTitle(fetchInfo.body.companyName);
+    setTitle(fetchInfo.body.offertitle);
+    setConpanyName(fetchInfo.body.companyName);
     console.log(fetchInfo);
   };
 
@@ -56,28 +58,31 @@ const DetailPage = () => {
     <div>
       <BasicHeader user={user} />
       <Container
-        maxWidth="lg"
         className={styles.container}
         sx={{
-          pt: 32,
+          pt: 20,
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: 960,
+          paddingRight: { xs: 0, sm: 0 },
+          paddingLeft: { xs: 0, sm: 0 },
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom align="left" fontWeight={'bold'}>
           {title}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom fontWeight="bold">
+        {/* <Typography variant="subtitle1" gutterBottom fontWeight="bold">
           {salary}
-        </Typography>
-        <Box display="flex" gap={1} m={3}>
+        </Typography> */}
+        <Box display="flex" gap={1}>
           {tags.map((tag, index) => (
             <Chip key={index} label={tag} variant="outlined" color="primary" />
           ))}
         </Box>
+        <Typography variant="h6" gutterBottom align="left" mt={2} mb={2}>
+          {conpanyName}
+        </Typography>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <Paper elevation={3}>
               <Box padding={2}>
                 <Typography fontSize={17} lineHeight={2.1}>
@@ -85,12 +90,11 @@ const DetailPage = () => {
                 </Typography>
               </Box>
             </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
+          </Grid> */}
+          <Grid item xs={24} md={12}>
             <Paper elevation={3}>
-              <Box padding={2}>
-                <img src="/images/companyImage.jpg" width={530} height={300} alt="logo" />
-              </Box>
+              <img src="/images/companyImage.jpg" width={960} height={440} alt="logo" />
+
               <Paper elevation={3}>
                 <Box padding={2}>
                   <Typography variant="body1">{subDescription}</Typography>
@@ -99,6 +103,26 @@ const DetailPage = () => {
             </Paper>
           </Grid>
         </Grid>
+        <Box m={3}>
+          <Typography variant="h5" gutterBottom fontWeight="bold" align="left" mb={3}>
+            求人概要
+          </Typography>
+          {/* 職種と場所と勤務地を表示する */}
+          <div className={styles.list}>
+            <Typography variant="body1" fontWeight="bold" m={1} fontSize={17} width={110}>
+              職種
+            </Typography>
+            <Typography variant="body2">バックエンドエンジニア</Typography>
+          </div>
+          <Typography variant="body1" fontWeight="bold">
+            勤務地
+          </Typography>
+          <Typography variant="body2">東京都渋谷区</Typography>
+          <Typography variant="body1" fontWeight="bold">
+            給与
+          </Typography>
+          <Typography variant="body2">月給 30万~50万円</Typography>
+        </Box>
         <Box m={3}>
           <Typography variant="h5" gutterBottom fontWeight="bold" align="center" mb={3}>
             募集要項
