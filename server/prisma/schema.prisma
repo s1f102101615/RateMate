@@ -16,19 +16,47 @@ model Task {
 }
 
 model OfferDetail {
-  id                   Int      @id @default(autoincrement())
-  companyId            Int
-  companyName          String
-  annualincome         Int
-  industry             String
-  local                String
-  occupation           String
-  occupationdetail     String[]
-  jobdescription       String
-  jobdescriptiondetail String[]
-  businesscontent      String
-  requiredability      String
-  publicationstartdate String
+  id                      Int                      @id @default(autoincrement())
+  companyId               Int
+  companyName             String
+  offertitle              String
+  recruitmentOverview     RecruitmentOverview?
+  applicationRequirements ApplicationRequirements?
+  jobDetails              String
+  workLocationDetail      String
+  treatmentBenefits       TreatmentBenefits?
+  otherFeatures           String
+  imageUrls               String[]
+}
+
+model RecruitmentOverview {
+  id          Int         @unique
+  occupation  String
+  industry    String
+  salary      String
+  location    String
+  feature     String
+  offerDetail OfferDetail @relation(fields: [id], references: [id])
+}
+
+model ApplicationRequirements {
+  id                    Int         @unique
+  mandatoryRequirements String
+  idealPerson           String
+  selectionFlow         String
+  offerDetail           OfferDetail @relation(fields: [id], references: [id])
+}
+
+model TreatmentBenefits {
+  id              Int         @unique
+  salarySystem    String
+  annualIncome    String
+  workingHours    String
+  holidayVacation String
+  allowances      String
+  promotion       String
+  insurance       String
+  offerDetail     OfferDetail @relation(fields: [id], references: [id])
 }
 
 model User {

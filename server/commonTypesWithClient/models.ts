@@ -14,16 +14,41 @@ export type OfferModel = {
   id: number;
   companyId: number;
   companyName: string;
-  annualincome: number;
-  industry: string;
-  local: string;
+  offertitle: string;
+  recruitmentOverview?: RecruitmentOverview | null;
+  applicationRequirements?: ApplicationRequirements | null;
+  jobDetails: string;
+  workLocationDetail: string;
+  treatmentBenefits?: TreatmentBenefits | null;
+  otherFeatures: string;
+  imageUrls: string[];
+};
+
+export type RecruitmentOverview = {
+  id: number;
   occupation: string;
-  occupationdetail: string[];
-  jobdescription: string;
-  jobdescriptiondetail: string[];
-  businesscontent: string;
-  requiredability: string;
-  publicationstartdate: string;
+  industry: string;
+  salary: string;
+  location: string;
+  feature: string;
+};
+
+export type ApplicationRequirements = {
+  id: number;
+  mandatoryRequirements: string;
+  idealPerson: string;
+  selectionFlow: string;
+};
+
+export type TreatmentBenefits = {
+  id: number;
+  salarySystem: string;
+  annualIncome: string;
+  workingHours: string;
+  holidayVacation: string;
+  allowances: string;
+  promotion: string;
+  insurance: string;
 };
 
 export type UserInfo = {
